@@ -4,9 +4,16 @@ import Image from "next/image";
 export default function Home() {
   return (
     <main>
-      <section className=" flex flex-col text-left gap-4 justify-center">
-        <p className="uppercase text-sm"><p className="uppercase text-sm">Composure when it matters</p></p>
+      <section className="= bg-background   -mx-4">
+        <div className="mx-auto flex flex-col  gap-4 max-w-7xl p-6 lg:px-8">
+          <div className="flex lg:flex-1">
+            <p className="-m-1.5 p-1.5 uppercase text-sm ">
+              Composure when it matters
+            </p>
+          </div>
+        </div>
       </section>
+
       <section className="container flex flex-col text-center gap-4 justify-center items-center">
         <p className="uppercase text-sm">A MANUAL FOR MEN</p>
         <h1 className="statement  text-2xl text-white">

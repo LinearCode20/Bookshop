@@ -10,7 +10,7 @@ function AppFooter() {
           </Link>
         </div>
         <p className="text-sm">
-          MARGINFOLD PRESS LTD.
+          MARGINFOLD PRESS LTD
         </p>
       </div>
     </footer>

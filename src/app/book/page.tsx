@@ -1,9 +1,15 @@
-import { Button } from "@/components/ui/button";
+"use client";
 import Image from "next/image";
-import React from "react";
-import { chapters } from "./data";
+import StripePayButton from "@/components/StripePayButton";
+import { useSearchParams } from "next/navigation";
+import { useState } from "react";
+import PaymentConfirmationPopup from "@/components/payment-confirmation/PaymentConfirmationPopup";
 
 function page() {
+  const tx = useSearchParams().get("tx");
+
+  const [open, setOpen] = useState(true);
+
   return (
     <main>
       <section className="container pt-12 flex md:flex-row flex-col gap-8 justify-center items-start ">
@@ -31,11 +37,7 @@ function page() {
           <p className="mt-4 ">Pre-order is open.</p>
           <p className="mt-4 ">Reservations are open</p>
 
-          <a href="https://buy.stripe.com/test_dRm28rgjG7qubnae5cao80O">
-          <Button className="btn primary">[ RESERVE DIGITAL ACCESS ]</Button></a>
-          {/* <div className="border-t flex gap-3 justify-center flex-wrap mt-4 pt-2">
-            <Button className="btn primary">[ RESERVE DIGITAL ACCESS ]</Button>
-          </div> */}
+          <StripePayButton />
         </div>
         <div className="basis-1/2 w-full">
           <Image
@@ -47,6 +49,12 @@ function page() {
           />
         </div>
       </section>
+
+      {/* Payment confirmation popup */}
+      <PaymentConfirmationPopup
+        isOpen={open}
+        onClose={() => setOpen(false)}
+      />
       {/* <section className="container mt-40">
         <p className="uppercase ">Introduction</p>
         <h2 className="text-white mt-2.5 text-2xl">Ghost in the Machine</h2>

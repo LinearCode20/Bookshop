@@ -62,7 +62,7 @@ export default function EmailModal({
     localStorage.setItem(STORAGE_KEY, email);
 
     // Open Chapter 1 PDF in new tab
-    //window.open("/pdfs/chapter-one.pdf", "_blank", "noopener,noreferrer");
+    window.open("/pdfs/chapter-one.pdf", "_blank", "noopener,noreferrer");
     
     sendEmail(email);
    

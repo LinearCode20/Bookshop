@@ -1,14 +1,47 @@
 // lib/transactions.ts
-import fs from "fs";
-import path from "path";
+import db from "./db";
 
-const filePath = path.join(process.cwd(), "transactions.json");
-
-export function saveTransaction(tx: any) {
-  const data = fs.existsSync(filePath)
-    ? JSON.parse(fs.readFileSync(filePath, "utf8"))
-    : [];
-
-  data.push(tx);
-  fs.writeFileSync(filePath, JSON.stringify(data, null, 2));
+interface Transaction {
+  transaction_id: string;
+  stripe_transaction_id: string;
+  status: string;
+  download_expiry: string;
+  created_at: string;
 }
+
+export async function saveTransaction(transaction: Transaction) {
+  const sql = `
+    INSERT INTO transactions
+    (transaction_id, stripe_transaction_id, status, download_expiry, created_at)
+    VALUES (?, ?, ?, ?, ?)
+  `;
+
+  const values = [
+    transaction.transaction_id,
+    transaction.stripe_transaction_id,
+    transaction.status,
+    transaction.download_expiry,
+    transaction.created_at,
+  ];
+
+  await db.execute(sql, values);
+}
+
+export async function updateTransactionStatus(
+  transactionId: string,
+  status: string,
+  stripeTransactionId?: string
+) {
+  const sql = `
+    UPDATE transactions
+    SET status = ?, stripe_transaction_id = ?
+    WHERE transaction_id = ?
+  `;
+
+  await db.execute(sql, [
+    status,
+    stripeTransactionId ?? null,
+    transactionId,
+  ]);
+}
+

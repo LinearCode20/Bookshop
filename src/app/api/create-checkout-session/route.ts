@@ -10,33 +10,41 @@ const expiryHours = Number(process.env.URL_EXPIRY_HOURS ?? 1);
 const PRICE_ID = process.env.PRICE_ID as string ?? "" ;
 
 export async function POST() {
-    const transactionId = crypto.randomUUID();
+    try{
+        const transactionId = crypto.randomUUID();
+        const createdAt = new Date();
+        const expiryDate = new Date(
+        createdAt.getTime() + expiryHours * 60 * 60 * 1000
+        );
 
-    const createdAt = new Date();
-    const expiryDate = new Date(
-    createdAt.getTime() + expiryHours * 60 * 60 * 1000
-    );
+        await saveTransaction({
+            transaction_id: transactionId,
+            stripe_transaction_id:"",
+            status: "pending",
+            download_expiry: expiryDate.toISOString(),
+            created_at: createdAt.toISOString(),
+        });
 
-    saveTransaction({
-        transaction_id: transactionId,
-        status: "pending",
-        url: "xyz.com",
-        expiry: expiryDate.toISOString(),
-        created_at: createdAt.toISOString(),
-    });
+        const session = await stripe.checkout.sessions.create({
+            mode: "payment",
+            line_items: [
+            { price: PRICE_ID, quantity: 1 },
+            ],
+            
+            success_url: `${BASE_URL}/book?status=success&tx=${transactionId}`,
+            cancel_url: `${BASE_URL}/book?status=canceled&tx=${transactionId}`,
+            metadata: {
+            transaction_id: transactionId,
+            },
+        });
 
-  const session = await stripe.checkout.sessions.create({
-    mode: "payment",
-    line_items: [
-      { price: PRICE_ID, quantity: 1 },
-    ],
-    
-    success_url: `${BASE_URL}/book?status=success&tx=${transactionId}`,
-    cancel_url: `${BASE_URL}/book?status=canceled&tx=${transactionId}`,
-    metadata: {
-      transaction_id: transactionId,
-    },
-  });
+        return NextResponse.json({ url: session.url });
 
-  return NextResponse.json({ url: session.url });
+    } catch (error) {
+        console.error(error);
+        return NextResponse.json(
+            { error: "Something went wrong" },
+            { status: 500 }
+        );
+    }
 }

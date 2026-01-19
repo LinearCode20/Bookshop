@@ -64,10 +64,23 @@ export default function EmailModal({
     localStorage.setItem(STORAGE_KEY, email);
 
     // Open Chapter 1 PDF in new tab
-    window.open("/pdfs/chapter-one.pdf", "_blank", "noopener,noreferrer");
-
+    //window.open("/pdfs/chapter-one.pdf", "_blank", "noopener,noreferrer");
+    
+    sendEmail(email);
+   
     // Close modal
     onClose();
+  };
+
+  // send email
+  const sendEmail = async (Email:string) => {
+    await fetch("/api/send-email", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        email: Email
+      }),
+    });
   };
 
   const handleEmailChange = (e: ChangeEvent<HTMLInputElement>): void => {

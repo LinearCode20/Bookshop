@@ -20,10 +20,7 @@ export default function PaymentConfirmationPopup({
   pageParms,
   onClose,
 }: Props) {
-
-  //const tx = pageParms.tx;
   const status = pageParms.status;
-
   const [visible, setVisible] = useState(false);
   const [uiState, setUIState] = useState<PaymentUIState>("loading");
 
@@ -42,7 +39,7 @@ export default function PaymentConfirmationPopup({
     }, 800);
 
     //Resolve final state
-    const finalTimer = setTimeout(() => {      
+    const finalTimer = setTimeout(() => {
 
       switch (status) {
         case "success":
@@ -73,84 +70,83 @@ export default function PaymentConfirmationPopup({
 
   if (!visible) return null;
 
-
-const FailedIcon = () => <div className="text-6xl">❌</div>;
-const CanceledIcon = () => <div className="text-6xl">🚫</div>;
-const Spinner = () => (
-  <div className="spinner" />
-);
-const PendingIcon = () => (
-  <div className="text-6xl animate-pulse">⏳</div>
-);
-const SuccessIcon = () => (
-  <div className="text-6xl animate-bounce">✅</div>
-);
+  const FailedIcon = () => <div className="text-6xl">❌</div>;
+  const CanceledIcon = () => <div className="text-6xl">🚫</div>;
+  const Spinner = () => (
+    <div className="spinner" />
+  );
+  const PendingIcon = () => (
+    <div className="text-6xl animate-pulse">⏳</div>
+  );
+  const SuccessIcon = () => (
+    <div className="text-6xl animate-bounce">✅</div>
+  );
 
   function renderUI(state: PaymentUIState) {
-  switch (state) {
-    case "loading":
-      return (
-        <>
-          <Spinner />
-          <h2 className="text-white text-xl mt-4">
-            Preparing payment result...
-          </h2>
-        </>
-      );
+    switch (state) {
+      case "loading":
+        return (
+          <>
+            <Spinner />
+            <h2 className="text-white text-xl mt-4">
+              Preparing payment result...
+            </h2>
+          </>
+        );
 
-    case "pending":
-      return (
-        <>
-          <PendingIcon />
-          <h2 className="text-yellow-400 text-xl mt-4">
-            Confirming your payment
-          </h2>
-          <p className="text-white mt-2">
-            Please don’t close this window
-          </p>
-        </>
-      );
+      case "pending":
+        return (
+          <>
+            <PendingIcon />
+            <h2 className="text-yellow-400 text-xl mt-4">
+              Confirming your payment
+            </h2>
+            <p className="text-white mt-2">
+              Please don’t close this window
+            </p>
+          </>
+        );
 
-    case "success":
-      return (
-        <>
-          <SuccessIcon />
-          <h2 className="text-green-500 text-2xl mt-4">
-            Payment Successful 🎉
-          </h2>
-          <p className="text-white mt-2">
-            Your payment has been confirmed.
-          </p>
-        </>
-      );
+      case "success":
+        return (
+          <>
+            <SuccessIcon />
+            <h2 className="text-green-500 text-2xl mt-4">
+              Payment Successful 🎉
+            </h2>
+            <p className="text-white mt-2">
+              Your payment has been confirmed.
+            </p>
+          </>
+        );
 
-    case "failed":
-      return (
-        <>
-          <FailedIcon />
-          <h2 className="text-red-500 text-2xl mt-4">
-            Payment Failed ❌
-          </h2>
-          <p className="text-white mt-2">
-            Please try again.
-          </p>
-        </>
-      );
+      case "failed":
+        return (
+          <>
+            <FailedIcon />
+            <h2 className="text-red-500 text-2xl mt-4">
+              Payment Failed ❌
+            </h2>
+            <p className="text-white mt-2">
+              Please try again.
+            </p>
+          </>
+        );
 
-    case "canceled":
-      return (
-        <>
-          <CanceledIcon />
-          <h2 className="text-gray-400 text-2xl mt-4">
-            Payment Canceled
-          </h2>
-          <p className="text-white mt-2">
-            You canceled the payment.
-          </p>
-        </>
-      );
+      case "canceled":
+        return (
+          <>
+            <CanceledIcon />
+            <h2 className="text-gray-400 text-2xl mt-4">
+              Payment Canceled
+            </h2>
+            <p className="text-white mt-2">
+              You canceled the payment.
+            </p>
+          </>
+        );
+    }
   }
-}
 
 
   return (

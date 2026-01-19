@@ -1,36 +1,88 @@
-// app/api/stripe-webhook/route.ts
 import Stripe from "stripe";
 import { NextResponse } from "next/server";
-import fs from "fs";
-import path from "path";
+import { updateTransactionStatus } from "@/lib/transactions";
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!);
-const filePath = path.join(process.cwd(), "transactions.json");
 
 export async function POST(req: Request) {
-  const body = await req.text();
-  const sig = req.headers.get("stripe-signature")!;
+    const body = await req.text();
+    const sig = req.headers.get("stripe-signature");
 
-  const event = stripe.webhooks.constructEvent(
-    body,
-    sig,
-    process.env.STRIPE_WEBHOOK_SECRET!
-  );
-
-  if (event.type === "checkout.session.completed") {
-    const session = event.data.object as Stripe.Checkout.Session;
-    const tx = session.metadata?.transaction_id;
-
-    const data = JSON.parse(fs.readFileSync(filePath, "utf8"));
-    const index = data.findIndex((d: any) => d.transaction_id === tx);
-    
-    if (index !== -1) {
-        console.log('data',data[index]);
-
-      data[index].status = "paid";
-      fs.writeFileSync(filePath, JSON.stringify(data, null, 2));
+    if (!sig) {
+        return NextResponse.json({ error: "Missing signature" }, { status: 400 });
     }
-  }
 
-  return NextResponse.json({ received: true });
+    let event: Stripe.Event;
+
+    try {
+        event = stripe.webhooks.constructEvent(
+            body,
+            sig,
+            process.env.STRIPE_WEBHOOK_SECRET!
+        );
+    } catch (err) {
+        console.error("Webhook signature verification failed.", err);
+        return NextResponse.json({ error: "Invalid signature" }, { status: 400 });
+    }
+
+    try {
+        await handleStripeEvent(event);
+    } catch (err) {
+        // IMPORTANT: still return 200 to prevent endless retries
+        console.error("Webhook processing error:", err);
+    }
+
+    return NextResponse.json({ received: true });
+}
+
+async function handleStripeEvent(event: Stripe.Event) {
+    let transactionId: string | undefined;
+    console.log('stripe event', event);
+    switch (event.type) {
+        case "checkout.session.completed": {
+            const session = event.data.object as Stripe.Checkout.Session;
+            transactionId = session.metadata?.transaction_id;
+            const stripeTransactionId = "";
+
+            if (!transactionId) {
+                console.warn("Missing transaction_id in checkout.session.completed");
+                return;
+            }
+
+            await updateTransactionStatus(transactionId, "paid", stripeTransactionId);
+            break;
+        }
+
+        case "checkout.session.expired": {
+            const session = event.data.object as Stripe.Checkout.Session;
+            transactionId = session.metadata?.transaction_id;
+            const stripeTransactionId = "";
+
+            if (!transactionId) {
+                console.warn("Missing transaction_id in checkout.session.expired");
+                return;
+            }
+
+            await updateTransactionStatus(transactionId, "expired", stripeTransactionId);
+            break;
+        }
+
+        case "charge.refunded": {
+            const charge = event.data.object as Stripe.Charge;
+            transactionId = charge.metadata?.transaction_id;
+            const stripeTransactionId = "";
+
+            if (!transactionId) {
+                console.warn("Missing transaction_id in charge.refunded");
+                return;
+            }
+
+            await updateTransactionStatus(transactionId, "refunded", stripeTransactionId);
+            break;
+        }
+
+        default:
+            // Ignore unhandled events
+            return;
+    }
 }

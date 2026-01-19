@@ -1,7 +1,6 @@
 "use client";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Button } from "@/components/ui/button";
-import Image from "next/image";
 import EmailModal from "@/components/first-chapter/read-first-chapter-popup";
 
 export default function Home() {
@@ -52,8 +51,7 @@ Belief is not required.
             onClose={() => setOpen(false)}
           />
         </div>
-      </section>
-
+      </section>      
     </main>
   );
 }

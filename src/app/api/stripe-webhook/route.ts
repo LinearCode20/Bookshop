@@ -6,9 +6,10 @@ import { supabase } from "@/lib/supabase/server";
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!);
 const endpointSecret = process.env.STRIPE_WEBHOOK_SECRET!;
 
+const baseUrl = process.env.BASE_URL || 'http://localhost:3000';
 // send email
 const sendEmail = async (Email: string, Subject: string, emailType: string) => {
-    const res = await fetch("/api/send-email", {
+    const res = await fetch(`${baseUrl}/api/send-email`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({

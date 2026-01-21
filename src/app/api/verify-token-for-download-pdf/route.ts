@@ -34,7 +34,7 @@ export async function POST(req: Request) {
 
         return NextResponse.json({
             valid: true,
-            downloadUrl: "/pdfs/chapter-one.pdf",
+            downloadUrl: "/pdfs/full-book.pdf",
         });
 
     } catch (err) {

@@ -41,7 +41,7 @@ function page({
           <p className="mt-4 ">Pre-order is open.</p>
           <p className="mt-4 ">Reservations are open</p>
 
-          <StripePayButton />
+          <StripePayButton  btnText={"RESERVE DIGITAL ACCESS"} />
         </div>
         <div className="basis-1/2 w-full">
           <Image

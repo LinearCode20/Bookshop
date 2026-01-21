@@ -2,7 +2,11 @@
 
 import { Button } from "./ui/button";
 
-export default function StripePayButton() {
+interface StripePayButtonProps {
+  btnText: string; // define prop type
+}
+
+export default function StripePayButton({ btnText }: StripePayButtonProps) {
   const handleClick = async () => {
     const res = await fetch("/api/create-checkout-session", {
       method: "POST",
@@ -13,6 +17,6 @@ export default function StripePayButton() {
   };
 
   return (
-    <Button  onClick={handleClick} className="btn primary">[ RESERVE DIGITAL ACCESS ]</Button>
+    <Button  onClick={handleClick} className="btn primary">[ {btnText} ]</Button>
   );
 }

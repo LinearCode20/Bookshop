@@ -1,3 +1,4 @@
+import StripePayButton from "@/components/StripePayButton";
 import { Button } from "@/components/ui/button";
 import React from "react";
 
@@ -16,7 +17,10 @@ function page() {
           <p className=" max-w-2xl mx-auto  ">The material stands on its own.</p>
           <div className="flex gap-3 justify-center flex-wrap mt-7">
             <Button className="btn primary">[ READ CHAPTER ONE ]</Button>
-            <Button variant={"outline"} className="text-white">[ SECURE YOUR COPY ]</Button>
+            
+            <StripePayButton btnText={"SECURE YOUR COPY"} />
+
+            {/* <Button variant={"outline"} className="text-white">[ SECURE YOUR COPY ]</Button> */}
           </div>
         </div>
       </section>

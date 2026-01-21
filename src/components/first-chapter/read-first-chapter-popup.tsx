@@ -5,39 +5,41 @@ const STORAGE_KEY = "chapter_one_email";
 interface EmailModalProps {
   isOpen: boolean;
   onClose: () => void;
+  expired?: boolean;
 }
 
 export default function EmailModal({
   isOpen,
   onClose,
+  expired = false,
 }: EmailModalProps) {
   const [visible, setVisible] = useState<boolean>(false);
   const [email, setEmail] = useState<string>("");
   const [error, setError] = useState<string>("");
 
- useEffect(() => {
-  if (isOpen) {
-    setVisible(true);
-    document.body.style.overflow = "hidden";
+  useEffect(() => {
+    if (isOpen) {
+      setVisible(true);
+      document.body.style.overflow = "hidden";
 
-    const savedEmail = localStorage.getItem(STORAGE_KEY);
-    // Prefill ONLY if saved email exists
-    if (savedEmail) {
-      setEmail(savedEmail);
+      const savedEmail = localStorage.getItem(STORAGE_KEY);
+      // Prefill ONLY if saved email exists
+      if (savedEmail) {
+        setEmail(savedEmail);
+      } else {
+        setEmail("");
+      }
+
+      setError("");
     } else {
+      setTimeout(() => setVisible(false), 250);
+      document.body.style.overflow = "auto";
+
+      // 🔥 Reset state on close
       setEmail("");
+      setError("");
     }
-
-    setError("");
-  } else {
-    setTimeout(() => setVisible(false), 250);
-    document.body.style.overflow = "auto";
-
-    // 🔥 Reset state on close
-    setEmail("");
-    setError("");
-  }
-}, [isOpen]);
+  }, [isOpen]);
 
   if (!visible) return null;
 
@@ -60,25 +62,31 @@ export default function EmailModal({
 
     // Save email
     localStorage.setItem(STORAGE_KEY, email);
+    const MailType = "First-Chapter";
+    const emailSubject = 'Your Free Ebook - LET ME GIVE YOU THE GAME!';
+    sendEmail(email, emailSubject, MailType);
 
-    // Open Chapter 1 PDF in new tab
-    window.open("/pdfs/chapter-one.pdf", "_blank", "noopener,noreferrer");
-    
-    sendEmail(email);
-   
     // Close modal
     onClose();
   };
 
   // send email
-  const sendEmail = async (Email:string) => {
-    await fetch("/api/send-email", {
+  const sendEmail = async (Email: string, Subject: string, Type: string) => {
+    const res = await fetch("/api/send-email", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
-        email: Email
+        email: Email,
+        subject: Subject,
+        type: Type
       }),
     });
+
+    const data = await res.json();
+    if (res.ok || data.success) {
+      // Open Chapter 1 PDF in new tab
+      window.open("/pdfs/chapter-one.pdf", "_blank", "noopener,noreferrer");
+    }
   };
 
   const handleEmailChange = (e: ChangeEvent<HTMLInputElement>): void => {
@@ -88,23 +96,36 @@ export default function EmailModal({
   return (
     <div className={`modal-overlay ${isOpen ? "show" : "hide"}`}>
       <div className={`modal ${isOpen ? "show" : "hide"}`}>
-        <h1 className="modal-subtitle text-2xl text-white">
-          READING REQUIRES COMMITMENT
-        </h1>
 
-        <form className="modal-form" onSubmit={handleSubmit}>
-          <input
-            type="email"
-            value={email}
-            placeholder="you@example.com"
-            onChange={handleEmailChange}
-          />
+        {expired ? (
+          // Show only expired message
+          <div className="text-center">
+            <h1 className="text-2xl text-gray-400 mb-4">
+              This download link has expired.
+            </h1>
+            <p className="text-white">Please request a new link to access the content.</p>
+          </div>
+        ) : (
+          <>
 
-          {error && <p className="modal-error">{error}</p>}
+            <h1 className="modal-subtitle text-2xl text-white">
+              READING REQUIRES COMMITMENT
+            </h1>
 
-          <button type="submit">CONTINUE</button>
-        </form>
+            <form className="modal-form" onSubmit={handleSubmit}>
+              <input
+                type="email"
+                value={email}
+                placeholder="you@example.com"
+                onChange={handleEmailChange}
+              />
 
+              {error && <p className="modal-error">{error}</p>}
+
+              <button type="submit">CONTINUE</button>
+            </form>
+          </>
+        )}
         <button className="modal-close" onClick={onClose}>
           ×
         </button>

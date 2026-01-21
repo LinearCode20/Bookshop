@@ -70,17 +70,17 @@ export default function PaymentConfirmationPopup({
 
   if (!visible) return null;
 
-  const FailedIcon = () => <div className="text-6xl">❌</div>;
-  const CanceledIcon = () => <div className="text-6xl">🚫</div>;
+  // const FailedIcon = () => <div className="text-6xl">❌</div>;
+  // const CanceledIcon = () => <div className="text-6xl">🚫</div>;
   const Spinner = () => (
     <div className="spinner" />
   );
-  const PendingIcon = () => (
-    <div className="text-6xl animate-pulse">⏳</div>
-  );
-  const SuccessIcon = () => (
-    <div className="text-6xl animate-bounce">✅</div>
-  );
+  // const PendingIcon = () => (
+  //   <div className="text-6xl animate-pulse">⏳</div>
+  // );
+  // const SuccessIcon = () => (
+  //   <div className="text-6xl animate-bounce">✅</div>
+  // );
 
   function renderUI(state: PaymentUIState) {
     switch (state) {
@@ -97,8 +97,9 @@ export default function PaymentConfirmationPopup({
       case "pending":
         return (
           <>
-            <PendingIcon />
-            <h2 className="text-yellow-400 text-xl mt-4">
+            {/* <PendingIcon /> */}
+             <Spinner />
+            <h2 className="text-gray-400 text-xl mt-4">
               Confirming your payment
             </h2>
             <p className="text-white mt-2">
@@ -110,9 +111,9 @@ export default function PaymentConfirmationPopup({
       case "success":
         return (
           <>
-            <SuccessIcon />
-            <h2 className="text-green-500 text-2xl mt-4">
-              Payment Successful 🎉
+            {/* <SuccessIcon /> */}
+            <h2 className="text-gray-500 text-2xl mt-4">
+              Payment Confirmed
             </h2>
             <p className="text-white mt-2">
               Your payment has been confirmed.
@@ -123,9 +124,9 @@ export default function PaymentConfirmationPopup({
       case "failed":
         return (
           <>
-            <FailedIcon />
-            <h2 className="text-red-500 text-2xl mt-4">
-              Payment Failed ❌
+            {/* <FailedIcon /> */}
+            <h2 className="text-gray-500 text-2xl mt-4">
+              Payment Failed
             </h2>
             <p className="text-white mt-2">
               Please try again.
@@ -136,7 +137,7 @@ export default function PaymentConfirmationPopup({
       case "canceled":
         return (
           <>
-            <CanceledIcon />
+            {/* <CanceledIcon /> */}
             <h2 className="text-gray-400 text-2xl mt-4">
               Payment Canceled
             </h2>

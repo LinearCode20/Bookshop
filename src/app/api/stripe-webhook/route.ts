@@ -63,8 +63,8 @@ export async function POST(req: Request) {
             // check email and throe email
             if (customerEmail) {
                 const mailType = `Full-Book*${transactionId}`;
-                const emailSubject = 'Your Free Ebook - LET ME GIVE YOU THE GAME!';
-                console.log('mailType', mailType);
+                const emailSubject = 'The Digital Edition';
+               // console.log('mailType', mailType);
                 await sendEmail(customerEmail, emailSubject, mailType);
             }
 

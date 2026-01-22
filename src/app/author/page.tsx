@@ -16,11 +16,8 @@ function page() {
           <p className=" max-w-2xl mx-auto  ">No biography is required.</p>
           <p className=" max-w-2xl mx-auto  ">The material stands on its own.</p>
           <div className="flex gap-3 justify-center flex-wrap mt-7">
-            <Button className="btn primary">[ READ CHAPTER ONE ]</Button>
-            
-            <StripePayButton btnText={"SECURE YOUR COPY"} />
-
-            {/* <Button variant={"outline"} className="text-white">[ SECURE YOUR COPY ]</Button> */}
+            <Button className="btn primary">[ READ CHAPTER ONE ]</Button>            
+            <StripePayButton btnText={"Digital Edition"} />
           </div>
         </div>
       </section>

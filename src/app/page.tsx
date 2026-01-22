@@ -1,12 +1,3 @@
-// app/page.tsx
-// import HomeClient from "./HomeClient"; // client component
-
-// export default function Home() {
-//   return <HomeClient />;
-// }
-
-
-
 "use client";
 import { Suspense, use, useState } from "react";
 import { Button } from "@/components/ui/button";

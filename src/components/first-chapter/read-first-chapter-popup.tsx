@@ -63,7 +63,7 @@ export default function EmailModal({
     // Save email
     localStorage.setItem(STORAGE_KEY, email);
     const MailType = "First-Chapter";
-    const emailSubject = 'Your Free Ebook - LET ME GIVE YOU THE GAME!';
+    const emailSubject = 'Read Chapter One';
     sendEmail(email, emailSubject, MailType);
 
     // Close modal

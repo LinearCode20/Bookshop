@@ -35,13 +35,11 @@ function page({
           </p>
           <p className="mt-4 ">Written cleanly.<br></br>
           Without excess.</p>
-          <p className="mt-4 ">Designed for immediate use.<br></br>
-          Digital access begins March.</p>
+          <p className="mt-4 ">Designed for immediate use.</p>
 
-          <p className="mt-4 ">Pre-order is open.</p>
           <p className="mt-4 ">Reservations are open</p>
 
-          <StripePayButton  btnText={"RESERVE DIGITAL ACCESS"} />
+          <StripePayButton  btnText={"Digital Edition"} />
         </div>
         <div className="basis-1/2 w-full">
           <Image

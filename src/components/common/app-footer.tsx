@@ -1,4 +1,5 @@
 import Link from "next/link";
+import CookieBanner from "./CookieBanner/CookieBanner";
 
 function AppFooter() {
   return (
@@ -21,6 +22,7 @@ function AppFooter() {
           MARGINFOLD PRESS LTD
         </p>
       </div>
+       <CookieBanner />
     </footer>
   );
 }

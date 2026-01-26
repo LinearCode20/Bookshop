@@ -35,7 +35,7 @@ export default function EmailModal({
       setTimeout(() => setVisible(false), 250);
       document.body.style.overflow = "auto";
 
-      // 🔥 Reset state on close
+      // Reset state on close
       setEmail("");
       setError("");
     }
@@ -107,7 +107,6 @@ export default function EmailModal({
           </div>
         ) : (
           <>
-
             <h1 className="modal-subtitle text-2xl text-white">
               READING REQUIRES COMMITMENT
             </h1>

@@ -1,8 +1,13 @@
+"use client";
+
+import { Suspense, use, useState } from "react";
+import PopUp from "@/components/popup/popup";
 import StripePayButton from "@/components/StripePayButton";
 import { Button } from "@/components/ui/button";
-import React from "react";
+
 
 function page() {
+  const [popUpOpen, setPopUpOpen] = useState(false);
   return (
     <main>
       <section className="container flex flex-col justify-center items-center ">
@@ -16,8 +21,16 @@ function page() {
           <p className=" max-w-2xl mx-auto  ">No biography is required.</p>
           <p className=" max-w-2xl mx-auto  ">The material stands on its own.</p>
           <div className="flex gap-3 justify-center flex-wrap mt-7">
-            <Button className="btn primary">[ READ CHAPTER ONE ]</Button>            
-            <StripePayButton btnText={"Digital Edition"} />
+            <Button className="btn primary">[ READ CHAPTER ONE ]</Button>
+            {/* <StripePayButton btnText={"Digital Edition"} /> */}
+
+            <Button onClick={() => setPopUpOpen(true)} className="btn primary">[ Digital Edition ]</Button>
+
+            <PopUp
+              popUpOpen={popUpOpen}
+              onClose={() => setPopUpOpen(false)}
+            />
+
           </div>
         </div>
       </section>

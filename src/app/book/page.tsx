@@ -27,7 +27,7 @@ function page({
           <p className="mt-4 ">22 chapters. The essential material.</p>
           <p className="mt-4 ">Designed for immediate use.</p>
           <p className="mt-4 ">This is a reference built from lived conditions, not theory</p>
-          <p className="mt-4 ">It’s designed to be returned to when circumstances tighten <br></br>
+          <p className="mt-4 ">It’s designed to be returned to when life hits the hardest.<br></br>
             Not read once and forgotten
           </p>
           <p className="mt-4 ">Written cleanly.<br></br>

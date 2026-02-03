@@ -26,8 +26,7 @@ export default function Home() {
         <h1 className="statement  text-2xl text-white">LET ME GIVE YOU THE GAME</h1>
 
         <p className="max-w-2xl mx-auto">A book for men.</p>
-        <p className="max-w-2xl mx-auto">Written with British restraint.</p>
-        <p className="max-w-2xl mx-auto">Belief is not required.</p>
+        <p className="max-w-2xl mx-auto">Written with British restraint. Belief is not required.</p>
         <p className="max-w-2xl mx-auto">Decide for yourself.</p>
         <div className="flex gap-3 justify-center flex-wrap mt-7">
           <Button className="btn primary pointer" onClick={() => setOpen(true)}>[ READ CHAPTER ONE ]</Button>

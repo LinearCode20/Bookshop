@@ -17,9 +17,10 @@ function AppFooter() {
           </Link>
         </div>
 
-        <p className="text-sm">
-          MARGINFOLD PRESS LTD
+        <p className="text-sm lg:flex-1">
+          © {new Date().getFullYear()} Let Me Give You The Game. All rights reserved. Published by Marginfold Press Ltd (Company No. 16937504, England & Wales).
         </p>
+
       </div>
       <CookieBanner />
     </footer>

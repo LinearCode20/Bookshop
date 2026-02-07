@@ -21,7 +21,7 @@ function FaqItem({
       className="border-b border-gray-400 pb-4 cursor-pointer"
       onClick={() => toggle(index)}
     >
-      <div className="flex justify-between items-center text-gray-400">
+      <div className="flex justify-between items-center text-white">
         <h3 className="text-lg font-medium">{faq.question}</h3>
         <span className="text-xl">{isOpen ? "−" : "+"}</span>
       </div>
@@ -54,7 +54,7 @@ function page() {
   const rightFaqs = questions.filter((_, i) => i % 2 !== 0);
 
   return (
-    <div className="flex min-h-dvh items-center justify-center bg-black text-white">
+    <div className="flex min-h-dvh items-center justify-center text-white">
       <section className="container mx-auto px-6 max-w-5xl">
         
         <h1 className=" mt-3.5 text-2xl text-white">

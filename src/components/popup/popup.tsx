@@ -1,6 +1,6 @@
 import { useState } from "react";
 import StripePayButton from "../StripePayButton";
-import Link from "next/link"; // ✅ correct import
+import Link from "next/link"; // correct import
 
 interface PopupModalProps {
   popUpOpen: boolean;
@@ -23,37 +23,37 @@ export default function PopUp({ popUpOpen, onClose }: PopupModalProps) {
           {/* Checkboxes */}
           <div className="flex flex-col gap-3 mt-4">
 
-            <label className="flex flex-wrap items-center gap-2 text-gray-700 cursor-pointer">
+            <div className="checkbox-row">
               <input
                 type="checkbox"
+                id="terms"
                 checked={check1}
                 onChange={(e) => setCheck1(e.target.checked)}
-                className="h-4 w-4"
               />
-              <span>
-                I agree to the{" "}
+              <label htmlFor="terms">
+                &nbsp;I agree to the{" "}
                 <Link href="/legal#terms" className="underline">
                   Terms & Conditions
                 </Link>{" "}
                 and{" "}
                 <Link href="/legal#privacy" className="underline">
                   Privacy Policy
-                </Link>
-                .
-              </span>
-            </label>
+                </Link>.
+              </label>
+            </div>
 
-            <label className="flex items-start gap-2 text-gray-700 cursor-pointer">
+            <div className="checkbox-row">
               <input
                 type="checkbox"
+                id="consent"
                 checked={check2}
                 onChange={(e) => setCheck2(e.target.checked)}
-                className="h-4 w-4 mt-1"
               />
-              <span>
-                I consent to immediate access to digital content and acknowledge I lose my right to cancel once the download begins.
-              </span>
-            </label>
+              <label htmlFor="consent">&nbsp;
+                I consent to immediate access to digital content and acknowledge
+                I lose my right to cancel once the download begins.
+              </label>
+            </div>
 
           </div>
 
@@ -61,11 +61,9 @@ export default function PopUp({ popUpOpen, onClose }: PopupModalProps) {
           <div
             className={`mt-6 ${isButtonDisabled ? "pointer-events-none opacity-50" : ""}`}
           >
-            <StripePayButton btnText="Continue to checkout" />
+            <StripePayButton btnText="CONTINUE TO CHECKOUT" />
           </div>
-
         </div>
-
         <button className="modal-close" onClick={onClose}>
           ×
         </button>

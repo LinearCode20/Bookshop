@@ -258,3 +258,36 @@ html{
     transform: rotate(360deg);
   }
 }
+
+/*Stripe Checkout page start */
+.checkbox-row {
+  display: flex;
+  align-items: flex-start; /* 👈 key fix */
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.checkbox-row input[type="checkbox"] {
+  margin-top: 4px; /* aligns checkbox with first line of text */
+  width: 16px;
+  height: 16px;
+  cursor: pointer;
+}
+
+.checkbox-row label {
+  color: #7d8a99;
+  font-size: 14px;
+  line-height: 1.5;
+  cursor: pointer;
+}
+
+.checkbox-row label a {
+  color: #7d8a99;
+  text-decoration: underline;
+}
+
+.checkbox-row label a:hover {
+  color: #ffffff;
+}
+
+/*Stripe Checkout page end*/

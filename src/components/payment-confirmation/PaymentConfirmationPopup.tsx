@@ -113,11 +113,10 @@ export default function PaymentConfirmationPopup({
           <>
             {/* <SuccessIcon /> */}
             <h2 className="text-gray-500 text-2xl mt-4">
-              Payment confirmed
+              Payment confirmed.
             </h2>
-            <p className="text-white mt-2">
-              Your digital ebook is now available.<br></br>
-              Access has been sent to your email and is available.
+            <p className="text-white mt-2">Your Digital Edition is now available.</p>
+            <p className="text-white mt-2">Access has been sent to this email address.
             </p>
           </>
         );

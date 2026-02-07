@@ -22,7 +22,7 @@ function page() {
           <div className="flex gap-3 justify-center flex-wrap mt-7">
 
             <Link key={'/chapter-one'} href={'/chapter-one'} >
-              <Button className="btn primary pointer">[ DIGITAL EDITION ]</Button>
+              <Button className="btn primary pointer">[ READ CHAPTER ONE ]</Button>
             </Link>
 
             {/* <Button onClick={() => setPopUpOpen(true)} className="btn primary">[ Digital Edition ]</Button> */}

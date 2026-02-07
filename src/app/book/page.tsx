@@ -33,7 +33,7 @@ function page({
           <p className="mt-4 ">Written cleanly.<br></br>
             Without excess.</p>
 
-          <Button onClick={() => setPopUpOpen(true)} className="btn primary">[ Digital Edition ]</Button>
+          <Button onClick={() => setPopUpOpen(true)} className="btn primary">[ DIGITAL EDITION ]</Button>
 
           <PopUp
             popUpOpen={popUpOpen}

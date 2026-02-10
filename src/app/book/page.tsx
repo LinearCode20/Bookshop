@@ -29,7 +29,7 @@ function page({
           <p className="mt-4">This is a reference built from lived conditions, not theory</p>
           <p className="mt-4">It’s designed to be returned to when life hits the hardest.</p>
           <p className="mt-4"> Not read once and forgotten.</p>
-          <p className="mt-4">Wriittten cleanly. Without excess.</p>
+          <p className="mt-4">Written cleanly. Without excess.</p>
 
           <Button onClick={() => setPopUpOpen(true)} className="btn primary">[ DIGITAL EDITION ]</Button>
 

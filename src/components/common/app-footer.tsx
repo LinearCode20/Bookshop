@@ -13,7 +13,7 @@ function AppFooter() {
 
         <div className="lg:flex-1 text-left mx-auto"></div>
 
-        <div className="lg:flex-1 text-left mx-auto">
+        <div className="lg:flex-1 text-right mx-auto">
           <Link href="/legal" className="-m-1.5 p-1.5 uppercase text-sm-extra ">
             Legal
           </Link>

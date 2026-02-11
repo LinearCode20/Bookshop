@@ -13,7 +13,7 @@ function page() {
     <main>
       <section className="container flex flex-col justify-center items-center ">
         <div className="text-center mx-auto max-w-4xl pb-14">
-          <h1 className="statement text-2xl text-white">BRAM FROST</h1>
+          <h1 className="statement text-2xl text-white">BRAM FROST</h1><br></br>
           <p className="max-w-2xl mx-auto">This work is published under a pen name.</p>
           <p className="max-w-2xl mx-auto">That decision is structural.</p>
           <p className="max-w-2xl mx-auto">The system matters more than the person who assembled it.</p>

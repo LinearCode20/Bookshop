@@ -13,8 +13,6 @@ export async function POST(req: Request) {
     let pdfLink = "";
     let templatePath = "";
 
-    console.log('emailType : -', emailType);
-
     if (emailType === "First-Chapter") {
       pdfLink = `${process.env.BASE_URL}/pdfs/chapter-one.pdf`;
 

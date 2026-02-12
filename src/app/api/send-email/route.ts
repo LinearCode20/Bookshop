@@ -45,7 +45,7 @@ export async function POST(req: Request) {
 
       templatePath = path.join(
         process.cwd(),
-        "emails/payment-faild"
+        "emails/payment-faild.html"
       );
       pdfLink = `${process.env.BASE_URL}`;
     }
@@ -54,7 +54,7 @@ export async function POST(req: Request) {
 
       templatePath = path.join(
         process.cwd(),
-        "emails/refund-processed"
+        "emails/refund-processed.html"
       );
       pdfLink = `${process.env.BASE_URL}`;
     }
@@ -63,7 +63,7 @@ export async function POST(req: Request) {
 
       templatePath = path.join(
         process.cwd(),
-        "emails/refund-declined"
+        "emails/refund-declined.html"
       );
       pdfLink = `${process.env.BASE_URL}`;
     }

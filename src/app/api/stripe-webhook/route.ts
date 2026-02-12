@@ -44,7 +44,7 @@ export async function POST(req: Request) {
   }
 
   console.log("Webhook event type:", event.type);
-  
+
   try {
     switch (event.type) {
       //  Payment Success
@@ -117,8 +117,10 @@ export async function POST(req: Request) {
       //  Refund Success
       case "charge.refunded": {
         const charge = event.data.object as Stripe.Charge;
-
         const email = charge.billing_details?.email;
+
+        console.log("Webhook charge:", charge);
+        console.log("Webhook email:", email);
 
         if (email) {
           await sendEmail(

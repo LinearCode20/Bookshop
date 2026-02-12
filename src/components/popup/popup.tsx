@@ -61,6 +61,7 @@ export default function PopUp({ popUpOpen, onClose }: PopupModalProps) {
           >
             <StripePayButton btnText="CONTINUE TO CHECKOUT" />
           </div>
+          
         </div>
         <button className="modal-close" onClick={onClose}>
           ×

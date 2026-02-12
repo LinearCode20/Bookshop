@@ -7,7 +7,9 @@ type PaymentUIState =
   | "pending"
   | "success"
   | "failed"
-  | "canceled";
+  | "canceled"
+  | "unsubscribe-success"
+  | "already-unsubscribed";
 
 interface Props {
   isOpen: boolean;
@@ -23,6 +25,30 @@ export default function PaymentConfirmationPopup({
   const status = pageParms.status;
   const [visible, setVisible] = useState(false);
   const [uiState, setUIState] = useState<PaymentUIState>("loading");
+
+  // Call backend API for check handleUnsubscribe status from DB
+  const handleUnsubscribe = async () => {
+    try {
+      const tx = pageParms.tx;
+      if (!tx) {
+        setUIState("failed");
+        return;
+      }
+
+      const res = await fetch(`/api/unsubscribe?tx=${tx}`);
+      const data = await res.json();
+
+      if (data.status === "unsubscribed") {
+        setUIState("unsubscribe-success");
+      } else if (data.status === "already_unsubscribed") {
+        setUIState("already-unsubscribed");
+      } else {
+        setUIState("failed");
+      }
+    } catch (err) {
+      setUIState("failed");
+    }
+  };
 
   useEffect(() => {
     if (!isOpen) return;
@@ -51,6 +77,9 @@ export default function PaymentConfirmationPopup({
         case "failed":
           setUIState("failed");
           break;
+        case "Unsubscribe":
+          handleUnsubscribe();
+          break;
         default:
           setUIState("pending");
       }
@@ -70,17 +99,9 @@ export default function PaymentConfirmationPopup({
 
   if (!visible) return null;
 
-  // const FailedIcon = () => <div className="text-6xl">❌</div>;
-  // const CanceledIcon = () => <div className="text-6xl">🚫</div>;
   const Spinner = () => (
     <div className="spinner" />
   );
-  // const PendingIcon = () => (
-  //   <div className="text-6xl animate-pulse">⏳</div>
-  // );
-  // const SuccessIcon = () => (
-  //   <div className="text-6xl animate-bounce">✅</div>
-  // );
 
   function renderUI(state: PaymentUIState) {
     switch (state) {
@@ -89,7 +110,7 @@ export default function PaymentConfirmationPopup({
           <>
             <Spinner />
             <h2 className="text-white text-xl mt-4">
-              Preparing payment result...
+              Preparing result...
             </h2>
           </>
         );
@@ -97,10 +118,9 @@ export default function PaymentConfirmationPopup({
       case "pending":
         return (
           <>
-            {/* <PendingIcon /> */}
-             <Spinner />
+            <Spinner />
             <h2 className="text-gray-400 text-xl mt-4">
-              Confirming your payment
+              Confirming result...
             </h2>
             <p className="text-white mt-2">
               Please don’t close this window
@@ -111,7 +131,6 @@ export default function PaymentConfirmationPopup({
       case "success":
         return (
           <>
-            {/* <SuccessIcon /> */}
             <h2 className="text-gray-500 text-2xl mt-4">
               Payment confirmed.
             </h2>
@@ -124,7 +143,6 @@ export default function PaymentConfirmationPopup({
       case "failed":
         return (
           <>
-            {/* <FailedIcon /> */}
             <h2 className="text-gray-500 text-2xl mt-4">
               Payment Failed
             </h2>
@@ -137,7 +155,6 @@ export default function PaymentConfirmationPopup({
       case "canceled":
         return (
           <>
-            {/* <CanceledIcon /> */}
             <h2 className="text-gray-400 text-2xl mt-4">
               Payment Canceled
             </h2>
@@ -146,9 +163,32 @@ export default function PaymentConfirmationPopup({
             </p>
           </>
         );
+      case "unsubscribe-success":
+        return (
+          <>
+            <h2 className="text-gray-500 text-2xl mt-4">
+              You have been unsubscribed.
+            </h2>
+            <p className="text-white mt-2">
+              You will no longer receive follow-up emails.
+            </p>
+          </>
+        );
+
+      case "already-unsubscribed":
+        return (
+          <>
+            <h2 className="text-gray-500 text-2xl mt-4">
+              Already Unsubscribed
+            </h2>
+            <p className="text-white mt-2">
+              You have already unsubscribed earlier.
+            </p>
+          </>
+        );
+
     }
   }
-
 
   return (
     <div className="modal-overlay show">

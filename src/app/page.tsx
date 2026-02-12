@@ -4,21 +4,22 @@ import { Suspense, use, useState } from "react";
 import HomeClient from "./HomeClient";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
+import PaymentConfirmationPopup from "@/components/payment-confirmation/PaymentConfirmationPopup";
 
-export default function Home() {
+export default function Home({
+  searchParams,
+}: {
+  searchParams: Promise<{ tx?: string, status?: string }>
+}) {
+
+  const params = use(searchParams)
+  const paymentStatusPopup = params.status ? true : false;
+  const [open, setOpen] = useState(paymentStatusPopup);
+  const [popUpOpen, setPopUpOpen] = useState(false);
 
   return (
     <main>
-      {/* <section className="= bg-background   -mx-4">
-        <div className="mx-auto flex flex-col  gap-4 max-w-7xl p-6 lg:px-8">
-          <div className="flex lg:flex-1">
-            <p className="-m-1.5 p-1.5 uppercase text-sm ">
-              Composure when it matters
-            </p>
-          </div>
-        </div>
-      </section> */}
-
+     
       <section className="container flex flex-col text-center gap-4 justify-center items-center">
         {/* <p className="uppercase text-sm">A MANUAL FOR MEN</p> */}
         <h1 className="statement  text-2xl text-white">LET ME GIVE YOU THE GAME</h1>
@@ -32,8 +33,18 @@ export default function Home() {
             <Button className="btn primary pointer">[ READ CHAPTER ONE ]</Button>
           </Link>
 
+          {/* Download File */}
           <Suspense fallback={null}>
             <HomeClient />
+          </Suspense>
+
+          {/* unscribe popup */}
+          <Suspense fallback={null}>
+            <PaymentConfirmationPopup
+              isOpen={open}
+              pageParms={params}
+              onClose={() => setOpen(false)}
+            />
           </Suspense>
 
         </div>

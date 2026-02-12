@@ -9,20 +9,23 @@ export async function POST(req: Request) {
   try {
 
     const { email, subject, emailType } = await req.json();
-    
+
     let pdfLink = "";
     let templatePath = "";
+    let UnsubscribeUrl = "";
 
     if (emailType === "First-Chapter") {
       pdfLink = `${process.env.BASE_URL}/pdfs/chapter-one.pdf`;
 
       // Save only for First-Chapter
-      await saveTransactionWithCheck({
+      const subscribeId =  await saveTransactionWithCheck({
         email,
         subscribe_status: true,
         created_at: new Date().toISOString(),
       });
 
+      UnsubscribeUrl = `${process.env.BASE_URL}/?status=Unsubscribe&tx=${subscribeId}`;
+      
       templatePath = path.join(
         process.cwd(),
         "emails/free-chapter-one.html"
@@ -36,7 +39,7 @@ export async function POST(req: Request) {
       );
       pdfLink = `${process.env.BASE_URL}`;
 
-    } 
+    }
     else if (emailType === "Payment-failed") {
       // This email will go whe payment is canceled
 
@@ -58,8 +61,6 @@ export async function POST(req: Request) {
       pdfLink = `${process.env.BASE_URL}?token=${transactionIdValue}`;
     }
 
-
-
     // Ensure templatePath is set
     if (!templatePath) {
       throw new Error("EMAIL_TEMPLATE_NOT_FOUND");
@@ -67,7 +68,8 @@ export async function POST(req: Request) {
 
     const html = fs
       .readFileSync(templatePath, "utf8")
-      .replace("{{PDF_LINK}}", pdfLink);
+      .replace("{{PDF_LINK}}", pdfLink)
+      .replace("{{UnsubscribeUrl}}", UnsubscribeUrl);
 
     //Send email with Resend
     await sendEmail({

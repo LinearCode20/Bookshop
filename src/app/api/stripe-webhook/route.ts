@@ -1,4 +1,5 @@
 export const runtime = "nodejs";
+
 import Stripe from "stripe";
 import { NextResponse } from "next/server";
 import { supabase } from "@/lib/supabase/server";
@@ -6,136 +7,159 @@ import { supabase } from "@/lib/supabase/server";
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!);
 const endpointSecret = process.env.STRIPE_WEBHOOK_SECRET!;
 
-const baseUrl = process.env.BASE_URL || 'http://localhost:3000';
-// send email
-const sendEmail = async (Email: string, Subject: string, emailType: string) => {
-    const res = await fetch(`${baseUrl}/api/send-email`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-            email: Email,
-            subject: Subject,
-            emailType: emailType
-        }),
-    });
+const baseUrl = process.env.BASE_URL || "http://localhost:3000";
 
-    return await res.json();
+// send email helper
+const sendEmail = async (
+  email: string,
+  subject: string,
+  emailType: string
+) => {
+  await fetch(`${baseUrl}/api/send-email`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      email,
+      subject,
+      emailType,
+    }),
+  });
 };
 
 export async function POST(req: Request) {
-    const body = await req.text();
-    const sig = req.headers.get("stripe-signature")!;
-    let event: Stripe.Event;
+  const body = await req.text();
+  const sig = req.headers.get("stripe-signature");
 
-    try {
-        event = stripe.webhooks.constructEvent(
-            body,
-            sig,
-            endpointSecret
-        );
-    } catch (err) {
-        console.error("Webhook signature verification failed.");
-        return new NextResponse("Invalid signature", { status: 400 });
-    }
+  if (!sig) {
+    return new NextResponse("Missing signature", { status: 400 });
+  }
 
+  let event: Stripe.Event;
+
+  try {
+    event = stripe.webhooks.constructEvent(body, sig, endpointSecret);
+  } catch (err) {
+    console.error("Webhook signature verification failed:", err);
+    return new NextResponse("Invalid signature", { status: 400 });
+  }
+
+  try {
     switch (event.type) {
-        //When stripe Payment done successfully
-        case "checkout.session.completed": {
-            const session = event.data.object as Stripe.Checkout.Session;
-            const customerEmail = session.customer_details?.email ?? null;
-            const transactionId = session.metadata?.transaction_id;
+      //  Payment Success
+      case "checkout.session.completed": {
+        const session = event.data.object as Stripe.Checkout.Session;
 
-            if (!transactionId) break;
+        const customerEmail = session.customer_details?.email ?? null;
+        const transactionId = session.metadata?.transaction_id;
 
-            const { error } = await supabase
-                .from("transactions")
-                .update({
-                    status: "paid",
-                    stripe_transaction_id: session.payment_intent as string,
-                    email: customerEmail as string
-                })
-                .eq("transaction_id", transactionId);
+        if (!transactionId) break;
 
-            // check email and throe email
-            if (customerEmail) {
+        const { error } = await supabase
+          .from("transactions")
+          .update({
+            status: "paid",
+            stripe_transaction_id: session.payment_intent as string,
+            email: customerEmail,
+          })
+          .eq("transaction_id", transactionId);
 
-                const mailType = `Access-Delivery*${transactionId}`;
-
-                const results = await Promise.allSettled([
-                    //sendEmail(customerEmail, emailSubject, mailType),
-                    sendEmail(
-                        customerEmail,
-                        "Your Digital Edition is ready",
-                        "Purchase-Confirmed"
-                    ),
-                    sendEmail(
-                        customerEmail,
-                        "Access to your Digital Edition",
-                        mailType
-                    ),
-                ]);
-
-                results.forEach((result, index) => {
-                    if (result.status === "fulfilled") {
-                        console.log(`email ${index + 1} success`, result.value);
-                    } else {
-                        console.error(`email ${index + 1} failed`, result.reason);
-                        return new NextResponse("Mail error", { status: 500 });
-                    }
-                });
-
-            }
-
-            if (error) {
-                console.error("Update error:", error);
-                return new NextResponse("DB error", { status: 500 });
-            }
-
-            break;
+        if (error) {
+          console.error("DB Update error:", error);
+          break;
         }
 
-        //When stripe checkout session expired
-        case "checkout.session.expired": {
-            const session = event.data.object as Stripe.Checkout.Session;
-            const transactionId = session.metadata?.transaction_id;
-            const customerEmail = session.customer_details?.email ?? null;
+        if (customerEmail) {
+          const mailType = `Access-Delivery*${transactionId}`;
 
-            // check email and throe email
-            if (customerEmail) {
-                //Payment failed
-                await sendEmail(customerEmail, "Your payment could not be completed.", "Payment-failed");
-            }
-
-            if (!transactionId) break;
-
-            await supabase
-                .from("transactions")
-                .update({ status: "expired" })
-                .eq("transaction_id", transactionId);
-
-            break;
+          await Promise.allSettled([
+            sendEmail(
+              customerEmail,
+              "Your Digital Edition is ready",
+              "Purchase-Confirmed"
+            ),
+            sendEmail(
+              customerEmail,
+              "Access to your Digital Edition",
+              mailType
+            ),
+          ]);
         }
 
-        //When refund is success
-        case "charge.refunded": {
-            const charge = event.data.object as Stripe.Charge;
-            await sendEmail(charge.billing_details.email!, "Your refund has been processed.", "refund-success");
-            break;
+        break;
+      }
+
+      //  Session Expired
+      case "checkout.session.expired": {
+        const session = event.data.object as Stripe.Checkout.Session;
+        const transactionId = session.metadata?.transaction_id;
+        const customerEmail = session.customer_details?.email ?? null;
+
+        if (customerEmail) {
+          await sendEmail(
+            customerEmail,
+            "Your payment could not be completed.",
+            "Payment-failed"
+          );
         }
 
-        //When stripe refund faild
-        case "refund.failed": {
-            const refund = event.data.object as Stripe.Refund;
+        if (transactionId) {
+          await supabase
+            .from("transactions")
+            .update({ status: "expired" })
+            .eq("transaction_id", transactionId);
+        }
 
-            // You may need to retrieve charge to get email
-            const chargeData = await stripe.charges.retrieve(
-                refund.charge as string
+        break;
+      }
+
+      //  Refund Success
+      case "charge.refunded": {
+        const charge = event.data.object as Stripe.Charge;
+
+        const email = charge.billing_details?.email;
+
+        if (email) {
+          await sendEmail(
+            email,
+            "Your refund has been processed.",
+            "refund-success"
+          );
+        }
+
+        break;
+      }
+
+      //  Refund Failed
+      case "refund.failed": {
+        const refund = event.data.object as Stripe.Refund;
+
+        if (refund.charge) {
+          const charge = await stripe.charges.retrieve(
+            refund.charge as string
+          );
+
+          const email = charge.billing_details?.email;
+
+          if (email) {
+            await sendEmail(
+              email,
+              "Your refund request failed.",
+              "refund-failed"
             );
-
-            await sendEmail(chargeData.billing_details.email!, "Your refund request has been reviewed.", "refund-faild");
-
-            break;
+          }
         }
 
-        return NextResponse.json({ received: true });
+        break;
+      }
+
+      default:
+        console.log(`Unhandled event type: ${event.type}`);
     }
+
+    //  Always return success to Stripe
+    return NextResponse.json({ received: true });
+  } catch (err) {
+    console.error("Webhook handler error:", err);
+    return new NextResponse("Webhook error", { status: 500 });
+  }
+}

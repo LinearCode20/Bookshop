@@ -20,8 +20,8 @@ export async function saveTransactionWithCheck(
         created_at,
       },
     ])
-    .select("id") 
-    .single();  
+    .select("id")
+    .single();
 
   if (error) {
     if (error.code === "23505") {
@@ -31,4 +31,22 @@ export async function saveTransactionWithCheck(
   }
 
   return inserted.id;   // 👈 return inserted record id
+}
+
+export async function getAllSubscribedEmails(): Promise<string[]> {
+  const { data, error } = await supabase
+    .from("subscribe_emails")
+    .select("email")
+    .eq("subscribe_status", true);
+
+  if (error) {
+    throw new Error(`Supabase fetch failed: ${error.message}`);
+  }
+
+  if (!data || data.length === 0) {
+    return []; // no subscribed emails
+  }
+
+  // Map to array of email strings
+  return data.map((row: { email: string }) => row.email);
 }

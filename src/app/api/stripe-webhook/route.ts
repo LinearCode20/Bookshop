@@ -43,8 +43,6 @@ export async function POST(req: Request) {
     return new NextResponse("Invalid signature", { status: 400 });
   }
 
-  console.log("Webhook event type:", event.type);
-
   try {
     switch (event.type) {
       //  Payment Success
@@ -119,8 +117,6 @@ export async function POST(req: Request) {
         const charge = event.data.object as Stripe.Charge;
         const email = charge.billing_details?.email;
 
-        console.log("Webhook charge:", charge);
-        console.log("Webhook email:", email);
 
         if (email) {
           await sendEmail(
@@ -157,7 +153,7 @@ export async function POST(req: Request) {
       }
 
       default:
-        console.log(`Unhandled event type: ${event.type}`);
+       
     }
 
     //  Always return success to Stripe

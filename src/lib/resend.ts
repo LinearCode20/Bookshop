@@ -10,7 +10,7 @@ interface SendEmailProps {
 
 export async function sendEmail({ to, subject, html }: SendEmailProps) {
   try {
-    console.log('comming on the resend API');
+
     const response = await resend.emails.send({
       from: process.env.RESEND_FROM_EMAIL!, // must be verified in Resend
       to,
@@ -18,7 +18,6 @@ export async function sendEmail({ to, subject, html }: SendEmailProps) {
       html,
     });
 
-    console.log("Email sent via Resend:", response);
     return response;
   } catch (err) {
     console.error("Resend email error:", err);

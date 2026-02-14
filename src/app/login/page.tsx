@@ -1,12 +1,14 @@
 "use client";
 
-import { useSearchParams, useRouter } from "next/navigation";
+import { useSearchParams, useRouter, usePathname } from "next/navigation";
 import { useState, useEffect } from "react";
 import toast from "react-hot-toast";
 
 export default function LoginPage() {
   const searchParams = useSearchParams();
   const router = useRouter();
+  const pathname = usePathname(); // safer than window.location
+
   const [password, setPassword] = useState("");
 
   const success = searchParams.get("success");
@@ -23,13 +25,15 @@ export default function LoginPage() {
       toast.success("Logged out successfully.");
     }
 
-    // Immediately remove query params
+    // Remove query params safely
     const url = new URL(window.location.href);
     url.searchParams.delete("error");
     url.searchParams.delete("success");
 
-    window.history.replaceState({}, "", url.pathname);
-  }, [error, success]);
+    // Or replace the URL with only the pathname
+    router.replace(pathname);
+
+  }, [error, success, pathname, router]);
 
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();

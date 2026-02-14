@@ -2,10 +2,13 @@
 
 import { Button } from "@/components/ui/button";
 import React, { useState } from "react";
-import { Trash2, Plus } from "lucide-react";
+import { Trash2, Plus, LogOut  } from "lucide-react";
 import toast from "react-hot-toast";
+import { useRouter } from "next/navigation";
+
 
 function Page() {
+
     const [category, setCategory] = useState("");
     const [level, setLevel] = useState("");
     const [emails, setEmails] = useState<string[]>([""]);
@@ -119,9 +122,30 @@ function Page() {
         setInvalidFields((prev) => ({ emails: prev.emails?.filter((_, i) => i !== index) }));
     };
 
+    const router = useRouter();
+    const handleLogout = async () => {
+        const res = await fetch("/api/logout", {
+            method: "POST",
+        });
+
+        if (res.ok) {
+            router.push("/login?success=logout");
+        }
+    };
+
     return (
-        <div className="flex min-h-dvh items-center justify-center bg-black text-white">
+        <div className="flex min-h-dvh items-center justify-center bg-black text-white">            
+
             <section className="container mx-auto px-6 max-w-3xl text-center">
+                <div className="flex justify-end mb-6">
+                <button
+                    onClick={handleLogout}
+                    className="border border-white px-4 py-2 text-white hover:bg-white hover:text-black transition"
+                >
+                   <LogOut  size={18} />
+                </button>
+            </div>
+
                 <h1 className="mt-3.5 text-2xl tracking-widest">Send Custom Emails</h1>
 
                 <div className="mt-12">
@@ -132,9 +156,8 @@ function Page() {
                                 value={category}
                                 onChange={(e) => handleCategoryChange(e.target.value)}
                                 disabled={loading}
-                                className={`w-64 bg-neutral-900 border px-4 py-2 text-white focus:outline-none transition ${
-                                    invalidFields.category ? "border-red-500" : "border-neutral-700"
-                                } ${loading ? "cursor-not-allowed opacity-70" : ""}`}
+                                className={`w-64 bg-neutral-900 border px-4 py-2 text-white focus:outline-none transition ${invalidFields.category ? "border-red-500" : "border-neutral-700"
+                                    } ${loading ? "cursor-not-allowed opacity-70" : ""}`}
                             >
                                 <option value="">Select Type</option>
                                 <option value="1">Refund declined</option>
@@ -147,12 +170,12 @@ function Page() {
                                 value={level}
                                 onChange={(e) => handleLevelChange(e.target.value)}
                                 disabled={loading}
-                                className={`w-64 bg-neutral-900 border px-4 py-2 text-white focus:outline-none transition ${
-                                    invalidFields.level ? "border-red-500" : "border-neutral-700"
-                                } ${loading ? "cursor-not-allowed opacity-70" : ""}`}
+                                className={`w-64 bg-neutral-900 border px-4 py-2 text-white focus:outline-none transition ${invalidFields.level ? "border-red-500" : "border-neutral-700"
+                                    } ${loading ? "cursor-not-allowed opacity-70" : ""}`}
                             >
                                 <option value="">Select Level</option>
-                                <option value="all">All Users</option>
+                                <option value="all-subscribers">All Subscribers</option>
+                                <option value="all-purchasers">All Purchasers</option>
                                 <option value="custom">Custom Email Address</option>
                             </select>
                         </div>
@@ -168,20 +191,18 @@ function Page() {
                                             onChange={(e) => handleEmailChange(e.target.value, index)}
                                             placeholder="Enter email address"
                                             disabled={loading}
-                                            className={`flex-1 bg-neutral-900 border px-4 py-2 text-white placeholder-gray-500 focus:outline-none transition ${
-                                                invalidFields.emails?.[index]
-                                                    ? "border-red-500"
-                                                    : "border-neutral-700"
-                                            } ${loading ? "cursor-not-allowed opacity-70" : ""}`}
+                                            className={`flex-1 bg-neutral-900 border px-4 py-2 text-white placeholder-gray-500 focus:outline-none transition ${invalidFields.emails?.[index]
+                                                ? "border-red-500"
+                                                : "border-neutral-700"
+                                                } ${loading ? "cursor-not-allowed opacity-70" : ""}`}
                                         />
                                         {index === emails.length - 1 && (
                                             <button
                                                 type="button"
                                                 onClick={addEmailField}
                                                 disabled={loading}
-                                                className={`p-2 border border-neutral-700 hover:border-green-500 hover:text-green-500 transition rounded ${
-                                                    loading ? "cursor-not-allowed opacity-70" : ""
-                                                }`}
+                                                className={`p-2 border border-neutral-700 hover:border-green-500 hover:text-green-500 transition rounded ${loading ? "cursor-not-allowed opacity-70" : ""
+                                                    }`}
                                             >
                                                 <Plus size={18} />
                                             </button>
@@ -191,9 +212,8 @@ function Page() {
                                                 type="button"
                                                 onClick={() => removeEmailField(index)}
                                                 disabled={loading}
-                                                className={`p-2 border border-neutral-700 hover:border-red-500 hover:text-red-500 transition rounded ${
-                                                    loading ? "cursor-not-allowed opacity-70" : ""
-                                                }`}
+                                                className={`p-2 border border-neutral-700 hover:border-red-500 hover:text-red-500 transition rounded ${loading ? "cursor-not-allowed opacity-70" : ""
+                                                    }`}
                                             >
                                                 <Trash2 size={18} />
                                             </button>
@@ -203,7 +223,7 @@ function Page() {
                             </div>
                         )}
 
-                        {/* Submit Button */} 
+                        {/* Submit Button */}
                         <Button
                             type="submit"
                             disabled={loading}

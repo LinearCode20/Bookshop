@@ -1,11 +1,11 @@
 import { NextResponse } from "next/server";
 import { sendEmail } from "@/lib/mailer";
-// import { sendEmail } from "@/lib/resend";
 import fs from "fs";
 import path from "path";
 import {
   saveTransactionWithCheck,
   getAllSubscribedEmails,
+  getAllPurchasersEmails,
 } from "@/lib/subscribedEmails";
 
 export async function POST(req: Request) {
@@ -17,10 +17,12 @@ export async function POST(req: Request) {
     let subject = reqSubject || "Default Subject";
     let pdfLink = "";
     let templatePath = "";
-    let UnsubscribeUrl = "";
+    let unsubscribeUrl = "";
+    
+    // Handle different email types
 
-    // FIRST-CHAPTER email
     if (emailType === "First-Chapter") {
+      // FREE CHAPTER EMAIL
       pdfLink = `${process.env.BASE_URL}/pdfs/chapter-one.pdf`;
 
       const subscribeId = await saveTransactionWithCheck({
@@ -29,65 +31,71 @@ export async function POST(req: Request) {
         created_at: new Date().toISOString(),
       });
 
-      UnsubscribeUrl = `${process.env.BASE_URL}/?status=Unsubscribe&tx=${subscribeId}`;
+      unsubscribeUrl = `${process.env.BASE_URL}/?status=Unsubscribe&tx=${subscribeId}`;
       templatePath = path.join(process.cwd(), "emails/free-chapter-one.html");
 
-      // PURCHASE CONFIRMED
     } else if (emailType === "Purchase-Confirmed") {
       templatePath = path.join(process.cwd(), "emails/purchase-confirmation.html");
       pdfLink = `${process.env.BASE_URL}`;
 
-      // PAYMENT FAILED
     } else if (emailType === "Payment-failed") {
-      templatePath = path.join(process.cwd(), "emails/payment-faild.html");
+      templatePath = path.join(process.cwd(), "emails/payment-failed.html");
       pdfLink = `${process.env.BASE_URL}`;
 
-      // REFUND SUCCESS
     } else if (emailType === "refund-success") {
       templatePath = path.join(process.cwd(), "emails/refund-processed.html");
       pdfLink = `${process.env.BASE_URL}`;
 
-      // Email types 1,2,3,4 (may send to multiple emails)
     } else if (["1", "2", "3", "4"].includes(emailType)) {
+      // EMAIL TYPES 1-4
+      if (subject === "all-subscribers" || subject === "all-purchasers") {
+        let allEmails: string[] = [];
+        if (subject === "all-subscribers") {
+          allEmails = await getAllSubscribedEmails();
+        } else if (subject === "all-purchasers") {
+          allEmails = await getAllPurchasersEmails();
+        }
 
-      // Fetch all subscribed emails if subject === "all"
-      if (subject === "all") {
-        const allEmails = await getAllSubscribedEmails();
+        // Filter out empty or null emails
+        allEmails = allEmails.filter((e) => e && e.trim() !== "");
+
         if (!allEmails || allEmails.length === 0) {
           throw new Error("NO_SUBSCRIBED_EMAILS");
         }
+
         email = allEmails;
       } else if (!Array.isArray(email)) {
-        // ensure single email is an array for uniform processing
         email = [email];
       }
 
-      // Set subject and template based on emailType
-      if (emailType === "1") {
-        subject = "Your refund request has been reviewed.";
-        templatePath = path.join(process.cwd(), "emails/refund-declined.html");
-
-      } else if (emailType === "2") {
-        subject = "Thanks for getting in touch.";
-        templatePath = path.join(
-          process.cwd(),
-          "emails/access-issue-resend-access-link.html"
-        );
-
-      } else if (emailType === "3") {
-        subject = "We’ve received your message.";
-        templatePath = path.join(
-          process.cwd(),
-          "emails/general-support-acknowledgement.html"
-        );
-
-      } else if (emailType === "4") {
-        subject = "The Digital Edition is now live.";
-        templatePath = path.join(process.cwd(), "emails/product-update.html");
+      // Set subject and template for each emailType
+      switch (emailType) {
+        case "1":
+          subject = "Your refund request has been reviewed.";
+          templatePath = path.join(process.cwd(), "emails/refund-declined.html");
+          break;
+        case "2":
+          subject = "Thanks for getting in touch.";
+          templatePath = path.join(
+            process.cwd(),
+            "emails/access-issue-resend-access-link.html"
+          );
+          break;
+        case "3":
+          subject = "We’ve received your message.";
+          templatePath = path.join(
+            process.cwd(),
+            "emails/general-support-acknowledgement.html"
+          );
+          break;
+        case "4":
+          subject = "The Digital Edition is now live.";
+          templatePath = path.join(process.cwd(), "emails/product-update.html");
+          break;
       }
 
-      // DEFAULT / ACCESS DELIVERY
     } else {
+      // DEFAULT / ACCESS DELIVERY
       const parts = emailType.split("*");
       const transactionIdValue = parts[1] ?? "";
       templatePath = path.join(process.cwd(), "emails/access-delivery.html");
@@ -95,40 +103,35 @@ export async function POST(req: Request) {
     }
 
     // Ensure template exists
-    if (!templatePath) throw new Error("EMAIL_TEMPLATE_NOT_FOUND");
+    if (!templatePath || !fs.existsSync(templatePath)) {
+      throw new Error("EMAIL_TEMPLATE_NOT_FOUND");
+    }
 
-    // Read HTML template and replace placeholders
+    // Read HTML template
     const html = fs
       .readFileSync(templatePath, "utf8")
       .replace("{{PDF_LINK}}", pdfLink)
-      .replace("{{UnsubscribeUrl}}", UnsubscribeUrl);
+      .replace("{{UnsubscribeUrl}}", unsubscribeUrl);
+   
+    // Send email(s)
+    const emailsToSend = Array.isArray(email) ? email : [email];
 
-    // SEND EMAIL
-    if (Array.isArray(email)) {
-      // send all emails in parallel
-      await Promise.all(
-        email.map(async (e) => {
-          try {
-            await sendEmail({
-              to: e,
-              subject,
-              html,
-            });
-          } catch (err) {
-            console.error(`Failed to send email to ${e}:`, err);
-          }
-        })
-      );
-    } else {
-      await sendEmail({
-        to: email,
-        subject,
-        html,
-      });
-    }
+    await Promise.all(
+      emailsToSend.map(async (e) => {
+        if (!e || e.trim() === "") return; // skip empty emails
+        try {
+          await sendEmail({
+            to: e,
+            subject,
+            html,
+          });
+        } catch (err) {
+          console.error(`Failed to send email to ${e}:`, err);
+        }
+      })
+    );
 
     return NextResponse.json({ success: true });
-
   } catch (error: any) {
     if (error.message === "EMAIL_ALREADY_EXISTS") {
       return NextResponse.json(
@@ -140,9 +143,14 @@ export async function POST(req: Request) {
         { success: false, message: "No subscribed emails found" },
         { status: 404 }
       );
+    } else if (error.message === "EMAIL_TEMPLATE_NOT_FOUND") {
+      return NextResponse.json(
+        { success: false, message: "Email template not found" },
+        { status: 500 }
+      );
     }
 
     console.error("POST /api/send-email error:", error);
-    return NextResponse.json({ success: false }, { status: 500 });
+    return NextResponse.json({ success: false, message: error.message }, { status: 500 });
   }
 }

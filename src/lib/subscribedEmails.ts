@@ -50,3 +50,23 @@ export async function getAllSubscribedEmails(): Promise<string[]> {
   // Map to array of email strings
   return data.map((row: { email: string }) => row.email);
 }
+
+export async function getAllPurchasersEmails(): Promise<string[]> {
+  const { data, error } = await supabase
+    .from("transactions")
+    .select("email")
+    .eq("status", 'paid')
+    .not("email", "is", null)
+    .neq("email", "");
+
+  if (error) {
+    throw new Error(`Supabase fetch failed: ${error.message}`);
+  }
+
+  if (!data || data.length === 0) {
+    return []; // no purchaser emails
+  }
+
+  // Map to array of email strings
+  return data.map((row: { email: string }) => row.email);
+}

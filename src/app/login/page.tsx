@@ -8,8 +8,8 @@ export default function LoginPage() {
   const searchParams = useSearchParams();
   const router = useRouter();
   const [password, setPassword] = useState("");
-  const success = searchParams.get("success");
 
+  const success = searchParams.get("success");
   const error = searchParams.get("error");
 
   useEffect(() => {
@@ -20,7 +20,7 @@ export default function LoginPage() {
     }
 
     if (success === "logout") {
-      //toast.success("Logged out successfully.");
+      toast.success("Logged out successfully.");
     }
 
     // Immediately remove query params
@@ -29,9 +29,7 @@ export default function LoginPage() {
     url.searchParams.delete("success");
 
     window.history.replaceState({}, "", url.pathname);
-
-  }, []);
-
+  }, [error, success]);
 
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -50,7 +48,7 @@ export default function LoginPage() {
   };
 
   return (
-    <div className="flex min-h-dvh items-center justify-center bg-black text-white">
+    <div className="flex min-h-screen items-center justify-center bg-black text-white">
       <div className="text-center space-y-6">
         <h1 className="text-2xl tracking-widest">Login</h1>
 
@@ -62,7 +60,7 @@ export default function LoginPage() {
             onChange={(e) => setPassword(e.target.value)}
             className="w-80 bg-black border border-white px-4 py-2 text-white"
           />
-          <button className="bg-white text-black px-6 py-2">
+          <button type="submit" className="bg-white text-black px-6 py-2">
             Login
           </button>
         </form>

@@ -6,9 +6,10 @@ interface SendEmailProps {
   to: string;
   subject: string;
   html: string;
+  attachments?: any[];
 }
 
-export async function sendEmail({ to, subject, html }: SendEmailProps) {
+export async function sendEmail({ to, subject, html, attachments = [] }: SendEmailProps) {
   try {
 
     const response = await resend.emails.send({
@@ -16,6 +17,7 @@ export async function sendEmail({ to, subject, html }: SendEmailProps) {
       to,
       subject,
       html,
+      attachments
     });
 
     return response;

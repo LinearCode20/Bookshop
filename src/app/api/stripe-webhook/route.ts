@@ -117,7 +117,6 @@ export async function POST(req: Request) {
         const charge = event.data.object as Stripe.Charge;
         const email = charge.billing_details?.email;
 
-
         if (email) {
           await sendEmail(
             email,

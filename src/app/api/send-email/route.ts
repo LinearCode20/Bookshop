@@ -19,7 +19,8 @@ export async function POST(req: Request) {
     let pdfLink = "";
     let templatePath = "";
     let unsubscribeUrl = "";
-    
+    let attachments = [];
+
     // Handle different email types
 
     if (emailType === "First-Chapter") {
@@ -34,6 +35,14 @@ export async function POST(req: Request) {
 
       unsubscribeUrl = `${process.env.BASE_URL}/?status=Unsubscribe&tx=${subscribeId}`;
       templatePath = path.join(process.cwd(), "emails/free-chapter-one.html");
+
+      // Add attachment
+      attachments = [
+        {
+          filename: "chapter-one.pdf",
+          path: path.join(process.cwd(), "public/pdfs/chapter-one.pdf"),
+        }
+      ];
 
     } else if (emailType === "Purchase-Confirmed") {
       templatePath = path.join(process.cwd(), "emails/purchase-confirmation.html");
@@ -113,7 +122,7 @@ export async function POST(req: Request) {
       .readFileSync(templatePath, "utf8")
       .replace("{{PDF_LINK}}", pdfLink)
       .replace("{{UnsubscribeUrl}}", unsubscribeUrl);
-   
+
     // Send email(s)
     const emailsToSend = Array.isArray(email) ? email : [email];
 
@@ -125,6 +134,7 @@ export async function POST(req: Request) {
             to: e,
             subject,
             html,
+            attachments: attachments
           });
         } catch (err) {
           console.error(`Failed to send email to ${e}:`, err);

@@ -6,18 +6,25 @@ interface SendEmailProps {
   to: string;
   subject: string;
   html: string;
-  attachments?: any[];
+  attachments?: {
+    filename: string;
+    content: Buffer;
+  }[];
 }
 
-export async function sendEmail({ to, subject, html, attachments = [] }: SendEmailProps) {
+export async function sendEmail({
+  to,
+  subject,
+  html,
+  attachments = [],
+}: SendEmailProps) {
   try {
-
     const response = await resend.emails.send({
-      from: process.env.RESEND_FROM_EMAIL!, // must be verified in Resend
+      from: process.env.RESEND_FROM_EMAIL!, // must be verified
       to,
       subject,
       html,
-      attachments
+      attachments,
     });
 
     return response;

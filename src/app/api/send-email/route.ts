@@ -21,8 +21,7 @@ export async function POST(req: Request) {
     let unsubscribeUrl = "";
     let attachments: {
       filename: string;
-      path?: string;
-      content?: Buffer;
+      content: Buffer;
     }[] = [];
 
 
@@ -42,10 +41,20 @@ export async function POST(req: Request) {
       templatePath = path.join(process.cwd(), "emails/free-chapter-one.html");
 
       // Add attachment
+      // attachments = [
+      //   {
+      //     filename: "chapter-one.pdf",
+      //     path: path.join(process.cwd(), "public/pdfs/chapter-one.pdf"),
+      //   }
+      // ];
+      const fileBuffer = fs.readFileSync(
+        path.join(process.cwd(), "public/pdfs/chapter-one.pdf")
+      );
+
       attachments = [
         {
           filename: "chapter-one.pdf",
-          path: path.join(process.cwd(), "public/pdfs/chapter-one.pdf"),
+          content: fileBuffer,
         }
       ];
 

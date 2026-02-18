@@ -34,8 +34,9 @@ export async function POST() {
         transaction_id: transactionId,
       },
     });
-
-    return NextResponse.json({ url: session.url });
+    console.log("session", session);
+    const sessionUrl = session.url ?? "";
+    return NextResponse.json({ url: sessionUrl });
   } catch (error) {
     console.error(error);
     return NextResponse.json(

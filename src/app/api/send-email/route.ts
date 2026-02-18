@@ -19,7 +19,12 @@ export async function POST(req: Request) {
     let pdfLink = "";
     let templatePath = "";
     let unsubscribeUrl = "";
-    let attachments = [];
+    let attachments: {
+      filename: string;
+      path?: string;
+      content?: Buffer;
+    }[] = [];
+
 
     // Handle different email types
 

@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
 
 type PaymentUIState =
   | "loading"
@@ -25,7 +26,7 @@ export default function PaymentConfirmationPopup({
   const status = pageParms.status;
   const [visible, setVisible] = useState(false);
   const [uiState, setUIState] = useState<PaymentUIState>("loading");
-
+  const router = useRouter();
   // Call backend API for check handleUnsubscribe status from DB
   const handleUnsubscribe = async () => {
     try {
@@ -89,12 +90,18 @@ export default function PaymentConfirmationPopup({
       clearTimeout(pendingTimer);
       clearTimeout(finalTimer);
     };
+
+    
+
   }, [isOpen, pageParms]);
 
   const closePopup = () => {
     setVisible(false);
     document.body.style.overflow = "auto";
     onClose();
+
+    //URL rest
+    router.replace("/book");
   };
 
   if (!visible) return null;

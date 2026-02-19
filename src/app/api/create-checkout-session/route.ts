@@ -1,3 +1,5 @@
+export const runtime = "nodejs";
+
 // app/api/create-checkout-session/route.ts
 import Stripe from "stripe";
 import { NextResponse } from "next/server";
@@ -34,7 +36,7 @@ export async function POST() {
         transaction_id: transactionId,
       },
     });
-    console.log("session", session);
+    
     const sessionUrl = session.url ?? "";
     return NextResponse.json({ url: sessionUrl });
   } catch (error) {

@@ -15,7 +15,7 @@ export const questions = [
       question: "Will it be updated later?", 
       answer: "No updates are guaranteed. Content may differ from any future physical editions." },
     { 
-      question: "Returns?", 
+      question: "Are digital products refundable?", 
       answer: "Digital products are delivered immediately and are non-refundable once access is provided, unless the file is defective and cannot be accessed." },
     { 
       question: "How do I get in touch?", 

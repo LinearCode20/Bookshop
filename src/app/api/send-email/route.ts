@@ -7,7 +7,7 @@ import path from "path";
 import {
   saveTransactionWithCheck,
   getAllSubscribedEmails,
-  getAllPurchasersEmails,
+  getAllPurchasersEmails
 } from "@/lib/subscribedEmails";
 
 export async function POST(req: Request) {
@@ -41,13 +41,6 @@ export async function POST(req: Request) {
       unsubscribeUrl = `${process.env.BASE_URL}/?status=Unsubscribe&tx=${subscribeId}`;
       templatePath = path.join(process.cwd(), "emails/free-chapter-one.html");
 
-      // Add attachment
-      // attachments = [
-      //   {
-      //     filename: "chapter-one.pdf",
-      //     path: path.join(process.cwd(), "public/pdfs/chapter-one.pdf"),
-      //   }
-      // ];
       const fileBuffer = fs.readFileSync(
         path.join(process.cwd(), "public/pdfs/chapter-one.pdf")
       );

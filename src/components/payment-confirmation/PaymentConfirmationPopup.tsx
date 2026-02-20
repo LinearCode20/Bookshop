@@ -24,41 +24,53 @@ export default function PaymentConfirmationPopup({
   onClose,
 }: Props) {
   const status = pageParms.status;
-  const [visible, setVisible] = useState(false);
   const [uiState, setUIState] = useState<PaymentUIState>("loading");
   const router = useRouter();
-  // Call backend API for check handleUnsubscribe status from DB
-  const handleUnsubscribe = async () => {
-    try {
-      const tx = pageParms.tx;
-      if (!tx) {
-        setUIState("failed");
-        return;
-      }
-
-      const res = await fetch(`/api/unsubscribe?tx=${tx}`);
-      const data = await res.json();
-
-      if (data.status === "unsubscribed") {
-        setUIState("unsubscribe-success");
-      } else if (data.status === "already_unsubscribed") {
-        setUIState("already-unsubscribed");
-      } else {
-        setUIState("failed");
-      }
-    } catch (err) {
-      setUIState("failed");
-    }
-  };
+  // helper functions for API calls are created inside the effect where they are used
 
   useEffect(() => {
-    if (!isOpen) return;
+  if (!isOpen) return;
 
-    setVisible(true);
-    document.body.style.overflow = "hidden";
+  document.body.style.overflow = "hidden";
 
-    //Show loading immediately
-    setUIState("loading");
+    // API helpers
+    const handleUnsubscribe = async () => {
+      try {
+        const tx = pageParms.tx;
+        if (!tx) {
+          setUIState("failed");
+          return;
+        }
+
+        const res = await fetch(`/api/unsubscribe?tx=${tx}`);
+        const data = await res.json();
+
+        if (data.status === "unsubscribed") {
+          setUIState("unsubscribe-success");
+        } else if (data.status === "already_unsubscribed") {
+          setUIState("already-unsubscribed");
+        } else {
+          setUIState("failed");
+        }
+      } catch (err) {
+        console.error(err);
+        setUIState("failed");
+      }
+    };
+
+    const handleUpdateTransactionStatus = async () => {
+      try {
+        const tx = pageParms.tx;
+        if (!tx) return;
+
+        await fetch(`/api/transactions/update-status?tx=${tx}&status=canceled`);
+      } catch (err) {
+        console.error("Failed to update transaction status", err);
+      }
+    };
+
+  //Show loading immediately (defer to avoid sync setState within effect)
+  setTimeout(() => setUIState("loading"), 0);
 
     //Simulate confirmation delay
     const pendingTimer = setTimeout(() => {
@@ -73,6 +85,8 @@ export default function PaymentConfirmationPopup({
           setUIState("success");
           break;
         case "canceled":
+          // update transactions table and show canceled UI
+          handleUpdateTransactionStatus();
           setUIState("canceled");
           break;
         case "failed":
@@ -93,10 +107,9 @@ export default function PaymentConfirmationPopup({
 
     
 
-  }, [isOpen, pageParms]);
+  }, [isOpen, pageParms, status]);
 
   const closePopup = () => {
-    setVisible(false);
     document.body.style.overflow = "auto";
     onClose();
 
@@ -104,7 +117,7 @@ export default function PaymentConfirmationPopup({
     router.replace("/book");
   };
 
-  if (!visible) return null;
+  if (!isOpen) return null;
 
   const Spinner = () => (
     <div className="spinner" />

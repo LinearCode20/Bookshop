@@ -124,7 +124,7 @@ export default function EmailModal({
         ) : (
           <>
             <h1 className="modal-subtitle text-2xl text-white">
-              READING REQUIRES COMMITMENT
+              Access Full Chapter
             </h1>
 
             <form className="modal-form" onSubmit={handleSubmit}>

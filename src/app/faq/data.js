@@ -18,6 +18,6 @@ export const questions = [
       question: "Returns?", 
       answer: "Digital products are delivered immediately and are non-refundable once access is provided, unless the file is defective and cannot be accessed." },
     { 
-      question: "Support?", 
+      question: "How do I get in touch?", 
       answer: "For any access or support enquiries, contact: admin@letmegiveyouthegame.com" },
   ];

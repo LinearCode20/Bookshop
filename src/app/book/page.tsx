@@ -26,10 +26,10 @@ function page({
           <h1 className=" mt-3.5 text-2xl text-white">THE DIGITAL EDITION</h1>
           <p className="mt-4">22 chapters. The essential material.</p>
           <p className="mt-4">Designed for immediate use.</p>
-          <p className="mt-4">This is a reference built from lived conditions, not theory.</p>
+          <p className="mt-4">This is a reference built from lived conditions.</p>
           <p className="mt-4">It’s designed to be returned to when life hits the hardest.</p>
           <p className="mt-4"> Not read once and forgotten.</p>
-          <p className="mt-4">Written cleanly. Without excess.</p>
+          <p className="mt-4">Written cleanly. Privately circulated before release.</p>
 
           <Button onClick={() => setPopUpOpen(true)} className="btn primary">[ DIGITAL EDITION ]</Button>
 

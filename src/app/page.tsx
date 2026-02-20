@@ -24,7 +24,7 @@ export default function Home({
         {/* <p className="uppercase text-sm">A MANUAL FOR MEN</p> */}
         <h1 className="statement  text-2xl text-white">LET ME GIVE YOU THE GAME</h1>
 
-        <p className="max-w-2xl mx-auto">Standards In Motion.</p>
+        <p className="max-w-2xl mx-auto">Standards In Motion</p>
         <p className="max-w-2xl mx-auto">For men who don't need rescuing.</p>
         <p className="max-w-2xl mx-auto">Written with British restraint. Belief is not required.</p>
         <p className="max-w-2xl mx-auto">Decide for yourself.</p>

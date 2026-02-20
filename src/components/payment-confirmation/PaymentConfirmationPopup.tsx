@@ -130,7 +130,7 @@ export default function PaymentConfirmationPopup({
           <>
             <Spinner />
             <h2 className="text-white text-xl mt-4">
-              Preparing result...
+              Preparing...
             </h2>
           </>
         );
@@ -140,7 +140,7 @@ export default function PaymentConfirmationPopup({
           <>
             <Spinner />
             <h2 className="text-gray-400 text-xl mt-4">
-              Confirming result...
+              Confirming payment...
             </h2>
             <p className="text-white mt-2">
               Please don’t close this window
@@ -154,8 +154,8 @@ export default function PaymentConfirmationPopup({
             <h2 className="text-gray-500 text-2xl mt-4">
               Payment confirmed.
             </h2>
-            <p className="text-white mt-2">The Digital Edition is now available.</p>
-            <p className="text-white mt-2">Access has been sent to this email address.
+            <p className="text-white mt-2">The Digital Edition is available.</p>
+            <p className="text-white mt-2">Access has been sent to email.
             </p>
           </>
         );

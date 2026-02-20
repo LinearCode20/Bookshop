@@ -154,7 +154,7 @@ export default function PaymentConfirmationPopup({
             <h2 className="text-gray-500 text-2xl mt-4">
               Payment confirmed.
             </h2>
-            <p className="text-white mt-2">Your Digital Edition is now available.</p>
+            <p className="text-white mt-2">The Digital Edition is now available.</p>
             <p className="text-white mt-2">Access has been sent to this email address.
             </p>
           </>
@@ -176,10 +176,10 @@ export default function PaymentConfirmationPopup({
         return (
           <>
             <h2 className="text-gray-400 text-2xl mt-4">
-              Payment Canceled
+              Payment Cancelled
             </h2>
             <p className="text-white mt-2">
-              You canceled the payment.
+              You cancelled the payment.
             </p>
           </>
         );
@@ -202,7 +202,7 @@ export default function PaymentConfirmationPopup({
               Already Unsubscribed
             </h2>
             <p className="text-white mt-2">
-              You have already unsubscribed earlier.
+              You have already unsubscribed.
             </p>
           </>
         );

@@ -4,10 +4,10 @@ export const questions = [
       answer: "This is a digital edition, delivered electronically. Access is provided immediately after purchase." },
     { 
       question: "How many chapters?", 
-      answer: "The digital edition contains 22 chapters. This is the essential material." },
+      answer: "The digital edition contains 22 chapters." },
     { 
       question: "When is access provided?", 
-      answer: "Access is granted immediately after successful payment. A confirmation email with access details is sent at the same time." },
+      answer: "Access is granted immediately after successful payment. A confirmation email with access will be sent to your email." },
     { 
       question: "Is this a finished edition?", 
       answer: "Yes. The digital edition is a standalone release." },

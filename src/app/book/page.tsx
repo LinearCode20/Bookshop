@@ -23,7 +23,7 @@ function page({
       <section className="container pt-12 flex md:flex-row flex-col gap-8 justify-center items-start ">
         <div className="h-full flex flex-col items-start justify-start basis-1/2  mx-auto">
 
-          <h1 className=" mt-3.5 text-2xl text-white">THE DIGITAL EDITION</h1>
+          <h1 className="mt-3.5 text-2xl tracking-wider text-white">THE DIGITAL EDITION</h1>
           <p className="mt-4">22 chapters. The essential material.</p>
           <p className="mt-4">Designed for immediate use.</p>
           <p className="mt-4">This is a reference built from lived conditions.</p>

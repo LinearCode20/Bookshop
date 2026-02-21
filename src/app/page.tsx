@@ -27,6 +27,7 @@ export default function Home({
         <p className="max-w-2xl mx-auto">For men who move.</p>
         <p className="max-w-2xl mx-auto">For men who carry their own weight.</p>
         <p className="max-w-2xl mx-auto">Written with British restraint. Belief is not required.</p>
+        <p className="max-w-2xl mx-auto">Decide for yourself.</p        
         <p className="max-w-2xl mx-auto">If It's not for you, leave it.</p>
         <div className="flex gap-3 justify-center flex-wrap mt-7">
 

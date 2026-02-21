@@ -48,7 +48,7 @@ export default function PopUp({ popUpOpen, onClose }: PopupModalProps) {
                 checked={check2}
                 onChange={(e) => setCheck2(e.target.checked)}
               />
-              <label htmlFor="consent">I consent to immediate access of digital content, and accept
+              <label htmlFor="consent">I consent to recieving immediate access of digital content. I accept
                 I lose the right to cancel once the download begins.
               </label>
             </div>

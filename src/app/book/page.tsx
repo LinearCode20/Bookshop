@@ -30,7 +30,8 @@ function page({
           <p className="mt-4">It’s designed to be returned to when life hits the hardest.</p>
           <p className="mt-4"> Not read once and forgotten.</p>
           <p className="mt-4">Written cleanly. Privately circulated before release.</p>
-
+          <p className="mt-4">£15-Digital release
+          
           <Button onClick={() => setPopUpOpen(true)} className="btn primary">[ DIGITAL EDITION ]</Button>
 
           <PopUp

@@ -154,8 +154,8 @@ export default function PaymentConfirmationPopup({
             <h2 className="text-gray-500 text-2xl mt-4">
               Payment confirmed.
             </h2>
-            <p className="text-white mt-2">The Digital Edition is available.</p>
-            <p className="text-white mt-2">Access has been sent to email.
+            <p className="text-white mt-2">The Digital Edition is now available.</p>
+            <p className="text-white mt-2">Access has been sent to email address.
             </p>
           </>
         );

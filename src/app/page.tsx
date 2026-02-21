@@ -25,7 +25,7 @@ export default function Home({
         <h1 className="statement text-4xl leading-relaxed tracking-wider text-white">LET ME GIVE YOU THE GAME</h1>
 
         <p className="max-w-2xl mx-auto">For men who move.</p>
-        <p className="max-w-2xl mx-auto">For men who don't need rescuing.</p>
+        <p className="max-w-2xl mx-auto">For men who hold their standard.</p>
         <p className="max-w-2xl mx-auto">Written with British restraint. Belief is not required.</p>
         <p className="max-w-2xl mx-auto">Decide for yourself.</p>
         <div className="flex gap-3 justify-center flex-wrap mt-7">

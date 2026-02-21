@@ -14,7 +14,7 @@ const Page: React.FC = () => {
     return (
         <main>
 
-            <section className="container flex flex-col justify-center items-center">
+            <section className="container flex flex-col justify-center items-center pt-16">
                 <h1 className="statement text-2xl text-white">Chapter One</h1>
                 <h1 className="statement text-2xl text-white mb-10">Trapped</h1>
 

@@ -20,4 +20,7 @@ export const questions = [
     { 
       question: "How do I get in touch?", 
       answer: "For any access or support enquiries, contact: admin@letmegiveyouthegame.com" },
+    { 
+      question: "Who is this not for?", 
+      answer: "Men looking for motivation. Men waiting to be rescued. Men who need convincing." },
   ];

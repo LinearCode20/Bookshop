@@ -25,13 +25,13 @@ function page({
 
           <h1 className="mt-3.5 text-2xl tracking-wider text-white">THE DIGITAL EDITION</h1>
           <p className="mt-4">22 chapters. The essential material.</p>
-          <p className="mt-4">Designed for immediate use.</p>
-          <p className="mt-4">This is a reference built from lived conditions.</p>
-          <p className="mt-4">It’s designed to be returned to when life hits the hardest.</p>
-          <p className="mt-4"> Not read once and forgotten.</p>
-          <p className="mt-4">Privately circulated before release.</p>
+          <p className="mt-4">Designed for immediate access.</p>
+          <p className="mt-4">A reference built from lived experience.</p>
+          <p className="mt-4">You read it, you apply it, you adjust.</p>
+          <p className="mt-4">Instant access after purchase.</p>
+          <p className="mt-4">No waiting, no subscriptions.</p>
           
-          <Button onClick={() => setPopUpOpen(true)} className="btn primary">[ DIGITAL EDITION £15 ]</Button>
+          <Button onClick={() => setPopUpOpen(true)} className="btn primary">[ BUY THE DIGITAL EDITION £15 ]</Button>
 
           <PopUp
             popUpOpen={popUpOpen}

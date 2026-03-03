@@ -29,7 +29,7 @@ function page({
           <p className="mt-4">A reference built from lived experience.</p>
           <p className="mt-4">You read it, you apply it, you adjust.</p>
           <p className="mt-4">Instant access after purchase.</p>
-          <p className="mt-4">No waiting, no subscriptions.</p>
+          <p className="mt-4">No shipping, no delay.</p>
           
           <Button onClick={() => setPopUpOpen(true)} className="btn primary">[ BUY THE DIGITAL EDITION £15 ]</Button>
 

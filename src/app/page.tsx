@@ -24,8 +24,8 @@ export default function Home({
         {/* <p className="uppercase text-sm">A MANUAL FOR MEN</p> */}
         <h1 className="statement text-4xl leading-relaxed tracking-wider text-white">LET ME GIVE YOU THE GAME</h1>
 
-        <p className="max-w-2xl mx-auto">For men who carry their own weight.</p>
-        <p className="max-w-2xl mx-auto">Written with British restraint. Belief is not required.</p>
+        <p className="max-w-2xl mx-auto">A practical manual for modern men.</p>
+        <p className="max-w-2xl mx-auto">Standards. Dicipline. Relationships. Respect.</p>
         <p className="max-w-2xl mx-auto">If It's not for you, leave it.</p>
         <div className="flex gap-3 justify-center flex-wrap mt-7">
 

@@ -15,8 +15,8 @@ function page() {
         <div className="text-center mx-auto max-w-4xl pb-14 space-y-6">
           <h1 className="statement text-3xl tracking-wider text-white mb-6">BRAM FROST</h1>
           <p className="max-w-2xl mx-auto">This work is published under a pen name.</p>
-          <p className="max-w-2xl mx-auto">That decision is structural.</p>
-          <p className="max-w-2xl mx-auto">The system matters more than the person who assembled it.</p>
+          <p className="max-w-2xl mx-auto">The focus is the material.</p>
+          <p className="max-w-2xl mx-auto">The system matters more than the individual.</p>
           <p className="max-w-2xl mx-auto">No biography is required.</p>
           <p className="max-w-2xl mx-auto">The material stands on its own.</p>
           <div className="flex gap-3 justify-center flex-wrap mt-7">

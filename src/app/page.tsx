@@ -26,7 +26,7 @@ export default function Home({
 
         <p className="max-w-2xl mx-auto">A practical manual for modern men.</p>
         <p className="max-w-2xl mx-auto">Standards. Dicipline. Relationships. Respect.</p>
-        <p className="max-w-2xl mx-auto">If your ready, read it.</p>
+        <p className="max-w-2xl mx-auto">It starts with you.</p>
         <div className="flex gap-3 justify-center flex-wrap mt-7">
 
           <Link key={'/chapter-one'} href={'/chapter-one'} >

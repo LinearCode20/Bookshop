@@ -22,5 +22,5 @@ export const questions = [
       answer: "admin@letmegiveyouthegame.com" },
     { 
       question: "Who is this not for?", 
-      answer: "Men looking for motivation. Men waiting to be rescued. Men who need convincing." },
+      answer: "Men waiting to be rescued. Men who need convincing." },
   ];

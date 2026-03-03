@@ -25,8 +25,8 @@ export default function Home({
         <h1 className="statement text-4xl leading-relaxed tracking-wider text-white">LET ME GIVE YOU THE GAME</h1>
 
         <p className="max-w-2xl mx-auto">A practical manual for modern men.</p>
-        <p className="max-w-2xl mx-auto">Standards. Dicipline. Relationships. Respect.</p>
-        <p className="max-w-2xl mx-auto">It starts with you.</p>
+        <p className="max-w-2xl mx-auto">Standards. Discipline. Relationships. Respect.</p>
+        <p className="max-w-2xl mx-auto">Composure when it matters.</p>
         <div className="flex gap-3 justify-center flex-wrap mt-7">
 
           <Link key={'/chapter-one'} href={'/chapter-one'} >

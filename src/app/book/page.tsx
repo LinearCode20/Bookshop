@@ -27,9 +27,9 @@ function page({
           <p className="mt-4">22 chapters. The essential material.</p>
           <p className="mt-4">Designed for immediate access.</p>
           <p className="mt-4">A reference built from lived experience.</p>
-          <p className="mt-4">You read it, you apply it, you adjust.</p>
           <p className="mt-4">Instant access after purchase.</p>
-          <p className="mt-4">No shipping, no delay.</p>
+          <p className="mt-4">No shipping, no delay.</p>          
+          <p className="mt-4">You read it, you apply it, you adjust.</p>
           
           <Button onClick={() => setPopUpOpen(true)} className="btn primary">[ BUY THE DIGITAL EDITION £15 ]</Button>
 

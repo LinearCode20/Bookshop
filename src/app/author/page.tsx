@@ -19,7 +19,7 @@ function page() {
           <p className="max-w-2xl mx-auto">The system matters more than the individual.</p>
           <p className="max-w-2xl mx-auto">No biography is required.</p>
           <p className="max-w-2xl mx-auto">The material stands on its own.</p>
-          <div className="flex gap-3 justify-center flex-wrap mt-10">
+          <div className="flex gap-3 justify-center flex-wrap mt-12">
 
             <Link key={'/chapter-one'} href={'/chapter-one'} >
               <Button className="btn primary pointer">[ READ CHAPTER ONE ]</Button>

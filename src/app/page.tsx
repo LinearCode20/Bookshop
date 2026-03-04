@@ -24,11 +24,11 @@ export default function Home({
         {/* <p className="uppercase text-sm">A MANUAL FOR MEN</p> */}
         <h1 className="statement text-4xl leading-relaxed tracking-widest text-white">LET ME GIVE YOU THE GAME</h1>
 
-        <p className="max-w-2xl mx-auto">A practical manual for modern men.</p>
-        <p className="max-w-2xl mx-auto">Standards. Discipline. Relationships. Respect.</p>
-        <p className="max-w-2xl mx-auto">Stop reacting. Start leading.</p>
-        <p className="max-w-2xl mx-auto">In conversation. In conflict. At home.</p>
-        <p className="max-w-2xl mx-auto">Described by early readers as direct and grounded.</p>        
+        <p className="max-w-2xl mx-auto mb-2">A practical manual for modern men.</p>
+        <p className="max-w-2xl mx-auto mb-2">Standards. Discipline. Relationships. Respect.</p>
+        <p className="max-w-2xl mx-auto mb-2">Stop reacting. Start leading.</p>
+        <p className="max-w-2xl mx-auto mb-2">In conversation. In conflict. At home.</p>
+        <p className="max-w-2xl mx-auto mb-2">Described by early readers as direct and grounded.</p>        
         <div className="flex gap-3 justify-center flex-wrap mt-7">
 
           <Link key={'/chapter-one'} href={'/chapter-one'} >

@@ -24,7 +24,7 @@ function page({
         <div className="h-full flex flex-col items-start justify-start basis-1/2  mx-auto">
 
           <h1 className="mt-4 text-2xl tracking-widest text-white">THE DIGITAL EDITION</h1>
-          <p className="mt-3">22 chapters. The essential material.</p>
+          <p className="mt-6">22 chapters. The essential material.</p>
           <p className="mt-3">Designed for immediate use.</p>
           <p className="mt-3">A reference built from lived experience.</p>
           <p className="mt-3">Instant access after purchase.</p>

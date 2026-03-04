@@ -25,7 +25,7 @@ function page({
 
           <h1 className="mt-3.5 text-2xl tracking-widest text-white">THE DIGITAL EDITION</h1>
           <p className="mt-4">22 chapters. The essential material.</p>
-          <p className="mt-4">Designed for immediate access.</p>
+          <p className="mt-4">Designed for immediate use.</p>
           <p className="mt-4">A reference built from lived experience.</p>
           <p className="mt-4">Instant access after purchase.</p>
           <p className="mt-4">No shipping, no delay.</p>          

@@ -30,7 +30,7 @@ function page({
           <p className="mt-4">Instant access after purchase.</p>
           <p className="mt-4">No shipping, no delay.</p>          
           <p className="mt-4">You read it, you apply it, you adjust.</p>
-          <p className="mt-4">Digital release available now.</p>
+          <p className="mt-4">Digital release available now. Hardback released later this year.</p>
           
           <Button onClick={() => setPopUpOpen(true)} className="btn primary">[ BUY THE DIGITAL EDITION £15 ]</Button>
 

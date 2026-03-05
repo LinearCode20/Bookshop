@@ -20,7 +20,7 @@ function page({
 
   return (
     <main>
-      <section className="container pt-12 flex md:flex-row flex-col gap-8 justify-center items-start ">
+      <section className="container pt-8 flex md:flex-row flex-col gap-8 justify-center items-start ">
         <div className="h-full flex flex-col items-start justify-start basis-1/2  mx-auto">
 
           <h1 className="mt-4 text-2xl tracking-widest text-white">THE DIGITAL EDITION</h1>

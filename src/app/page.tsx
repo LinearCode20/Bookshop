@@ -22,7 +22,7 @@ export default function Home({
      
       <section className="container flex flex-col text-center gap-4 justify-center items-center">
         {/* <p className="uppercase text-sm">A MANUAL FOR MEN</p> */}
-        <h1 className="statement text-4xl leading-relaxed tracking-[0.35em] text-white">LET ME GIVE YOU THE GAME</h1>
+        <h1 className="statement text-4xl leading-relaxed tracking-[0.25em] text-white">LET ME GIVE YOU THE GAME</h1>
 
         <p className="max-w-2xl mx-auto mb-2">A practical manual for modern men.</p>
         <p className="max-w-2xl mx-auto mb-2">Standards. Discipline. Relationships. Respect.</p>

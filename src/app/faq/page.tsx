@@ -57,7 +57,7 @@ function page() {
     <div className="flex min-h-dvh items-center justify-center text-white">
       <section className="container mx-auto px-6 max-w-5xl">
         
-        <h2 className="mt-3.5 text-2xl tracking-wide text-white">FREQUENTLY ASKED QUESTIONS</h2>
+        <h2 className="mt-3.5 text-2xl tracking-widest text-white">FREQUENTLY ASKED QUESTIONS</h2>
         {/* Two independent columns */}
         <div className="flex flex-col md:flex-row gap-10 mt-12">
           {/* LEFT COLUMN */}

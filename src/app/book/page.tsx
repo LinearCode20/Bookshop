@@ -30,7 +30,6 @@ function page({
           <p className="mt-3">Practical guidance on standards, discipline, relationships, and respect.</p>
           <p className="mt-3">Instant access after purchase.</p>          
           <p className="mt-3">You read it, you apply it, you adjust.</p>
-          <p className="mt-3">Digital release available now.</p>
           <p className="mt-3">Hardback drops later this year.</p>
           
           <Button onClick={() => setPopUpOpen(true)} className="btn primary text-base px-6 py-2.5 mt-6">[ BUY DIGITAL EDITION - £15 ]</Button>

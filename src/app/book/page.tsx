@@ -33,7 +33,7 @@ function page({
           <p className="mt-3">Digital release available now.</p>
           <p className="mt-3">Hardback drops later this year.</p>
           
-          <Button onClick={() => setPopUpOpen(true)} className="btn primary mt-8 text-base px-3 py-1.5">[ BUY DIGITAL EDITION - £15 ]</Button>
+          <Button onClick={() => setPopUpOpen(true)} className="btn primary text-base px-6 py-2.5">[ BUY DIGITAL EDITION - £15 ]</Button>
 
           <PopUp
             popUpOpen={popUpOpen}

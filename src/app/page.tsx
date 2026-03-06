@@ -32,7 +32,7 @@ export default function Home({
         <div className="flex gap-3 justify-center flex-wrap mt-7">
 
           <Link key={'/chapter-one'} href={'/chapter-one'} >
-            <Button className="btn primary pointer">[ READ CHAPTER ONE ]</Button>
+            <Button className="btn primary pointer text-base px-6 py-2.5">[ READ CHAPTER ONE ]</Button>
           </Link>
 
           {/* Download File */}

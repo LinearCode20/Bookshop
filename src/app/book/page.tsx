@@ -6,6 +6,7 @@ import { Suspense, use, useState } from "react";
 import PaymentConfirmationPopup from "@/components/payment-confirmation/PaymentConfirmationPopup";
 import PopUp from "@/components/popup/popup";
 import { Button } from "@/components/ui/button";
+import EmailModal from "@/components/first-chapter/read-first-chapter-popup";
 
 function page({
   searchParams,
@@ -17,21 +18,28 @@ function page({
   const [open, setOpen] = useState(paymentStatusPopup);
   const [popUpOpen, setPopUpOpen] = useState(false);
 
+  // First chapter popup states
+  const [firstOpen, setfirstOpen] = useState(false);
 
   return (
     <main>
-      <section className="container pt-12 flex md:flex-row flex-col gap-8 justify-center items-start ">
+      <section className="container pt-6 flex md:flex-row flex-col gap-8 justify-center items-start ">
         <div className="h-full flex flex-col items-start justify-start basis-1/2  mx-auto">
 
-          <h1 className=" mt-3.5 text-2xl text-white">THE DIGITAL EDITION</h1>
-          <p className="mt-4">22 chapters. The essential material.</p>
-          <p className="mt-4">Designed for immediate use.</p>
-          <p className="mt-4">This is a reference built from lived conditions, not theory.</p>
-          <p className="mt-4">It’s designed to be returned to when life hits the hardest.</p>
-          <p className="mt-4"> Not read once and forgotten.</p>
-          <p className="mt-4">Written cleanly. Without excess.</p>
+          <h1 className="mt-2 text-2xl tracking-[0.2em] text-white">THE DIGITAL EDITION</h1>
+          <p className="mt-6">22 chapters. The essential material.</p>
+          <p className="mt-3">Designed for immediate use.</p>
+          <p className="mt-3">A reference built from lived experience.</p>
+          <p className="mt-3">Practical guidance on standards, discipline, relationships, and self-respect.</p>
+          <p className="mt-3">Instant access after purchase.</p>          
+          <p className="mt-3">You read it, you apply it, you adjust.</p>
+          <p className="mt-3">Hardback edition releases later this year.</p>
+          
+          {/* Stripe Payment Button */}
+          {/* <Button onClick={() => setPopUpOpen(true)} className="btn primary text-base px-6 py-2.5 mt-6">[ BUY DIGITAL EDITION - £15 ]</Button> */}
 
-          <Button onClick={() => setPopUpOpen(true)} className="btn primary">[ DIGITAL EDITION ]</Button>
+          <Button className="btn primary pointer" onClick={() => setfirstOpen(true)}>[ GET NOTIFIED WHEN THE E-BOOK LAUNCHES ]</Button>          
+          <EmailModal isOpen={firstOpen} onClose={() => setfirstOpen(false)} expired={false} sendMail={false} />
 
           <PopUp
             popUpOpen={popUpOpen}

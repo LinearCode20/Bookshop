@@ -14,11 +14,11 @@ const Page: React.FC = () => {
     return (
         <main>
 
-            <section className="container flex flex-col justify-center items-center">
+            <section className="container flex flex-col justify-center items-center pt-8">
                 <h1 className="statement text-2xl text-white">Chapter One</h1>
-                <h1 className="statement text-2xl text-white">Trapped</h1>
+                <h1 className="statement text-2xl text-white mb-10">Trapped</h1>
 
-                <div className="text-left mx-auto max-w-4xl pb-14">
+                <div className="text-left mx-auto max-w-4xl pb-14 space-y-6">
 
                     <h1 className="statement text-1xl text-white">The Party</h1>
                     <p className="max-w-2xl mx-auto">My friend Terry invited me to his daughter’s 21st birthday party. A bar on a busy city street,

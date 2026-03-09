@@ -6,12 +6,14 @@ interface EmailModalProps {
   isOpen: boolean;
   onClose: () => void;
   expired?: boolean;
+  sendMail?: boolean;
 }
 
 export default function EmailModal({
   isOpen,
   onClose,
   expired = false,
+  sendMail=false
 }: EmailModalProps) {
   const [visible, setVisible] = useState<boolean>(false);
   const [email, setEmail] = useState<string>("");
@@ -64,10 +66,11 @@ export default function EmailModal({
 
     // Save email
     localStorage.setItem(STORAGE_KEY, email);
-    const MailType = "First-Chapter";
-    const emailSubject = 'Chapter One - Trapped';
-    sendEmail(email, emailSubject, MailType);
+    const MailType = !sendMail ? "No-Mail" : "First-Chapter";
+    const emailSubject = !sendMail ? "You're on the list!" : "Chapter One - Trapped";
 
+    sendEmail(email, emailSubject, MailType);
+    
     // Close modal
     //onClose();
   };
@@ -89,8 +92,13 @@ export default function EmailModal({
       if (res.ok || data.success) {
         onClose(); //close the popup
         toast.success("Email send successfully.");
+
+        if(emailType !== "No-Mail") {
+          // Open Chapter 1 PDF in new tab
+          window.open("/pdfs/chapter-one.pdf", "_blank", "noopener,noreferrer");
+        }
         // Open Chapter 1 PDF in new tab
-        window.open("/pdfs/chapter-one.pdf", "_blank", "noopener,noreferrer");
+        //window.open("/pdfs/chapter-one.pdf", "_blank", "noopener,noreferrer");
       } else {
         const message = data?.message || "Failed to send email.";
         toast.error(message);
@@ -124,7 +132,7 @@ export default function EmailModal({
         ) : (
           <>
             <h1 className="modal-subtitle text-2xl text-white">
-              READING REQUIRES COMMITMENT
+              Access Full Chapter
             </h1>
 
             <form className="modal-form" onSubmit={handleSubmit}>

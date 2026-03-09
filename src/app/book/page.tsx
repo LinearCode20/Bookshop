@@ -6,6 +6,7 @@ import { Suspense, use, useState } from "react";
 import PaymentConfirmationPopup from "@/components/payment-confirmation/PaymentConfirmationPopup";
 import PopUp from "@/components/popup/popup";
 import { Button } from "@/components/ui/button";
+import EmailModal from "@/components/first-chapter/read-first-chapter-popup";
 
 function page({
   searchParams,
@@ -17,6 +18,8 @@ function page({
   const [open, setOpen] = useState(paymentStatusPopup);
   const [popUpOpen, setPopUpOpen] = useState(false);
 
+  // First chapter popup states
+  const [firstOpen, setfirstOpen] = useState(false);
 
   return (
     <main>
@@ -32,7 +35,11 @@ function page({
           <p className="mt-3">You read it, you apply it, you adjust.</p>
           <p className="mt-3">Hardback edition releases later this year.</p>
           
-          <Button onClick={() => setPopUpOpen(true)} className="btn primary text-base px-6 py-2.5 mt-6">[ BUY DIGITAL EDITION - £15 ]</Button>
+          {/* Stripe Payment Button */}
+          {/* <Button onClick={() => setPopUpOpen(true)} className="btn primary text-base px-6 py-2.5 mt-6">[ BUY DIGITAL EDITION - £15 ]</Button> */}
+
+          <Button className="btn primary pointer" onClick={() => setfirstOpen(true)}>[ GET NOTIFIED WHEN THE E-BOOK LAUNCHES ]</Button>          
+          <EmailModal isOpen={firstOpen} onClose={() => setfirstOpen(false)} expired={false} sendMail={false} />
 
           <PopUp
             popUpOpen={popUpOpen}

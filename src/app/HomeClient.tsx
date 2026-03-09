@@ -3,7 +3,6 @@
 
 import { useEffect, useState } from "react";
 import { useSearchParams } from "next/navigation";
-import { Button } from "@/components/ui/button";
 import EmailModal from "@/components/first-chapter/read-first-chapter-popup";
 
 export default function HomeClient() {

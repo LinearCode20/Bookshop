@@ -112,6 +112,12 @@ export async function POST(req: Request) {
           break;
       }
 
+    } else if (emailType === "No-Mail") {
+      // DEFAULT / ACCESS DELIVERY
+      //const parts = emailType.split("*");
+      //const transactionIdValue = ""; //parts[1] ?? "";
+      templatePath = path.join(process.cwd(), "emails/access-delivery.html");
+      pdfLink = ``;
     } else {
       // DEFAULT / ACCESS DELIVERY
       const parts = emailType.split("*");

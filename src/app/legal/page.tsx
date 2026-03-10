@@ -309,7 +309,7 @@ const Page: React.FC = () => {
         id="terms"
         className="container flex flex-col justify-center items-left "
       >
-        <div className="text-left mx-auto max-w-4xl pb-14 ">
+        <div className="text-left mx-auto max-w-4xl pb-8 ">
           <h1 className="statement text-2xl text-white mb-4">
             Terms & Conditions
           </h1>

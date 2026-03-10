@@ -38,8 +38,8 @@ function page({
           {/* Stripe Payment Button */}
           {/* <Button onClick={() => setPopUpOpen(true)} className="btn primary text-base px-6 py-2.5 mt-6">[ BUY DIGITAL EDITION - £15 ]</Button> */}
 
-          <Button className="btn primary pointer" onClick={() => setfirstOpen(true)}>[ GET NOTIFIED WHEN THE E-BOOK LAUNCHES ]</Button>          
-          <EmailModal isOpen={firstOpen} onClose={() => setfirstOpen(false)} expired={false} sendMail={false} />
+          <Button className="btn primary pointer hover:bg-foreground hover:text-primary" onClick={() => setfirstOpen(true)}>[ GET NOTIFIED WHEN THE E-BOOK LAUNCHES ]</Button>          
+          <EmailModal isOpen={firstOpen} onClose={() => setfirstOpen(false)} expired={false} sendMail={true} />
 
           <PopUp
             popUpOpen={popUpOpen}

@@ -25,9 +25,7 @@ export async function POST(req: Request) {
       content: Buffer;
     }[] = [];
 
-
-    // Handle different email types
-
+    // Handle different email types    
     if (emailType === "First-Chapter") {
       // FREE CHAPTER EMAIL
       pdfLink = `${process.env.BASE_URL}/pdfs/chapter-one.pdf`;
@@ -113,11 +111,15 @@ export async function POST(req: Request) {
       }
 
     } else if (emailType === "No-Mail") {
-      // DEFAULT / ACCESS DELIVERY
-      //const parts = emailType.split("*");
-      //const transactionIdValue = ""; //parts[1] ?? "";
-      templatePath = path.join(process.cwd(), "emails/access-delivery.html");
-      pdfLink = ``;
+      //Save email into the database
+      // await saveTransactionWithCheck({
+      //   email: typeof email === "string" ? email : email[0],
+      //   subscribe_status: true,
+      //   created_at: new Date().toISOString(),
+      // });
+
+      templatePath = path.join(process.cwd(), "emails/e-book-launch.html");
+      pdfLink = `${process.env.BASE_URL}/favicon.jpg`;
     } else {
       // DEFAULT / ACCESS DELIVERY
       const parts = emailType.split("*");
@@ -174,8 +176,7 @@ export async function POST(req: Request) {
         { status: 500 }
       );
     }
-
-    console.error("POST /api/send-email error:", error);
+    console.log("Error in send-email API:", error);
     return NextResponse.json({ success: false, message: error.message }, { status: 500 });
   }
 }

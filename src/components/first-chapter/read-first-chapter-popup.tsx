@@ -66,9 +66,8 @@ export default function EmailModal({
 
     // Save email
     localStorage.setItem(STORAGE_KEY, email);
-    const MailType = !sendMail ? "No-Mail" : "First-Chapter";
-    const emailSubject = !sendMail ? "You're on the list!" : "Chapter One - Trapped";
-
+    const MailType = sendMail ? "No-Mail" : "First-Chapter";
+    const emailSubject = sendMail ? "You're on the list!" : "Chapter One - Trapped";
     sendEmail(email, emailSubject, MailType);
     
     // Close modal

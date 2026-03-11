@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import React, { useEffect } from "react";
 
 const Page: React.FC = () => {
@@ -11,7 +12,8 @@ const Page: React.FC = () => {
       if (element) {
         // Scroll with 20px offset
         const yOffset = -70; // negative because we move UP
-        const y = element.getBoundingClientRect().top + window.pageYOffset + yOffset;
+        const y =
+          element.getBoundingClientRect().top + window.pageYOffset + yOffset;
         window.scrollTo({ top: y, behavior: "smooth" });
       }
     }
@@ -20,300 +22,522 @@ const Page: React.FC = () => {
   return (
     <main>
       {/* Privacy Policy Section */}
-      <section id="privacy" className="container flex flex-col justify-center items-left">
+      <section
+        id="privacy"
+        className="container flex flex-col justify-center items-left"
+      >
         <div className="text-left mx-auto max-w-4xl pb-14">
-          <h1 className="statement text-2xl text-white">Privacy Policy</h1>
-          <p className="max-w-2xl mx-auto">This Privacy Policy explains how we collect, use, store, and protect your personal data when you visit our website or purchase our products. We are committed to handling personal data lawfully, fairly, and transparently in accordance with the UK General Data Protection Regulation (UK GDPR) and the Data Protection Act 2018.</p>
+          <h1 className="statement text-2xl text-white mb-4">Privacy Policy</h1>
+          <ol className="list-decimal list-inside space-y-4">
+            <div className="max-w-2xl mx-auto">
+              <li className="text-white text-xl">Introduction</li>
+              <div>
+                <p className="max-w-2xl mx-auto">
+                  This Privacy Policy explains how personal data is collected,
+                  used, stored and protected when you access this website or
+                  purchase our products.
+                </p>
+                <p className="max-w-2xl mx-auto">
+                  Marginfold Press Ltd (“we”, “us”, “our”) is the data
+                  controller for the purposes of the UK General Data Protection
+                  Regulation (UK GDPR) and the Data Protection Act 2018.
+                </p>
+                <p className="max-w-2xl mx-auto">
+                  We are committed to processing personal data lawfully, fairly
+                  and transparently.
+                </p>
 
-          <h1 className="statement text-2xl text-white">Who We Are</h1>
-          <p className="max-w-2xl mx-auto">We are the data controller responsible for the personal data collected through this website.
-            If you have any questions about this Privacy Policy or how your data is handled, you can contact us using the details provided in the Complaints section of this page.</p>
+                <p className="max-w-2xl mx-auto">
+                  Contact:
+                  <br /> admin@letmegiveyouthegame.com
+                </p>
+              </div>
+            </div>
 
-          <h1 className="statement text-2xl text-white">What Data We Collect</h1>
-          <p className="max-w-2xl mx-auto">We may collect the following personal data:</p>
-          <ul style={{ listStyleType: 'disc' }}>
-            <li>Name</li>
-            <li>Email address</li>
-            <li>Billing and payment information</li>
-            <li>Purchase history</li>
-            <li>Technical data, such as IP address, browser type, and device information</li>
-          </ul>
+            <div className="max-w-2xl mx-auto">
+              <li className="text-white text-xl">Personal Data We Collect</li>
+              <div>
+                <p className="">
+                  We may collect the following categories of personal data:
+                </p>
+                <ul className="list-disc list-inside ml-4">
+                  <li className="">Name</li>
+                  <li className="">Email address</li>
+                  <li className="">Billing address</li>
+                  <li className="">Purchase history</li>
+                  <li className=""> Transaction identifiers</li>
+                  <li className=""> IP address</li>
+                  <li className=""> Device and browser information</li>
+                  <li className=""> Website usage data</li>
+                </ul>
 
-          <h1 className="statement text-2xl text-white">How We Collect Your Data</h1>
-          <p className="max-w-2xl mx-auto">We collect personal data when you:</p>
-          <ul style={{ listStyleType: 'disc' }}>
-            <li>Sign up to receive content or downloads</li>
-            <li>Purchase a digital or physical product</li>
-            <li>Contact us directly</li>
-            <li>Use or browse the website (via cookies and similar technologies)</li>
-          </ul>
+                <p className="mt-4">
+                  We do not store full payment card details.
+                </p>
+              </div>
+            </div>
 
-          <h1 className="statement text-2xl text-white">How We Use Your Data</h1>
-          <p className="max-w-2xl mx-auto">We use personal data only where legally permitted, including for the following purposes:</p>
-          <ul style={{ listStyleType: 'disc' }}>
-            <li>Providing access to purchased digital content</li>
-            <li>Processing payments and delivering products</li>
-            <li>Sending transactional emails related to purchases</li>
-            <li>Responding to enquiries or support requests</li>
-            <li>Improving website performance and security</li>
-          </ul>
-          <p className="max-w-2xl mx-auto">We do not sell, rent, or trade personal data to third parties.</p>
+            <div className="max-w-2xl mx-auto">
+              <li className="text-white text-xl"> How We Collect Data</li>
+              <div>
+                <p className="">Personal data is collected when you:</p>
+                <ul className="list-disc list-inside ml-4">
+                  <li className=""> Purchase a digital or physical product</li>
+                  <li>Request or download content</li>
+                  <li>Subscribe to communications</li>
+                  <li>Contact us directly</li>
+                  <li>Browse the website (via cookies and analytics tools)</li>
+                </ul>
+              </div>
+            </div>
 
-          <h1 className="statement text-2xl text-white">Legal Bases for Processing</h1>
-          <p className="max-w-2xl mx-auto">We process personal data under the following lawful bases:</p>
-          <ul style={{ listStyleType: 'disc' }}>
-            <li>Contract – where processing is necessary to deliver purchased products</li>
-            <li>Consent – where explicit consent has been given</li>
-            <li>Legal obligation – where required by law</li>
-            <li>Legitimate interests – for website security and service improvement</li>
-          </ul>
+            <div className="max-w-2xl mx-auto">
+              <li className="text-white text-xl">
+                Lawful Basis for Processing
+              </li>
+              <div>
+                <p className="">
+                  We process personal data under the following lawful bases:
+                </p>
+                <div>
+                  <p className=" text-white m-0">Contract</p>
+                  <p>
+                    Where processing is necessary to fulfil a purchase or
+                    provide access to digital content.
+                  </p>
+                </div>
+                <div>
+                  <p className=" text-white m-0">Consent</p>
+                  <p>
+                    Where you opt in to receive communications or non-essential
+                    cookies.
+                  </p>
+                </div>
+                <div>
+                  <p className=" text-white m-0">Legal Obligation</p>
+                  <p>
+                    Where we must comply with tax, accounting or regulatory
+                    requirements.
+                  </p>
+                </div>
+                <div>
+                  <p className=" text-white m-0">Legitimate Interests</p>
+                  <p>
+                    For website security, fraud prevention, and service
+                    improvement, provided these interests do not override your
+                    rights.
+                  </p>
+                </div>
+              </div>
+            </div>
 
-          <h1 className="statement text-2xl text-white">Payments</h1>
-          <p className="max-w-2xl mx-auto">Payments are processed securely by third-party payment providers. We do not store full payment card details on our servers.</p>
+            <div className="max-w-2xl mx-auto">
+              <li className="text-white text-xl">How We Use Personal Data</li>
+              <div>
+                <p className="">We use personal data to:</p>
+                <ul className="list-disc list-inside ml-4">
+                  <li>Process and fulfil orders</li>
+                  <li>Provide access to digital content</li>
+                  <li>Send transactional emails</li>{" "}
+                  <li>Respond to enquiries</li>
+                  <li>Maintain website functionality and security</li>{" "}
+                  <li>Comply with legal obligations</li>
+                </ul>
+                <p className="mt-4">
+                  We do not sell, rent or trade personal data.
+                </p>
+              </div>
+            </div>
 
-          <h1 className="statement text-2xl text-white">Data Sharing</h1>
-          <p className="max-w-2xl mx-auto">We may share personal data with trusted third parties only where necessary to operate the website and deliver services. This may include:</p>
-          <ul style={{ listStyleType: 'disc' }}>
-            <li>Payment processors</li>
-            <li>Email delivery providers</li>
-            <li>Website hosting and infrastructure providers</li>
-          </ul>
-          <p className="max-w-2xl mx-auto">All third parties are required to process personal data lawfully and securely.</p>
+            <div className="max-w-2xl mx-auto">
+              <li className="text-white text-xl ">Payment Processing</li>
+              <div>
+                <p className="">
+                  Payments are processed securely via Stripe Payments Europe
+                  Ltd.
+                </p>
+                <p>
+                  We do not store or process full card details on our servers.
+                </p>
+                <p>
+                  Stripe acts as an independent data controller for payment
+                  processing.
+                </p>
+              </div>
+            </div>
 
-          <h1 className="statement text-2xl text-white">Data Retention</h1>
-          <p className="max-w-2xl mx-auto">Personal data is retained only for as long as necessary to fulfil the purposes for which it was collected, including legal, accounting, and regulatory requirements.</p>
+            <div className="max-w-2xl mx-auto">
+              <li className="text-white text-xl">Data Processors</li>
+              <div>
+                <p className="">
+                  We use carefully selected third-party service providers,
+                  including:
+                </p>
+                <ul className="list-disc list-inside ml-4">
+                  <li>
+                    <span className=" text-white">Stripe</span> – payment
+                    processing
+                  </li>
+                  <li>
+                    <span className=" text-white">Supabase</span> – database
+                    infrastructure
+                  </li>
+                  <li>
+                    <span className=" text-white">Resend</span> – transactional
+                    email delivery
+                  </li>
+                  <li>
+                    <span className=" text-white">Vercel</span> – website
+                    hosting and analytics
+                  </li>
+                </ul>
+                <p className="mt-4">
+                  These providers act as data processors and are contractually
+                  required to process personal data securely and lawfully.
+                </p>
+              </div>
+            </div>
 
-          <h1 className="statement text-2xl text-white">Your Rights</h1>
-          <p className="max-w-2xl mx-auto">Under UK data protection law, users have the right to:</p>
-          <ul style={{ listStyleType: 'disc' }}>
-            <li>Access their personal data</li>
-            <li>Request correction of inaccurate data</li>
-            <li>Request erasure of their data</li>
-            <li>Object to or restrict processing</li>
-            <li>Request data portability</li>
-          </ul>
-          <p className="max-w-2xl mx-auto">Users also have the right to lodge a complaint with the UK Information Commissioner’s Office (ICO).</p>
+            <div className="max-w-2xl mx-auto">
+              <li className="text-white text-xl">
+                International Data Transfers
+              </li>
+              <div>
+                <p className="">
+                  Some service providers may process data outside the United
+                  Kingdom.
+                </p>
+                <p>
+                  Where international transfers occur, appropriate safeguards
+                  are implemented, including:
+                </p>
+                <ul className="list-disc list-inside ml-4">
+                  <li>Standard Contractual Clauses (SCCs)</li>
+                  <li>Adequacy regulations recognised by the UK Government</li>
+                </ul>
+              </div>
+            </div>
 
-          <h1 className="statement text-2xl text-white">Data Security</h1>
-          <p className="max-w-2xl mx-auto">We take appropriate technical and organisational measures to protect personal data against loss, misuse, unauthorised access, or disclosure.</p>
+            <div className="max-w-2xl mx-auto">
+              <li className="text-white text-xl">Data Retention</li>
+              <div>
+                <p className="">
+                  Personal data is retained only for as long as necessary to:
+                </p>
+                <p>
+                  Where international transfers occur, appropriate safeguards
+                  are implemented, including:
+                </p>
+                <ul className="list-disc list-inside ml-4">
+                  <li>Fulfil contractual obligations</li>
+                  <li>Comply with legal or tax requirements </li>
+                  <li>Resolve disputes</li>
+                  <li>Enforce agreements</li>
+                </ul>
+                <p className="mt-4">
+                  Transaction records may be retained for up to 6 years for
+                  accounting purposes.
+                </p>
+              </div>
+            </div>
 
-          <h1 className="statement text-2xl text-white">Changes to This Policy</h1>
-          <p className="max-w-2xl mx-auto">This Privacy Policy may be updated from time to time. Any changes will be posted on this page and will take effect immediately.</p>
+            <div className="max-w-2xl mx-auto">
+              <li className="text-white text-xl"> Your Rights</li>
+              <div>
+                <p className="">
+                  Under UK data protection law, you have the right to:
+                </p>
+                <p>
+                  Where international transfers occur, appropriate safeguards
+                  are implemented, including:
+                </p>
+                <ul className="list-disc list-inside ml-4">
+                  <li>Access your personal data</li>
+                  <li>Request correction</li>
+                  <li>Request erasure</li>
+                  <li>Restrict processing</li>
+                  <li>Object to processing</li>
+                  <li>Request data portability</li>
+                </ul>
+                <p className="mt-4">You may also lodge a complaint with:</p>
+                <p>
+                  Information Commissioner’s Office (ICO)
+                  <br />
+                  <Link
+                    href="https://www.ico.org.uk"
+                    target="_blank"
+                    className="text-blue-500"
+                  >
+                    www.ico.org.uk
+                  </Link>
+                </p>
+              </div>
+            </div>
+
+            <div className="max-w-2xl mx-auto">
+              <li className="text-white text-xl">Data Security</li>
+              <div>
+                <p className="">
+                  We implement appropriate technical and organisational measures
+                  to safeguard personal data, including:
+                </p>
+
+                <ul className="list-disc list-inside ml-4">
+                  <li>Secure hosting</li>
+                  <li>Encrypted payment processing</li>
+                  <li>Access control</li>
+                  <li>Limited internal data access</li>
+                </ul>
+              </div>
+            </div>
+
+            <div className="max-w-2xl mx-auto">
+              <li className="text-white text-xl">Changes to This Policy</li>
+              <div>
+                <p className="">
+                  We may update this Privacy Policy periodically. Changes take
+                  effect once published on this page.
+                </p>
+              </div>
+            </div>
+          </ol>
         </div>
       </section>
 
       {/* Terms & Conditions Section */}
-      <section id="terms" className="container flex flex-col justify-center items-left ">
-        <div className="text-left mx-auto max-w-4xl pb-14 ">
-          <h1 className="statement text-2xl text-white">Terms & Conditions</h1>
-          <p className="max-w-2xl mx-auto">These Terms & Conditions govern your use of this website and the purchase of any products from us. By accessing this website or placing an order, you agree to be bound by these Terms & Conditions.</p>
+      <section
+        id="terms"
+        className="container flex flex-col justify-center items-left "
+      >
+        <div className="text-left mx-auto max-w-4xl pb-8 ">
+          <h1 className="statement text-2xl text-white mb-4">
+            Terms & Conditions
+          </h1>
+          <ol className="list-decimal list-inside space-y-4">
+            <div className="max-w-2xl mx-auto">
+              <li className="text-white text-xl">Introduction</li>
+              <div>
+                <p className="max-w-2xl mx-auto">
+                  These Terms & Conditions govern use of this website and the
+                  purchase of products from Marginfold Press Ltd.
+                </p>
+                <p className="max-w-2xl mx-auto">
+                  By accessing the website or placing an order, you agree to be
+                  bound by these Terms.
+                </p>
+                <p className="max-w-2xl mx-auto">
+                  If you do not agree, you must not use the website.
+                </p>
+              </div>
+            </div>
 
-          <p className="max-w-2xl mx-auto">If you do not agree with these Terms & Conditions, you should not use this website or purchase our products.</p>
+            <div className="max-w-2xl mx-auto">
+              <li className="text-white text-xl">Governing Law</li>
+              <div>
+                <p className="max-w-2xl mx-auto">
+                  These Terms are governed by the laws of England and Wales.
+                </p>
+                <p className="max-w-2xl mx-auto">
+                  Disputes shall be subject to the exclusive jurisdiction of the
+                  courts of England and Wales.
+                </p>
+              </div>
+            </div>
 
-          <h1 className="statement text-2xl text-white">About Us</h1>
-          <p className="max-w-2xl mx-auto">We operate this website from England. These Terms & Conditions are governed by the laws of England and Wales.</p>
-          <p className="max-w-2xl mx-auto">Support enquiries are reviewed within a reasonable timeframe via admin@letmegiveyouthegame.com</p>
+            <div className="max-w-2xl mx-auto">
+              <li className="text-white text-xl">Products</li>
+              <div>
+                <p className="max-w-2xl mx-auto">We offer:</p>
+                <ul className="list-disc list-inside ml-4">
+                  <li>Digital products (ebooks and downloadable content)</li>
+                  <li>Physical printed books</li>
+                </ul>
+                <p className="mt-4">
+                  Product descriptions are provided in good faith but are not
+                  guaranteed to be free from minor inaccuracies.
+                </p>
+              </div>
+            </div>
 
-          <h1 className="statement text-2xl text-white">Products</h1>
-          <p className="max-w-2xl mx-auto">We sell digital products (including ebooks and downloadable content) and physical products (including printed books).</p>
-          <p className="max-w-2xl mx-auto">Product descriptions are provided for information purposes only. While we take reasonable care to ensure accuracy, we do not guarantee that all descriptions are error-free.</p>
+            <div className="max-w-2xl mx-auto">
+              <li className="text-white text-xl">Digital Products</li>
+              <div>
+                <p className="max-w-2xl mx-auto">
+                  Digital content is supplied immediately following payment
+                  unless otherwise stated.
+                </p>
+                <p className="max-w-2xl mx-auto">
+                  Under Regulation 37 of the Consumer Contracts Regulations
+                  2013:
+                </p>
+                <p className="max-w-2xl mx-auto">
+                  By completing your purchase, you expressly consent to
+                  immediate delivery of digital content and acknowledge that you
+                  lose your statutory 14-day cancellation right once delivery
+                  begins.
+                </p>
+                <p className="max-w-2xl mx-auto">
+                  Delivery is deemed complete when:
+                </p>
+                <ul className="list-disc list-inside ml-4">
+                  <li>Access is made available on-screen, and</li>
+                  <li>
+                    A confirmation email is sent to the email address provided.
+                  </li>
+                </ul>
+                <p className="mt-4">
+                  Access timestamps may be retained as evidence of fulfilment.
+                </p>
+              </div>
+            </div>
 
-          <h1 className="statement text-2xl text-white">Digital Products</h1>
-          <p className="max-w-2xl mx-auto">Digital products are supplied electronically. Access is provided immediately after payment unless otherwise stated.</p>
-          <p className="max-w-2xl mx-auto">By purchasing digital content, you expressly consent to immediate delivery and acknowledge that you lose your statutory right to cancel once access or download begins.</p>
+            <div className="max-w-2xl mx-auto">
+              <li className="text-white text-xl">Physical Products</li>
+              <div>
+                <p className="max-w-2xl mx-auto">
+                  Physical products are dispatched to the address provided at
+                  checkout.
+                </p>
+                <p className="max-w-2xl mx-auto">
+                  Delivery times are estimates only.
+                </p>
+                <p className="max-w-2xl mx-auto">Risk passes upon delivery.</p>
+              </div>
+            </div>
 
-          <h1 className="statement text-2xl text-white">Delivery Confirmation</h1>
-          <p className="max-w-2xl mx-auto">Digital delivery is deemed complete once access to the content is made available on-screen and an access link is sent to the customer’s email address. By proceeding, the customer acknowledges that this constitutes delivery of the digital product.</p>
-          <p className="max-w-2xl mx-auto">Delivery timestamps and access events are recorded and retained as verification of fulfilment. </p>
+            <div className="max-w-2xl mx-auto">
+              <li className="text-white text-xl">Pricing & Payment</li>
+              <div>
+                <p className="max-w-2xl mx-auto">
+                  All prices are displayed in GBP (£).
+                </p>
+                <p className="max-w-2xl mx-auto">
+                  We reserve the right to change prices at any time. Price
+                  changes do not affect completed orders.
+                </p>
+                <p className="max-w-2xl mx-auto">
+                  Orders are accepted only once payment has been successfully
+                  processed.
+                </p>
+              </div>
+            </div>
 
-          <h1 className="statement text-2xl text-white">Physical Products</h1>
-          <p className="max-w-2xl mx-auto">Physical products are shipped to the address provided at checkout. Delivery times are estimates only and are not guaranteed.</p>
-          <p className="max-w-2xl mx-auto">Risk of loss passes to you upon delivery.</p>
+            <div className="max-w-2xl mx-auto">
+              <li className="text-white text-xl">Refunds & Cancellation</li>
+              <div>
+                <p className="max-w-2xl mx-auto">Digital Products</p>
+                <p className="max-w-2xl mx-auto">
+                  Refunds are not available once delivery has commenced, except
+                  where:
+                </p>
+                <ul className="list-disc list-inside ml-4">
+                  <li>The file is defective, and</li>
+                  <li>A working replacement cannot be provided.</li>
+                </ul>
+                <p className="mt-4">Physical Products</p>
+                <p className="max-w-2xl mx-auto">
+                  You may cancel within 14 days of receiving the goods.
+                </p>
+                <p className="max-w-2xl mx-auto">Returned items must be:</p>
+                <ul className="list-disc list-inside ml-4">
+                  <li>Unused</li>
+                  <li>In original condition</li>
+                </ul>
+                <p className="mt-4">
+                  Refunds will be processed within 14 days of receipt.
+                </p>
+                <p className="max-w-2xl mx-auto">
+                  This does not affect statutory rights under the Consumer
+                  Rights Act 2015.
+                </p>
+              </div>
+            </div>
 
-          <h1 className="statement text-2xl text-white">Pricing & Payment</h1>
-          <p className="max-w-2xl mx-auto">All prices are shown in GBP (£) unless stated otherwise.</p>
-          <p className="max-w-2xl mx-auto">Payments are processed securely via third-party payment providers. We do not store payment card details.</p>
-          <p className="max-w-2xl mx-auto">We reserve the right to change prices at any time. Price changes will not affect orders already placed.</p>
+            <div className="max-w-2xl mx-auto">
+              <li className="text-white text-xl">Intellectual Property</li>
+              <div>
+                <p className="max-w-2xl mx-auto">
+                  All content is protected by copyright and intellectual
+                  property laws.
+                </p>
+                <p className="max-w-2xl mx-auto">
+                  Digital products are licensed for personal use only.
+                </p>
+                <p className="max-w-2xl mx-auto">
+                  Unauthorised reproduction or distribution is prohibited.
+                </p>
+              </div>
+            </div>
 
-          <h1 className="statement text-2xl text-white">Order Acceptance</h1>
-          <p className="max-w-2xl mx-auto">An order is not considered accepted until payment has been successfully processed and confirmation has been sent.</p>
-          <p className="max-w-2xl mx-auto">We reserve the right to refuse or cancel any order at our discretion, including in cases of suspected fraud or error.</p>
+            <div className="max-w-2xl mx-auto">
+              <li className="text-white text-xl">Limitation of Liability</li>
+              <div>
+                <p className="max-w-2xl mx-auto">
+                  To the fullest extent permitted by law, we are not liable for
+                  indirect or consequential losses.
+                </p>
+                <p className="max-w-2xl mx-auto">
+                  Nothing limits liability for:
+                </p>
+                <ul className="list-disc list-inside ml-4">
+                  <li>Death or personal injury caused by negligence</li>
+                  <li>Fraud</li>
+                  <li>Any liability which cannot lawfully be excluded</li>
+                </ul>
+              </div>
+            </div>
 
-          <h1 className="statement text-2xl text-white">Intellectual Property</h1>
-          <p className="max-w-2xl mx-auto">All content on this website, including text, images, and digital products, is protected by copyright and other intellectual property laws.</p>
-          <p className="max-w-2xl mx-auto">You may not copy, reproduce, distribute, resell, or share any content or digital products without prior written permission.</p>
-          <p className="max-w-2xl mx-auto">Digital products are licensed for personal use only unless explicitly stated otherwise.</p>
-
-          <h1 className="statement text-2xl text-white">Use of Website</h1>
-          <p className="max-w-2xl mx-auto">You agree not to:</p>
-          <ul style={{ listStyleType: 'disc' }}>
-            <li>Use the website for unlawful purposes</li>
-            <li>Attempt to gain unauthorised access to systems or data</li>
-            <li>Interfere with the operation or security of the website</li>
-          </ul>
-          <p className="max-w-2xl mx-auto">We may suspend or terminate access if these Terms & Conditions are breached.</p>
-
-          <h1 className="statement text-2xl text-white">Limitation of Liability</h1>
-          <p className="max-w-2xl mx-auto">To the maximum extent permitted by law, we are not liable for any indirect, incidental, or consequential losses arising from use of this website or the purchase of products.</p>
-          <p className="max-w-2xl mx-auto">Nothing in these Terms & Conditions limits liability for death or personal injury caused by negligence, fraud, or any liability that cannot be excluded under English law.</p>
-
-          <h1 className="statement text-2xl text-white">Force Majeure</h1>
-          <p className="max-w-2xl mx-auto">We are not responsible for delays or failure to perform due to events beyond our reasonable control, including technical failures, supplier delays, or acts of nature.</p>
-
-          <h1 className="statement text-2xl text-white">Changes to These Term</h1>
-          <p className="max-w-2xl mx-auto">We may update these Terms & Conditions from time to time. Any changes will be effective immediately once posted on this page.</p>
-
-          <h1 className="statement text-2xl text-white">Governing Law</h1>
-          <p className="max-w-2xl mx-auto">These Terms & Conditions are governed by and interpreted in accordance with the laws of England and Wales. Any disputes shall be subject to the exclusive jurisdiction of the courts of England and Wales.</p>
-
-          <h1 className="statement text-2xl text-white">Complaints & Contact</h1>
-          <p className="max-w-2xl mx-auto">If you have any questions, concerns, or complaints regarding this Privacy Policy, the handling of your personal data, or any aspect of our services, you may contact us using the details below.</p>
-          <p className="max-w-2xl mx-auto"><b>Email:</b> admin@letmegiveyouthegame.com</p>
-          <p className="max-w-2xl mx-auto">We will review and respond to all complaints as promptly as reasonably possible.</p>
-          <p className="max-w-2xl mx-auto">If you are not satisfied with our response, you have the right to lodge a complaint with the UK Information Commissioner’s Office (ICO):</p>
-
-          <h1 className="statement text-2xl text-white">Information Commissioner’s Office (ICO)</h1>
-          <p className="max-w-2xl mx-auto">Website: https://www.ico.org.uk</p>
-          <p className="max-w-2xl mx-auto">Telephone: 0303 123 1113</p>
-          <p className="max-w-2xl mx-auto">Support enquiries are reviewed within a reasonable timeframe via admin@letmegiveyouthegame.com</p>
+            <div className="max-w-2xl mx-auto">
+              <li className="text-white text-xl">Force Majeure</li>
+              <div>
+                <p className="max-w-2xl mx-auto">
+                  We are not liable for delays or failures caused by events
+                  beyond reasonable control.
+                </p>
+              </div>
+            </div>
+          </ol>
         </div>
       </section>
-
-      {/* Refunds Section */}
-      <section id="refunds&returns" className="container flex flex-col justify-center items-left ">
-        <div className="text-left mx-auto max-w-4xl pb-14 ">
-          <h1 className="statement text-2xl text-white">Refunds & Returns Policy</h1>
-          <p className="max-w-2xl mx-auto  ">This policy explains your rights and our obligations in relation to refunds and returns, in accordance with UK consumer law.</p>
-
-          <h1 className="statement text-2xl text-white">Digital Products</h1>
-          <p className="max-w-2xl mx-auto">Digital products (including ebooks and downloadable content) are supplied immediately after purchase.</p>
-          <p className="max-w-2xl mx-auto">By completing a purchase of digital content, you expressly consent to immediate access and acknowledge that you lose your statutory right to cancel once delivery or download begins.</p>
-          <p className="max-w-2xl mx-auto">As a result, refunds are not available for digital products unless:</p>
-          <ul style={{ listStyleType: 'disc' }}>
-            <li>The file is defective or corrupted and cannot be accessed, and</li>
-            <li>We are unable to provide a working replacement</li>
-          </ul>
-          <p className="max-w-2xl mx-auto">In such cases, you must notify us within 14 days of purchase.</p>
-
-          <h1 className="statement text-2xl text-white">Delivery Confirmation</h1>
-          <p className="max-w-2xl mx-auto">Digital delivery is deemed complete once access to the content is made available on-screen and an access link is sent to the customer’s email address. By proceeding, the customer acknowledges that this constitutes delivery of the digital product.</p>
-          <p className="max-w-2xl mx-auto">Delivery timestamps and access events are recorded and retained as verification of fulfilment.</p>
-
-          <h1 className="statement text-2xl text-white">Physical Products</h1>
-          <p className="max-w-2xl mx-auto">For physical products, you have the right to cancel your order within 14 days of receiving the goods, without giving any reason.</p>
-          <p className="max-w-2xl mx-auto">To exercise this right, you must notify us clearly within the 14-day cancellation period.</p>
-
-          <h1 className="statement text-2xl text-white">Returns (Physical Products)</h1>
-          <p className="max-w-2xl mx-auto">If you cancel an order for a physical product:</p>
-          <ul style={{ listStyleType: 'disc' }}>
-            <li>You must return the item within 14 days of notifying us</li>
-            <li>Items must be unused and in their original condition</li>
-            <li>You are responsible for return shipping costs unless the item is faulty or incorrect</li>
-          </ul>
-          <p className="max-w-2xl mx-auto">We recommend using a tracked delivery service, as we cannot be responsible for items lost in return transit.</p>
-
-          <h1 className="statement text-2xl text-white">Refund Processing</h1>
-          <p className="max-w-2xl mx-auto">Once returned items are received and inspected, refunds will be processed within 14 days using the original payment method.</p>
-
-          <h1 className="statement text-2xl text-white">Faulty or Incorrect Items</h1>
-          <p className="max-w-2xl mx-auto">If a physical product is faulty, damaged, or incorrect, please contact us as soon as reasonably possible.</p>
-          <p className="max-w-2xl mx-auto">Where a fault is confirmed, you are entitled to:</p>
-          <ul style={{ listStyleType: 'disc' }}>
-            <li>A replacement, or</li>
-            <li>A full refund, including standard delivery costs</li>
-          </ul>
-          <p className="max-w-2xl mx-auto">This does not affect your statutory rights under the Consumer Rights Act 2015.</p>
-
-          <h1 className="statement text-2xl text-white">Exclusions</h1>
-          <p className="max-w-2xl mx-auto">Refunds will not be issued for:</p>
-          <ul style={{ listStyleType: 'disc' }}>
-            <li>Digital products once access has been granted (except as stated above)</li>
-            <li>Physical items returned in a used, damaged, or incomplete condition</li>
-            <li>Orders where misuse or unauthorised distribution of content is suspected</li>
-          </ul>
-          <p className="max-w-2xl mx-auto">To request a refund or return, please contact us using the details provided in the Complaints section.</p>
-        </div>
-      </section>
-
-      {/* Shipping & Delivery Policy */}
-      <section id="shipping&deliverypolicy" className="container flex flex-col justify-center items-left ">
-        <div className="text-left mx-auto max-w-4xl pb-14 ">
-          <h1 className="statement text-2xl text-white">Shipping & Delivery Policy</h1>
-          <p className="max-w-2xl mx-auto">This policy sets out how physical and digital products are delivered.</p>
-
-          <h1 className="statement text-2xl text-white">Digital Products</h1>
-          <p className="max-w-2xl mx-auto">Digital products are delivered electronically. Access is provided immediately after successful payment unless otherwise stated.</p>
-          <p className=" max-w-2xl mx-auto">A download link or access details will be sent to the email address provided at checkout. It is your responsibility to ensure that the email address entered is correct and accessible.</p>
-          <p className="max-w-2xl mx-auto">Failure to access the content after delivery does not constitute non-delivery.</p>
-
-          <h1 className="statement text-2xl text-white">Physical Products</h1>
-          <p className="max-w-2xl mx-auto">Physical products are shipped to the delivery address provided at checkout.</p>
-          <p className="max-w-2xl mx-auto">Orders are typically dispatched within a reasonable timeframe. Any stated dispatch or delivery times are estimates only and are not guaranteed.</p>
-          <p className="max-w-2xl mx-auto">Delivery times may vary depending on location and external factors beyond our control.</p>
-
-          <h1 className="statement text-2xl text-white">Delivery Charges</h1>
-          <p className="max-w-2xl mx-auto">Any applicable delivery charges will be clearly displayed at checkout before payment is completed.</p>
-
-          <h1 className="statement text-2xl text-white">Risk & Ownership</h1>
-          <p className="max-w-2xl mx-auto">Risk of loss or damage passes to you upon delivery. Ownership of physical goods passes once full payment has been received.</p>
-
-          <h1 className="statement text-2xl text-white">Delivery Issues</h1>
-          <p className="max-w-2xl mx-auto">If a physical product is delayed, damaged, or fails to arrive, please contact us as soon as reasonably possible so we can investigate.</p>
-          <p className="max-w-2xl mx-auto">We are not responsible for delays caused by courier services, incorrect delivery information provided at checkout, or events beyond our reasonable control.</p>
-
-          <h1 className="statement text-2xl text-white">International Delivery</h1>
-          <p className="max-w-2xl mx-auto">Where international delivery is offered, you are responsible for any customs duties, taxes, or import charges imposed by the destination country.</p>
-        </div>
-      </section >
 
       {/* Cookie Policy Section */}
-      < section id="cookiepolicy" className="container flex flex-col justify-center items-left " >
+      <section
+        id="cookiepolicy"
+        className="container flex flex-col justify-center items-left "
+      >
         <div className="text-left mx-auto max-w-4xl pb-14 ">
           <h1 className="statement text-2xl text-white">Cookie Policy</h1>
-          <p className="max-w-2xl mx-auto">This Cookie Policy explains how cookies and similar technologies are used on this website in accordance with UK GDPR and the Privacy and Electronic Communications Regulations (PECR).</p>
+          <p className="max-w-2xl mx-auto">
+            This website uses cookies in accordance with UK GDPR and the Privacy
+            and Electronic Communications Regulations (PECR).
+          </p>
+          <h1 className="statement text-xl mb-1 text-white">
+            Types of Cookies Used
+          </h1>
+          <h1 className="statement  text-white">Strictly Necessary Cookies</h1>
+          <p className="max-w-2xl mx-auto">
+            Essential for website functionality.
+          </p>
 
-          <h1 className="statement text-2xl text-white">What Are Cookies</h1>
-          <p className="max-w-2xl mx-auto">Cookies are small text files placed on your device when you visit a website. They help the website function correctly, improve performance, and collect basic usage information.</p>
+          <h1 className="statement  text-white">
+            Analytics / Performance Cookies
+          </h1>
+          <p className="max-w-2xl mx-auto">
+            Used via Vercel Web Analytics to collect anonymised usage data to
+            improve performance.
+          </p>
 
-          <h1 className="statement text-2xl text-white">How We Use Cookies</h1>
-          <p className="max-w-2xl mx-auto">We use cookies to:</p>
-          <ul style={{ listStyleType: 'disc' }}>
-            <li>Ensure the website functions correctly</li>
-            <li>Improve site performance and security</li>
-            <li>Understand how visitors use the website</li>
-          </ul>
-          <p className="max-w-2xl mx-auto">We do not use cookies to identify you personally.</p>
-
-          <h1 className="statement text-2xl text-white">Types of Cookies Used</h1>
-          <h1 className="statement text-2x3 text-white">Strictly Necessary Cookies</h1>
-          <p className="max-w-2xl mx-auto">These cookies are essential for the operation of the website and cannot be switched off. They enable core functionality such as page navigation and security.</p>
-
-          <h1 className="statement text-2x3 text-white">Analytics / Performance Cookies</h1>
-          <p className="max-w-2xl mx-auto">These cookies collect anonymous usage data to help us understand how visitors interact with the website and to improve usability and performance.</p>
-
-          <h1 className="statement text-2xl text-white">Consent</h1>
-          <p className="max-w-2xl mx-auto">Where required by law, cookies (other than strictly necessary cookies) will only be set after you have given consent via the cookie banner.</p>
-          <p className="max-w-2xl mx-auto">You can withdraw or change your consent at any time by adjusting your browser settings or clearing cookies.</p>
-
-          <h1 className="statement text-2xl text-white">Managing Cookies</h1>
-          <p className="max-w-2xl mx-auto">You can control and delete cookies through your browser settings. Most browsers allow you to:</p>
-          <ul style={{ listStyleType: 'disc' }}>
-            <li>View stored cookies</li>
-            <li>Delete all or selected cookies</li>
-            <li>Block cookies from specific websites</li>
-          </ul>
-          <p className="max-w-2xl mx-auto">Blocking certain cookies may affect how the website functions.</p>
-
-          <h1 className="statement text-2xl text-white">Third-Party Cookies</h1>
-          <p className="max-w-2xl mx-auto">Some cookies may be set by third-party services used on this website (for example, analytics or infrastructure providers). These third parties are responsible for their own cookie policies and compliance.</p>
-
-          <h1 className="statement text-2xl text-white">Changes to This Policy</h1>
-          <p className="max-w-2xl mx-auto">This Cookie Policy may be updated from time to time. Any changes will be posted on this page and will take effect immediately.</p>
+          <p className="max-w-2xl mx-auto">
+            Analytics cookies are only activated where required by law after
+            consent.
+          </p>
+          <p className="max-w-2xl mx-auto">
+            Users may withdraw consent via browser settings.
+          </p>
         </div>
-      </section >
-
-    </main >
+      </section>
+    </main>
   );
-}
+};
 
 export default Page;

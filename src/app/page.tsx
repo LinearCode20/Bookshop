@@ -1,56 +1,14 @@
-"use client";
-import { Suspense, use, useState } from "react";
+import { Metadata } from "next";
+import HomePage from "@/components/HomePage";
 
-import HomeClient from "./HomeClient";
-import { Button } from "@/components/ui/button";
-import Link from "next/link";
-import PaymentConfirmationPopup from "@/components/payment-confirmation/PaymentConfirmationPopup";
+export const metadata: Metadata = {
+  title: "A Practical Manual for Modern Men",
+};
 
 export default function Home({
   searchParams,
 }: {
-  searchParams: Promise<{ tx?: string, status?: string }>
+  searchParams: Promise<{ tx?: string; status?: string }>;
 }) {
-
-  const params = use(searchParams)
-  const paymentStatusPopup = params.status ? true : false;
-  const [open, setOpen] = useState(paymentStatusPopup);
-  const [popUpOpen, setPopUpOpen] = useState(false);
-
-  return (
-    <main>
-     
-      <section className="container flex flex-col text-center gap-4 justify-center items-center">
-        {/* <p className="uppercase text-sm">A MANUAL FOR MEN</p> */}
-        <h1 className="statement text-4xl leading-relaxed tracking-[0.2em] text-white">LET ME GIVE YOU THE GAME</h1>
-
-        <p className="max-w-2xl mx-auto mb-2">A practical manual for modern men.</p>
-        <p className="max-w-2xl mx-auto mb-2">Standards. Discipline. Relationships. Respect.</p>
-        <p className="max-w-2xl mx-auto mb-2">Stop reacting. Start leading.</p>
-        <p className="max-w-2xl mx-auto mb-2">In conversation. In conflict. At home.</p>
-        <p className="max-w-2xl mx-auto mb-2">Described by early readers as direct and grounded.</p>        
-        <div className="flex gap-3 justify-center flex-wrap mt-7">
-
-          <Link key={'/chapter-one'} href={'/chapter-one'} >
-            <Button className="btn primary pointer text-base px-6 py-2.5">[ READ CHAPTER ONE ]</Button>
-          </Link>
-
-          {/* Download File */}
-          <Suspense fallback={null}>
-            <HomeClient />
-          </Suspense>
-
-          {/* unscribe popup */}
-          <Suspense fallback={null}>
-            <PaymentConfirmationPopup
-              isOpen={open}
-              pageParms={params}
-              onClose={() => setOpen(false)}
-            />
-          </Suspense>
-
-        </div>
-      </section>
-    </main>
-  );
+  return <HomePage searchParams={searchParams} />;
 }

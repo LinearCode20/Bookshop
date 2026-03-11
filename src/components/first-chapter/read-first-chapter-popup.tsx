@@ -67,7 +67,7 @@ export default function EmailModal({
     // Save email
     localStorage.setItem(STORAGE_KEY, email);
     const MailType = sendMail ? "No-Mail" : "First-Chapter";
-    const emailSubject = sendMail ? "You're on the list!" : "Chapter One - Trapped";
+    const emailSubject = sendMail ? "You're on the list" : "Chapter One - Trapped";
     sendEmail(email, emailSubject, MailType);
     
     // Close modal
@@ -91,8 +91,8 @@ export default function EmailModal({
       if (res.ok || data.success) {
         onClose(); //close the popup
         toast.success("Email send successfully.");
-
-        if(emailType !== "No-Mail") {
+        
+        if(emailType != "No-Mail") {
           // Open Chapter 1 PDF in new tab
           window.open("/pdfs/chapter-one.pdf", "_blank", "noopener,noreferrer");
         }

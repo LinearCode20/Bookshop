@@ -112,11 +112,11 @@ export async function POST(req: Request) {
 
     } else if (emailType === "No-Mail") {
       //Save email into the database
-      // await saveTransactionWithCheck({
-      //   email: typeof email === "string" ? email : email[0],
-      //   subscribe_status: true,
-      //   created_at: new Date().toISOString(),
-      // });
+      await saveTransactionWithCheck({
+        email: typeof email === "string" ? email : email[0],
+        subscribe_status: false,
+        created_at: new Date().toISOString(),
+      });
 
       templatePath = path.join(process.cwd(), "emails/e-book-launch.html");
       pdfLink = `${process.env.BASE_URL}/favicon.jpg`;

@@ -24,13 +24,14 @@ export async function saveTransactionWithCheck(
     .single();
 
   if (error) {
+    
     if (error.code === "23505") {
       throw new Error("EMAIL_ALREADY_EXISTS");
     }
     throw new Error(`Supabase insert failed: ${error.message}`);
   }
 
-  return inserted.id;   // 👈 return inserted record id
+  return inserted.id;   // return inserted record id
 }
 
 export async function getAllSubscribedEmails(): Promise<string[]> {

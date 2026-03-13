@@ -13,12 +13,12 @@ export default function EmailModal({
   isOpen,
   onClose,
   expired = false,
-  sendMail=false
+  sendMail = false,
 }: EmailModalProps) {
   const [visible, setVisible] = useState<boolean>(false);
   const [email, setEmail] = useState<string>("");
   const [error, setError] = useState<string>("");
-
+  const [loading, setLoading] = useState(false);
   useEffect(() => {
     if (isOpen) {
       setVisible(true);
@@ -67,23 +67,28 @@ export default function EmailModal({
     // Save email
     localStorage.setItem(STORAGE_KEY, email);
     const MailType = sendMail ? "No-Mail" : "First-Chapter";
-    const emailSubject = sendMail ? "You're on the list" : "Chapter One - Trapped";
+    const emailSubject = sendMail
+      ? "You're on the list"
+      : "Chapter One - Trapped";
     sendEmail(email, emailSubject, MailType);
-    
-    // Close modal
-    //onClose();
   };
 
   // send email
-  const sendEmail = async (Email: string, Subject: string, emailType: string) => {
+  const sendEmail = async (
+    Email: string,
+    Subject: string,
+    emailType: string,
+  ) => {
     try {
+      setLoading(true);
+
       const res = await fetch("/api/send-email", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           email: Email,
           subject: Subject,
-          emailType: emailType
+          emailType: emailType,
         }),
       });
 
@@ -91,8 +96,8 @@ export default function EmailModal({
       if (res.ok || data.success) {
         onClose(); //close the popup
         toast.success("Email send successfully.");
-        
-        if(emailType != "No-Mail") {
+
+        if (emailType != "No-Mail") {
           // Open Chapter 1 PDF in new tab
           window.open("/pdfs/chapter-one.pdf", "_blank", "noopener,noreferrer");
         }
@@ -106,9 +111,14 @@ export default function EmailModal({
       }
     } catch (err: any) {
       // Network or unexpected error
-      toast.error(err.message || "Something went wrong while sending the email.");
+      toast.error(
+        err.message || "Something went wrong while sending the email.",
+      );
       setError(err.message || "Unexpected error occurred.");
       console.error("Send email error:", err);
+      setLoading(false);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -119,15 +129,21 @@ export default function EmailModal({
   return (
     <div className={`modal-overlay ${isOpen ? "show" : "hide"}`}>
       <div className={`modal ${isOpen ? "show" : "hide"}`}>
-
         {expired ? (
           // Show only expired message
           <div className="text-center">
             <h1 className="text-2xl text-gray-400 mb-4">
               This download link has expired.
             </h1>
-            <p className="text-white">Please request a new link to access the content.</p>
+            <p className="text-white">
+              Please request a new link to access the content.
+            </p>
           </div>
+        ) : loading ? (
+          <>
+            <div className="spinner" />
+            <h2 className="text-white text-xl mt-4">Sending...</h2>
+          </>
         ) : (
           <>
             <h1 className="modal-subtitle text-2xl text-white">
@@ -142,9 +158,9 @@ export default function EmailModal({
                 onChange={handleEmailChange}
               />
 
-              {error && <p className="modal-error"></p>}
-
-              <button type="submit">CONTINUE</button>
+              <button type="submit" disabled={loading}>
+                {loading ? "SENDING..." : "CONTINUE"}
+              </button>
             </form>
           </>
         )}

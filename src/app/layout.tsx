@@ -4,6 +4,7 @@ import "./globals.css";
 import { ThemeProvider } from "@/components/theam-provider";
 import AppHeader from "@/components/common/app-header";
 import AppFooter from "@/components/common/app-footer";
+import { Toaster } from "react-hot-toast";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -20,8 +21,8 @@ export const metadata: Metadata = {
     default: "LET ME GIVE YOU THE GAME",
     template: "%s | LET ME GIVE YOU THE GAME",
   },
-  description:"A practical manual for modern men. Standards. Discipline. Relationships. Read it, apply it, you adjust.",
-
+  description:
+    "A practical manual for modern men. Standards. Discipline. Relationships. Read it, apply it, you adjust.",
 };
 
 export default function RootLayout({
@@ -36,6 +37,7 @@ export default function RootLayout({
           <AppHeader />
           <div className="p-4">{children}</div>
           <AppFooter />
+          <Toaster position="top-right" />
         </ThemeProvider>
       </body>
     </html>

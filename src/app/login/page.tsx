@@ -1,5 +1,6 @@
 "use client"; // must be first line
 
+import axios from "axios";
 import { useSearchParams, useRouter } from "next/navigation";
 import { useState, useEffect, Suspense } from "react";
 import toast from "react-hot-toast";
@@ -8,7 +9,7 @@ export function InnerLoginPage() {
   const searchParams = useSearchParams();
   const router = useRouter();
 
-  const [password, setPassword] = useState(""); 
+  const [password, setPassword] = useState("");
 
   useEffect(() => {
     const success = searchParams.get("success");
@@ -21,7 +22,7 @@ export function InnerLoginPage() {
     }
 
     if (success === "logout") {
-     // toast.success("Logged out successfully.");
+      // toast.success("Logged out successfully.");
     }
 
     // Remove query params safely without using window
@@ -30,17 +31,30 @@ export function InnerLoginPage() {
 
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
+    try {
+      if (!password) {
+        toast.error("Please enter password");
+        return;
+      }
 
-    const res = await fetch("/api/login", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ password }),
-    });
+      const res = await axios.post("/api/login", {
+        password,
+      });
+      console.log("res", res);
+      const data = res.data;
 
-    if (res.ok) {
-      router.push("/custom-action");
-    } else {
-      toast.error("Invalid password.");
+      if (data.verifyRequired) {
+        router.push("/auth/mfa-verify?from=login");
+      } else {
+        toast.success("Logged in successfully.");
+        setTimeout(() => {
+          router.push("/custom-action");
+        }, 500);
+      }
+    } catch (e) {
+      console.log(e);
+
+      toast.error("Invalid credentials.");
     }
   };
 
@@ -67,13 +81,10 @@ export function InnerLoginPage() {
 }
 
 export default function LoginPage() {
-  
- 
-
   return (
     <>
-     <Suspense fallback={null}>
-        <InnerLoginPage></InnerLoginPage>    
+      <Suspense fallback={null}>
+        <InnerLoginPage></InnerLoginPage>
       </Suspense>
     </>
   );

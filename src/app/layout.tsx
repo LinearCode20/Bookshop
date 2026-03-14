@@ -16,14 +16,33 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-export const metadata: Metadata = {
+const BASE_URL = process.env.BASE_URL ?? "https://www.letmegiveyouthegame.com";
+
+export const metadata : Metadata = {
   title: {
     default: "LET ME GIVE YOU THE GAME",
     template: "%s | LET ME GIVE YOU THE GAME",
   },
   description:
     "A practical manual for modern men. Standards. Discipline. Relationships. Read it, apply it, you adjust.",
+  openGraph: {
+    title: "Let Me Give You The Game",
+    description: "Learn strategies and insights from the book Let Me Give You The Game.",
+    url: BASE_URL,
+    siteName: "Let Me Give You The Game",
+    images: [
+      {
+        url: `${BASE_URL}/images/book-cover.png`,
+        width: 1200,
+        height: 630,
+        alt: "Let Me Give You The Game Book Cover",
+      },
+    ],
+    locale: "en_US",
+    type: "website",
+  },
 };
+
 
 export default function RootLayout({
   children,

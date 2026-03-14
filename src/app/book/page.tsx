@@ -50,7 +50,7 @@ function page({
         <div className="basis-1/2 w-full">
           <Image
             src="/book.png"
-            alt="Book Cover"
+            alt="Let Me Give You The Game book cover"
             width={300}
             height={200}
             className="mx-auto px-8 object-contain"

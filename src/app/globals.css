@@ -135,6 +135,7 @@ html{
 .container{
   width: 100%;
   max-width: 824px;
+  min-height: calc(100dvb - 10rem);  
   margin-left: auto;
   margin-right: auto;
 }

@@ -62,32 +62,3 @@ export default function HomePage({
     </main>
   );
 }
-<section className="container py-24 text-center">
-      <h2 className="uppercase tracking-[0.2em] text-sm text-white mb-8">
-        INSIDE THE MANUAL
-      </h2>
-
-      <div className="max-w-3xl mx-auto space-y-6">
-        <div>
-          <p className="text-white mb-2">Standards</p>
-          <p>What a man accepts. What he refuses. What he walks away from.</p>
-        </div>
-
-        <div>
-          <p className="text-white mb-2">Discipline</p>
-          <p>Behaviour that holds, whether the mood is there or not.</p>
-        </div>
-
-        <div>
-          <p className="text-white mb-2">Relationships</p>
-          <p>How to lead with clarity, restraint, and self-respect.</p>
-        </div>
-
-        <div>
-          <p className="text-white mb-2">Conflict</p>
-          <p>How to stay composed when pressure rises.</p>
-        </div>
-      </div>
-    </section>
-  </main>
-);

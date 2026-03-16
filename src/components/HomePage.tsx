@@ -35,7 +35,7 @@ export default function HomePage({
           In conversation. In conflict. At home.
         </p>
         <p className="max-w-2xl mx-auto mb-2">
-          Described by early readers as direct and grounded.
+          Designed for application.
         </p>
         <div className="flex gap-3 justify-center flex-wrap mt-7">
           <Link key={"/chapter-one"} href={"/chapter-one"}>

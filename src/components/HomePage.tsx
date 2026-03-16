@@ -62,3 +62,6 @@ export default function HomePage({
     </main>
   );
 }
+<section className="container py-40 text-center">
+  <p>TEST SECTION</p>
+</section>

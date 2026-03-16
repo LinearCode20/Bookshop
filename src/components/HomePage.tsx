@@ -62,6 +62,35 @@ export default function HomePage({
     </main>
   );
 }
-<section className="container py-40 text-center">
-  <p>TEST SECTION</p>
+<section className="container py-40 text-center border-t border-white/10">
+  <h2 className="uppercase tracking-[0.2em] text-sm mb-10 text-white">
+    INSIDE THE MANUAL
+  </h2>
+
+  <div className="max-w-2xl mx-auto space-y-8">
+    <div>
+      <p className="text-white">Standards</p>
+      <p className="mt-2">What a man accepts. What he refuses. What he walks away from.</p>
+    </div>
+
+    <div>
+      <p className="text-white">Discipline</p>
+      <p className="mt-2">Behaviour that holds, whether the mood is there or not.</p>
+    </div>
+
+    <div>
+      <p className="text-white">Conflict</p>
+      <p className="mt-2">How to remain composed when pressure rises.</p>
+    </div>
+
+    <div>
+      <p className="text-white">Relationships</p>
+      <p className="mt-2">Boundaries, conduct and responsibility in the home.</p>
+    </div>
+
+    <div>
+      <p className="text-white">Respect</p>
+      <p className="mt-2">How respect is earned through standards and behaviour.</p>
+    </div>
+  </div>
 </section>

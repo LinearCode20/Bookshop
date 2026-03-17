@@ -20,7 +20,7 @@ export default function HomePage({
     <main>
       <section className="container flex flex-col text-center gap-4 justify-center items-center">
 
-  <div className="inline-block border-2 border-white/40 px-10 py-5 mb-6">
+  <div className="inline-block border-2 border-white/60 px-10 py-5 mb-6">
   <h1 className="statement text-4xl leading-relaxed tracking-[0.2em] text-white">
     LET ME GIVE YOU THE GAME
     </h1>
@@ -64,7 +64,7 @@ export default function HomePage({
       
 <section className="container py-16 text-center">
 
-  <div className="inline-block border border-white/20 px-8 py-4 mb-16">
+  <div className="inline-block border-2 border-white/40 px-8 py-4 mb-16">
     <h2 className="uppercase tracking-[0.3em] text-3xl text-white">
       INSIDE THE MANUAL
     </h2>

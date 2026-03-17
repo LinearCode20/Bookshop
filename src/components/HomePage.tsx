@@ -39,7 +39,7 @@ export default function HomePage({
         <div className="flex gap-3 justify-center flex-wrap mt-7">
           <Link key={"/chapter-one"} href={"/chapter-one"}>
             <Button className="btn primary pointer text-base px-6 py-2.5 hover:opacity-70 transition-all duration-200">
-              [ READ CHAPTER ONE ]
+              [ OPEN CHAPTER ONE ]
             </Button>
           </Link>
 

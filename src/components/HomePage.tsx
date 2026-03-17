@@ -60,30 +60,45 @@ export default function HomePage({
         </div>
       </section>
       
-       <section className="container py-28 text-center">
-      <h2 className="uppercase tracking-[0.3em] text-3xl text-white mb-20">
+<section className="container py-28">      <h2 className="uppercase tracking-[0.3em] text-3xl text-white mb-20">
         INSIDE THE MANUAL
       </h2>
 
-     <div className="max-w-3xl mx-auto space-y-6">
+     <div className="max-w-2xl mx-auto space-y-14 text-left">
   <div>
-    <p className="text-white mb-4">STANDARDS</p>
-    <p>What a man accepts. What he refuses. What he walks away from.</p>
+    <h3 className="uppercase text-sm tracking-[0.18em] text-white mb-3">
+      Standards
+    </h3>
+    <p className="text-neutral-300 leading-relaxed">
+      What a man accepts. What he refuses. What he walks away from.
+    </p>
   </div>
 
   <div>
-    <p className="text-white mb-4">DISCIPLINE</p>
-    <p>Behaviour that's consistent, whether you're in the mood or not.</p>
+    <h3 className="uppercase text-sm tracking-[0.18em] text-white mb-3">
+      Discipline
+    </h3>
+    <p className="text-neutral-300 leading-relaxed">
+      Behaviour that holds, whether the mood is there or not.
+    </p>
   </div>
 
   <div>
-    <p className="text-white mb-4">RELATIONSHIPS</p>
-    <p>Leading with clarity, restraint, and self-respect.</p>
+    <h3 className="uppercase text-sm tracking-[0.18em] text-white mb-3">
+      Relationships
+    </h3>
+    <p className="text-neutral-300 leading-relaxed">
+      Leading with clarity, restraint, and self-respect.
+    </p>
   </div>
 
   <div>
-    <p className="text-white mb-4">CONFLICT</p>
-    <p>Staying composed under pressure.</p>
+    <h3 className="uppercase text-sm tracking-[0.18em] text-white mb-3">
+      Conflict
+    </h3>
+    <p className="text-neutral-300 leading-relaxed">
+      Remaining composed under pressure.
+    </p>
   </div>
 </div>
 </section>

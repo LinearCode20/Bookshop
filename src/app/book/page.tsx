@@ -26,7 +26,12 @@ function page({
       <section className="container pt-6 flex md:flex-row flex-col gap-8 justify-center items-start ">
         <div className="h-full flex flex-col items-start justify-start basis-1/2  mx-auto">
 
-          <h1 className="mt-2 text-2xl tracking-[0.2em] text-white">THE DIGITAL EDITION</h1>
+    <div className="inline-block border border-white/10 px-8 py-4 mb-6">
+      <h1 className="mt-2 text-2xl tracking-[0.2em] text-white">
+      THE DIGITAL EDITION
+      </h1>
+      </div>          
+          
           <p className="mt-6">22 chapters. The essential material.</p>
           <p className="mt-3">Designed for immediate use.</p>
           <p className="mt-3">A reference built from lived experience.</p>

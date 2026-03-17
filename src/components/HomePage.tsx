@@ -65,28 +65,32 @@ export default function HomePage({
         INSIDE THE MANUAL
       </h2>
 
-      <div className="max-w-3xl mx-auto space-y-6">
-        <div>
-          <p className="text-white mb-2">Standards</p>
-          <p>What a man accepts. What he refuses. What he walks away from.</p>
-        </div>
+     <div className="max-w-2xl mx-auto space-y-14 text-left">
+  <div>
+    <p className="text-white mb-3 text-lg">Standards</p>
+    <p className="text-neutral-300 leading-relaxed">
+      What a man accepts. What he refuses. What he walks away from.
+    </p>
+  </div>
 
-        <div>
-          <p className="text-white mb-2">Discipline</p>
-          <p>Behaviour that holds, whether the mood is there or not.</p>
-        </div>
+  <div>
+    <p className="text-white mb-3 text-lg">Discipline</p>
+    <p className="text-neutral-300 leading-relaxed">
+      Behaviour that holds, whether the mood is there or not.
+    </p>
+  </div>
 
-        <div>
-          <p className="text-white mb-2">Relationships</p>
-          <p>How to lead with clarity, restraint, and self-respect.</p>
-        </div>
+  <div>
+    <p className="text-white mb-3 text-lg">Relationships</p>
+    <p className="text-neutral-300 leading-relaxed">
+      How to lead with clarity, restraint, and self-respect.
+    </p>
+  </div>
 
-        <div>
-          <p className="text-white mb-2">Conflict</p>
-          <p>How to stay composed when pressure rises.</p>
-        </div>
-      </div>
-    </section>
-  </main>
-);
-}   
+  <div>
+    <p className="text-white mb-3 text-lg">Conflict</p>
+    <p className="text-neutral-300 leading-relaxed">
+      How to stay composed when pressure rises.
+    </p>
+  </div>
+</div>

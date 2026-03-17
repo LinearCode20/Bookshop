@@ -65,41 +65,25 @@ export default function HomePage({
         INSIDE THE MANUAL
       </h2>
 
-     <div className="max-w-2xl mx-auto space-y-14 text-left">
+     <div className="max-w-3xl mx-auto space-y-6">
   <div>
-    <h3 className="uppercase text-sm tracking-[0.18em] text-white mb-3">
-      Standards
-    </h3>
-    <p className="text-neutral-300 leading-relaxed">
-      What a man accepts. What he refuses. What he walks away from.
-    </p>
+    <p className="text-white mb-3">STANDARDS</p>
+    <p>What a man accepts. What he refuses. What he walks away from.</p>
   </div>
 
   <div>
-    <h3 className="uppercase text-sm tracking-[0.18em] text-white mb-3">
-      Discipline
-    </h3>
-    <p className="text-neutral-300 leading-relaxed">
-      Behaviour that holds, whether the mood is there or not.
-    </p>
+    <p className="text-white mb-3">DISCIPLINE</p>
+    <p>Behaviour that's consistent, whether you're in the mood or not.</p>
   </div>
 
   <div>
-    <h3 className="uppercase text-sm tracking-[0.18em] text-white mb-3">
-      Relationships
-    </h3>
-    <p className="text-neutral-300 leading-relaxed">
-      Leading with clarity, restraint, and self-respect.
-    </p>
+    <p className="text-white mb-3">RELATIONSHIPS</p>
+    <p>Leading with clarity, restraint, and self-respect.</p>
   </div>
 
   <div>
-    <h3 className="uppercase text-sm tracking-[0.18em] text-white mb-3">
-      Conflict
-    </h3>
-    <p className="text-neutral-300 leading-relaxed">
-      Remaining composed under pressure.
-    </p>
+    <p className="text-white mb-3">CONFLICT</p>
+    <p>Staying composed under pressure.</p>
   </div>
 </div>
 </section>

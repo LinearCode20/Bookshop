@@ -67,22 +67,22 @@ export default function HomePage({
 
      <div className="max-w-3xl mx-auto space-y-6">
   <div>
-    <p className="text-white mb-2">Standards</p>
+    <p className="text-white mb-3">Standards</p>
     <p>What a man accepts. What he refuses. What he walks away from.</p>
   </div>
 
   <div>
-    <p className="text-white mb-2">Discipline</p>
+    <p className="text-white mb-3">Discipline</p>
     <p>Behaviour that's consistent, whether you're in the mood or not.</p>
   </div>
 
   <div>
-    <p className="text-white mb-2">Relationships</p>
+    <p className="text-white mb-3">Relationships</p>
     <p>Leading with clarity, restraint, and self-respect.</p>
   </div>
 
   <div>
-    <p className="text-white mb-2">Conflict</p>
+    <p className="text-white mb-3">Conflict</p>
     <p>Staying composed under pressure.</p>
   </div>
 </div>

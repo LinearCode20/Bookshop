@@ -60,7 +60,7 @@ export default function HomePage({
         </div>
       </section>
       
-<section className="container py-10 text-center">  
+<section className="container py-16 text-center">  
   <h2 className="uppercase tracking-[0.3em] text-3xl text-white mb-16">
         INSIDE THE MANUAL
       </h2>

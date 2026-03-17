@@ -123,7 +123,7 @@ export default function EmailModal({
         ) : (
           <>
             <h1 className="modal-subtitle text-2xl text-white">
-              Access Full Chapter
+              GET EARLY ACCESS TO THE DIGITAL EDITION
             </h1>
 
             <form className="modal-form" onSubmit={handleSubmit}>

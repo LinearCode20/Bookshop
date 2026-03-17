@@ -1,7 +1,7 @@
 export const runtime = "nodejs";
 import { NextResponse } from "next/server";
-import { sendEmail } from "@/lib/mailer";
-//import { sendEmail } from "@/lib/resend";
+//import { sendEmail } from "@/lib/mailer";
+import { sendEmail } from "@/lib/resend";
 import fs from "fs";
 import path from "path";
 import {

@@ -1,13 +1,14 @@
 export const runtime = "nodejs";
 import { NextResponse } from "next/server";
-//import { sendEmail } from "@/lib/mailer";
-import { sendEmail } from "@/lib/resend";
+import { sendEmail } from "@/lib/mailer";
+//import { sendEmail } from "@/lib/resend";
 import fs from "fs";
 import path from "path";
 import {
   saveTransactionWithCheck,
   getAllSubscribedEmails,
-  getAllPurchasersEmails
+  getAllPurchasersEmails,
+  saveEmailForDigitalEdition
 } from "@/lib/subscribedEmails";
 
 export async function POST(req: Request) {
@@ -110,9 +111,21 @@ export async function POST(req: Request) {
           break;
       }
 
-    } else if (emailType === "No-Mail") {
+    } 
+    // else if (emailType === "No-Mail") {
+    //   //Save email into the database
+    //   await saveTransactionWithCheck({
+    //     email: typeof email === "string" ? email : email[0],
+    //     subscribe_status: false,
+    //     created_at: new Date().toISOString(),
+    //   });
+
+    //   templatePath = path.join(process.cwd(), "emails/e-book-launch.html");
+    //   pdfLink = `${process.env.BASE_URL}/favicon.jpg`;
+    // } 
+    else if (emailType === "Access-the-digital-edition") {
       //Save email into the database
-      await saveTransactionWithCheck({
+      await saveEmailForDigitalEdition({
         email: typeof email === "string" ? email : email[0],
         subscribe_status: false,
         created_at: new Date().toISOString(),

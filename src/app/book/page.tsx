@@ -1,12 +1,13 @@
 "use client";
 import Image from "next/image";
-import StripePayButton from "@/components/StripePayButton";
+//import StripePayButton from "@/components/StripePayButton";
 
 import { Suspense, use, useState } from "react";
 import PaymentConfirmationPopup from "@/components/payment-confirmation/PaymentConfirmationPopup";
 import PopUp from "@/components/popup/popup";
 import { Button } from "@/components/ui/button";
-import EmailModal from "@/components/first-chapter/read-first-chapter-popup";
+import EmailModal from "@/components/Early-access/early-access-modal";
+
 
 function page({
   searchParams,
@@ -44,7 +45,7 @@ function page({
           {/* <Button onClick={() => setPopUpOpen(true)} className="btn primary text-base px-6 py-2.5 mt-6">[ BUY DIGITAL EDITION - £15 ]</Button> */}
 
           <Button className="btn primary pointer hover:opacity-70 transition-all duration-200 mt-8" onClick={() => setfirstOpen(true)}>[ GET EARLY ACCESS TO THE DIGITAL EDITION ]</Button>          
-          <EmailModal isOpen={firstOpen} onClose={() => setfirstOpen(false)} expired={false} sendMail={true} />
+          <EmailModal isOpen={firstOpen} onClose={() => setfirstOpen(false)} expired={false}/>
 
           <PopUp
             popUpOpen={popUpOpen}
@@ -54,7 +55,7 @@ function page({
         </div>
         <div className="basis-1/2 w-full">
           <Image
-            src="/book.png"
+            src="/images/book-cover.png"
             alt="Let Me Give You The Game book cover"
             width={400}
             height={600}

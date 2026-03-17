@@ -62,11 +62,8 @@ export default function EmailModal({
       return;
     }
 
-    // Save email
-    localStorage.setItem(STORAGE_KEY, email);
-    const MailType = "First-Chapter";
-    const emailSubject = "Chapter One - Trapped";
-    sendEmail(email, emailSubject, MailType);
+    const MailType = "Access-the-digital-edition";    
+    sendEmail(email, "You're on the list", MailType);
   };
 
   // send email
@@ -91,16 +88,12 @@ export default function EmailModal({
       const data = await res.json();
       if (res.ok || data.success) {
         onClose(); //close the popup
-        toast.success("Email send successfully.");
-       
-        // Open Chapter 1 PDF in new tab
-        window.open("/pdfs/chapter-one.pdf", "_blank", "noopener,noreferrer");
-        
+        toast.success("Email captured successfully.");       
       } else {
-        const message = data?.message || "Failed to send email.";
+        const message = data?.message || "Failed to capture email.";
         toast.error(message);
         setError("error"); // optional, show in modal
-        console.error("API error:", message);
+        //console.error("API error:", message);
       }
     } catch (err: any) {
       // Network or unexpected error
@@ -108,7 +101,7 @@ export default function EmailModal({
         err.message || "Something went wrong while sending the email.",
       );
       setError(err.message || "Unexpected error occurred.");
-      console.error("Send email error:", err);
+      //console.error("Send email error:", err);
       setLoading(false);
     } finally {
       setLoading(false);
@@ -122,17 +115,7 @@ export default function EmailModal({
   return (
     <div className={`modal-overlay ${isOpen ? "show" : "hide"}`}>
       <div className={`modal ${isOpen ? "show" : "hide"}`}>
-        {expired ? (
-          // Show only expired message
-          <div className="text-center">
-            <h1 className="text-2xl text-gray-400 mb-4">
-              This download link has expired.
-            </h1>
-            <p className="text-white">
-              Please request a new link to access the content.
-            </p>
-          </div>
-        ) : loading ? (
+        {loading ? (
           <>
             <div className="spinner" />
             <h2 className="text-white text-xl mt-4">Sending...</h2>

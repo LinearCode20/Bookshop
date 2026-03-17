@@ -20,7 +20,7 @@ export default function HomePage({
     <main>
       <section className="container flex flex-col text-center gap-4 justify-center items-center">
 
-  <div className="inline-block border-2 border-white/80 px-10 py-5 mb-6">
+  <div className="inline-block border-2 border-white/70 px-10 py-5 mb-6">
   <h1 className="statement text-4xl leading-relaxed tracking-[0.2em] text-white">
     LET ME GIVE YOU THE GAME
     </h1>

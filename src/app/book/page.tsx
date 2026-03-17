@@ -26,7 +26,7 @@ function page({
       <section className="container pt-6 flex md:flex-row flex-col gap-8 justify-start items-start ">
         <div className="h-full flex flex-col items-start justify-start basis-1/2  mx-auto">
 
-    <div className="inline-block border border-white/10 px-8 py-4 mb-6">
+    <div className="inline-block border-2 border-white/40 px-8 py-4 mb-6">
       <h1 className="mt-2 text-2xl tracking-[0.2em] text-white">
       THE DIGITAL EDITION
       </h1>

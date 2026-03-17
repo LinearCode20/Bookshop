@@ -60,33 +60,34 @@ export default function HomePage({
         </div>
       </section>
       
-<section className="container py-16 text-center">  
-  <h2 className="uppercase tracking-[0.3em] text-3xl text-white mb-10 mt-6">
-        INSIDE THE MANUAL
-      </h2>
+<section className="container py-16 text-center">
 
-     <div className="max-w-3xl mx-auto space-y-8">
-  <div>
-    <p className="text-white mb-3">STANDARDS</p>
-    <p>What a man accepts. What he refuses. What he walks away from.</p>
+  <div className="inline-block border border-white/20 px-8 py-4 mb-16">
+    <h2 className="uppercase tracking-[0.3em] text-3xl text-white">
+      INSIDE THE MANUAL
+    </h2>
   </div>
 
-  <div>
-    <p className="text-white mb-3">DISCIPLINE</p>
-    <p>Behaviour that's consistent, whether you're in the mood or not.</p>
+  <div className="max-w-3xl mx-auto space-y-8 text-left">
+    <div>
+      <p className="text-white mb-3">STANDARDS</p>
+      <p>What a man accepts. What he refuses. What he walks away from.</p>
+    </div>
+
+    <div>
+      <p className="text-white mb-3">DISCIPLINE</p>
+      <p>Behaviour that's consistent, whether you're in the mood or not.</p>
+    </div>
+
+    <div>
+      <p className="text-white mb-3">RELATIONSHIPS</p>
+      <p>Leading with clarity, restraint, and self-respect.</p>
+    </div>
+
+    <div>
+      <p className="text-white mb-3">CONFLICT</p>
+      <p>Staying composed under pressure.</p>
+    </div>
   </div>
 
-  <div>
-    <p className="text-white mb-3">RELATIONSHIPS</p>
-    <p>Leading with clarity, restraint, and self-respect.</p>
-  </div>
-
-  <div>
-    <p className="text-white mb-3">CONFLICT</p>
-    <p>Staying composed under pressure.</p>
-  </div>
-</div>
 </section>
-</main>
-);
-}

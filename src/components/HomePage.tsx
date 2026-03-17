@@ -59,8 +59,8 @@ export default function HomePage({
           </Suspense>
         </div>
       </section>
-       <section className="container py-24 text-center">
-      <h2 className="uppercase tracking-[0.4em] text-sm text-white mb-12">
+       <section className="container py-28 text-center">
+      <h2 className="uppercase tracking-[0.4em] text-2x1 text-white mb-12">
         INSIDE THE MANUAL
       </h2>
 

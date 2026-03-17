@@ -13,7 +13,7 @@ function page() {
     <main>
       <section className="container flex flex-col justify-center items-center ">
         <div className="text-center mx-auto max-w-4xl pb-14 space-y-6">
-          <div className="inline-block border border-white/10 px-8 py-4 mb-6">
+          <div className="inline-block border-2 border-white/40 px-8 py-4 mb-6">
   <h1 className="statement text-3xl tracking-[0.25em] text-white">BRAM FROST
      </h1> 
     </div>

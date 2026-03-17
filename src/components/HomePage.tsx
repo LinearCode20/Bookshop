@@ -60,7 +60,7 @@ export default function HomePage({
         </div>
       </section>
       
-       <section className="container py-28 text-center">
+       <section className="container py-28 text-left">
       <h2 className="uppercase tracking-[0.2em] text-3xl text-white mb-10">
         INSIDE THE MANUAL
       </h2>
@@ -73,17 +73,17 @@ export default function HomePage({
 
   <div>
     <p className="text-white mb-2">Discipline</p>
-    <p>Behaviour that holds, whether the mood is there or not.</p>
+    <p>Behaviour that's consistent, whether you're in the mood or not.</p>
   </div>
 
   <div>
     <p className="text-white mb-2">Relationships</p>
-    <p>How to lead with clarity, restraint, and self-respect.</p>
+    <p>Leading with clarity, restraint, and self-respect.</p>
   </div>
 
   <div>
     <p className="text-white mb-2">Conflict</p>
-    <p>How to stay composed when pressure rises.</p>
+    <p>Staying composed under pressure.</p>
   </div>
 </div>
 </section>

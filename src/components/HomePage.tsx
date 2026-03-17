@@ -24,7 +24,8 @@ export default function HomePage({
     <h1 className="statement text-4xl leading-relaxed tracking-[0.2em] text-white">
       LET ME GIVE YOU THE GAME
     </h1>
-
+    </div>        
+        
         <p className="max-w-2xl mx-auto mb-2">
           A PRACTICAL MANUAL FOR MODERN MEN.
         </p>

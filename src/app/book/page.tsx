@@ -23,7 +23,7 @@ function page({
 
   return (
     <main>
-      <section className="container pt-6 flex md:flex-row flex-col gap-8 justify-center items-start ">
+      <section className="container pt-6 flex md:flex-row flex-col gap-8 justify-start items-start ">
         <div className="h-full flex flex-col items-start justify-start basis-1/2  mx-auto">
 
     <div className="inline-block border border-white/10 px-8 py-4 mb-6">

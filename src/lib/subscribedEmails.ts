@@ -71,3 +71,36 @@ export async function getAllPurchasersEmails(): Promise<string[]> {
   // Map to array of email strings
   return data.map((row: { email: string }) => row.email);
 }
+
+/**
+ * Save email for digital edition
+ * @param data 
+ * @returns 
+ */
+export async function saveEmailForDigitalEdition(
+  data: SaveSubscriberedEmails
+) {
+  const { email, subscribe_status, created_at } = data;
+
+  const { data: inserted, error } = await supabase
+    .from("digital_edition_emails")
+    .insert([
+      {
+        email,
+        subscribe_status,
+        created_at,
+      },
+    ])
+    .select("id")
+    .single();
+
+  if (error) {
+    
+    if (error.code === "23505") {
+      throw new Error("EMAIL_ALREADY_EXISTS");
+    }
+    throw new Error(`Supabase insert failed: ${error.message}`);
+  }
+
+  return inserted.id;   // return inserted record id
+}

@@ -13,16 +13,19 @@ function page() {
     <main>
       <section className="container flex flex-col justify-center items-center ">
         <div className="text-center mx-auto max-w-4xl pb-14 space-y-6">
-          <h1 className="statement text-3xl tracking-[0.25em] text-white mb-6">BRAM FROST</h1>
+          <div className="inline-block border-2 border-white/40 px-8 py-4 mb-6">
+  <h1 className="statement text-3xl tracking-[0.25em] text-white">BRAM FROST
+     </h1> 
+    </div>
           <p className="max-w-2xl mx-auto">This work is published under a pen name.</p>
           <p className="max-w-2xl mx-auto">The focus is the material.</p>
           <p className="max-w-2xl mx-auto">The system matters more than the individual.</p>
           <p className="max-w-2xl mx-auto">No biography is required.</p>
           <p className="max-w-2xl mx-auto">The material stands on its own.</p>
           <div className="flex gap-3 justify-center flex-wrap mt-12">
-
+    
             <Link key={'/chapter-one'} href={'/chapter-one'} >
-              <Button className="btn primary pointer text-base px-6 py-2.5">[ READ CHAPTER ONE ]</Button>
+              <Button className="btn primary pointer text-base px-6 py-2.5 hover:opacity-70 transition-all duration-200">[ READ CHAPTER ONE ]</Button>
             </Link>
 
             {/* <Button onClick={() => setPopUpOpen(true)} className="btn primary">[ Digital Edition ]</Button> */}

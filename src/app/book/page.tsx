@@ -1,12 +1,13 @@
 "use client";
 import Image from "next/image";
-import StripePayButton from "@/components/StripePayButton";
+//import StripePayButton from "@/components/StripePayButton";
 
 import { Suspense, use, useState } from "react";
 import PaymentConfirmationPopup from "@/components/payment-confirmation/PaymentConfirmationPopup";
 import PopUp from "@/components/popup/popup";
 import { Button } from "@/components/ui/button";
-import EmailModal from "@/components/first-chapter/read-first-chapter-popup";
+import EmailModal from "@/components/Early-access/early-access-modal";
+
 
 function page({
   searchParams,
@@ -23,23 +24,28 @@ function page({
 
   return (
     <main>
-      <section className="container pt-6 flex md:flex-row flex-col gap-8 justify-center items-start ">
+      <section className="container pt-6 flex md:flex-row flex-col gap-8 justify-start items-start ">
         <div className="h-full flex flex-col items-start justify-start basis-1/2  mx-auto">
 
-          <h1 className="mt-2 text-2xl tracking-[0.2em] text-white">THE DIGITAL EDITION</h1>
+    <div className="inline-block border-2 border-white/40 px-8 py-4 mb-6">
+      <h1 className="mt-2 text-2xl tracking-[0.2em] text-white">
+      THE DIGITAL EDITION
+      </h1>
+      </div>          
+          
           <p className="mt-6">22 chapters. The essential material.</p>
           <p className="mt-3">Designed for immediate use.</p>
           <p className="mt-3">A reference built from lived experience.</p>
           <p className="mt-3">Practical guidance on standards, discipline, relationships, and self-respect.</p>
           <p className="mt-3">Instant access after purchase.</p>          
           <p className="mt-3">You read it, you apply it, you adjust.</p>
-          <p className="mt-3">Hardback edition releases later this year.</p>
+          <p className="mt-3">Hardback releases later this year.</p>
           
           {/* Stripe Payment Button */}
           {/* <Button onClick={() => setPopUpOpen(true)} className="btn primary text-base px-6 py-2.5 mt-6">[ BUY DIGITAL EDITION - £15 ]</Button> */}
 
-          <Button className="btn primary pointer hover:bg-foreground hover:text-primary" onClick={() => setfirstOpen(true)}>[ GET NOTIFIED WHEN THE E-BOOK LAUNCHES ]</Button>          
-          <EmailModal isOpen={firstOpen} onClose={() => setfirstOpen(false)} expired={false} sendMail={true} />
+          <Button className="btn primary pointer hover:opacity-70 transition-all duration-200 mt-8" onClick={() => setfirstOpen(true)}>[ GET EARLY ACCESS TO THE DIGITAL EDITION ]</Button>          
+          <EmailModal isOpen={firstOpen} onClose={() => setfirstOpen(false)} expired={false}/>
 
           <PopUp
             popUpOpen={popUpOpen}
@@ -49,10 +55,10 @@ function page({
         </div>
         <div className="basis-1/2 w-full">
           <Image
-            src="/book.png"
+            src="/images/book-cover.png"
             alt="Let Me Give You The Game book cover"
-            width={300}
-            height={200}
+            width={400}
+            height={600}
             className="mx-auto px-8 object-contain"
           />
         </div>

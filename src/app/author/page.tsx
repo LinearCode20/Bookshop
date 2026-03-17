@@ -10,13 +10,17 @@ import Link from "next/link";
 function page() {
   const [popUpOpen, setPopUpOpen] = useState(false);
   return (
-    <main>
-      <section className="container flex flex-col justify-center items-center ">
-       <div className="inline-block border border-white/10 px-8 py-4 mb-8 mt-10">
-  <h1 className="statement text-3xl tracking-[0.25em] text-white">
-    BRAM FROST
-     </h1>
-     </div>
+  <main>
+    <section className="container flex flex-col justify-center items-center ">
+      <div className="inline-block border border-white/10 px-8 py-4 mb-8 mt-10">
+        <h1 className="statement text-3xl tracking-[0.25em] text-white">
+          BRAM FROST
+        </h1>
+         </div>
+          </section>
+          </main>
+          );
+          }
           <p className="max-w-2xl mx-auto">This work is published under a pen name.</p>
           <p className="max-w-2xl mx-auto">The focus is the material.</p>
           <p className="max-w-2xl mx-auto">The system matters more than the individual.</p>

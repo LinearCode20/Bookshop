@@ -12,9 +12,7 @@ function page() {
   return (
   <main>
   <div className="text-center mx-auto max-w-4xl pb-14 space-y-6">
-  <h1 className="statement text-3xl tracking-[0.25em] text-white mb-8 mt-10">BRAM FROST
-      </h1>
-     </div>
+  <h1 className="statement text-3xl tracking-[0.25em] text-white mb-8 mt-10">BRAM FROST</h1>
           <p className="max-w-2xl mx-auto">This work is published under a pen name.</p>
           <p className="max-w-2xl mx-auto">The focus is the material.</p>
           <p className="max-w-2xl mx-auto">The system matters more than the individual.</p>

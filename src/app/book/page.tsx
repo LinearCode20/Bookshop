@@ -51,8 +51,8 @@ function page({
           <Image
             src="/book.png"
             alt="Let Me Give You The Game book cover"
-            width={300}
-            height={200}
+            width={400}
+            height={600}
             className="mx-auto px-8 object-contain"
           />
         </div>

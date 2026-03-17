@@ -72,17 +72,17 @@ export default function HomePage({
   </div>
 
   <div>
-    <p className="text-white mb-3">Discipline</p>
+    <p className="text-white mb-3">DISCIPLINE</p>
     <p>Behaviour that's consistent, whether you're in the mood or not.</p>
   </div>
 
   <div>
-    <p className="text-white mb-3">Relationships</p>
+    <p className="text-white mb-3">RELATIONSHIPS</p>
     <p>Leading with clarity, restraint, and self-respect.</p>
   </div>
 
   <div>
-    <p className="text-white mb-3">Conflict</p>
+    <p className="text-white mb-3">CONFLICT</p>
     <p>Staying composed under pressure.</p>
   </div>
 </div>

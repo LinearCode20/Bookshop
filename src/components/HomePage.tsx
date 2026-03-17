@@ -25,7 +25,7 @@ export default function HomePage({
         </h1>
 
         <p className="max-w-2xl mx-auto mb-2">
-          A practical manual for modern men.
+          A PRACTICAL MANUAL FOR MODERN MEN.
         </p>
         <p className="max-w-2xl mx-auto mb-2">
           Standards · Discipline · Relationships · Respect

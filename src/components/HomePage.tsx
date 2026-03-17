@@ -34,9 +34,6 @@ export default function HomePage({
         </p>
         <p className="max-w-2xl mx-auto mb-2">Stop reacting. Start leading.</p>
         <p className="max-w-2xl mx-auto mb-2">
-          In conversation. In conflict. At home.
-        </p>
-        <p className="max-w-2xl mx-auto mb-2">
           Designed for application.
         </p>
         <div className="flex gap-3 justify-center flex-wrap mt-7">

@@ -23,8 +23,7 @@ function page() {
       <p className="max-w-2xl mx-auto">The material stands on its own.</p>
     </div>
      </main>
-      );
-     }
+    
             <Link key={'/chapter-one'} href={'/chapter-one'} >
               <Button className="btn primary pointer text-base px-6 py-2.5 hover:opacity-70 transition-all duration-200">[ READ CHAPTER ONE ]</Button>
             </Link>
